@@ -240,10 +240,10 @@ const DIRECT_PLATFORM: Record<
  * plain black (or, on a dark page, white) plate with the platform mark leading
  * the label, which names the platform too.
  *
- * It points at the API's tracked redirect (/v1/releases/download/:platform),
- * which logs the hit and 302s to the artifact — so unlike a store link it is measurable end to end, needs
- * no account to accept, and ships the moment a release is published rather than
- * when review clears.
+ * It points straight at the versioned installer on the CDN (dl.smartloop.ai),
+ * baked in at build time — so unlike a store link it needs no account to
+ * accept, and ships the moment a release is published (which redeploys the
+ * site) rather than when review clears.
  */
 // Primary is the brand pink, for the download the visitor most likely wants;
 // secondary is the plain panel, for the other platforms.

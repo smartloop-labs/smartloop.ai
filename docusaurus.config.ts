@@ -23,13 +23,14 @@ async function fetchLatestRelease(channel = 'stable') {
     const release = data.release ?? null;
     if (!release) return null;
     // customFields ships to every visitor in the JS bundle, so keep only what
-    // the pages render. The artifact URLs stay server-side: downloads go
-    // through the API's /v1/releases/download/:platform, which rate-limits
-    // them, and a direct CDN link in the bundle would let a scraper skip that.
+    // the pages render. url is the versioned installer on the Cloudflare R2
+    // bucket (dl.smartloop.ai/<version>/...): download buttons link straight
+    // to it, so a link always names the exact build this deploy shipped. The
+    // release pipeline redeploys the site on publish (repository_dispatch).
     return {
       ...release,
       artifacts: (release.artifacts ?? []).map(
-        ({ platform, arch, kind, size }) => ({ platform, arch, kind, size }),
+        ({ platform, arch, kind, size, url }) => ({ platform, arch, kind, size, url }),
       ),
     };
   } catch (error) {
@@ -86,7 +87,8 @@ const config = async (): Promise<Config> => {
     latestRelease,
     // Latest Docent CLI version (no leading v), for the /docent page.
     docentVersion,
-    // Contact form and installer downloads; see src/utils/api.ts.
+    // Contact form, and the download fallback when the release fetch failed;
+    // see src/utils/api.ts.
     apiBaseUrl,
   },
 
