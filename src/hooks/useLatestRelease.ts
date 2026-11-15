@@ -13,13 +13,14 @@ export type ArtifactArch = 'x64' | 'arm64' | 'universal';
 // are auto-update payloads and must never be offered as a download link.
 export type ArtifactKind = 'dmg' | 'zip' | 'nsis' | 'appimage' | 'deb';
 
-// url and sha512 are stripped at build time (docusaurus.config.ts) so the bundle
-// never carries a direct CDN link; downloads go through the API (src/utils/api.ts).
+// sha512 is stripped at build time (docusaurus.config.ts); url is kept, and is
+// the versioned installer on the CDN (dl.smartloop.ai) that download links use.
 export type ReleaseArtifact = {
   platform: ArtifactPlatform;
   arch: ArtifactArch;
   kind: ArtifactKind;
   size: number;
+  url: string;
 };
 
 export type Release = {

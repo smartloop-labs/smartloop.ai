@@ -213,8 +213,8 @@ function DownloadCard({ card, release }: { card: StudioCard; release: Release | 
         ))}
       </ul>
       <div className={styles.downloadCardFoot}>
-        {/* The block links to the API's tracked redirect, which resolves the
-            latest build itself; the release fetch only adds the size. Every
+        {/* The block links to the versioned installer on the CDN, from the
+            release baked in at build time, which also gives the size. Every
             card gets the same plain button, so the visitor's own platform is
             not singled out. */}
         <DirectDownloadBlock
