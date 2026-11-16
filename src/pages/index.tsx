@@ -241,7 +241,7 @@ export default function Home(): ReactNode {
         <Header />
         <main className={styles.page}>
           {/* ── Hero ───────────────────────────────────────── */}
-          <section className={styles.hero}>
+          <section className={`${styles.hero} ${styles.heroHome}`}>
             <div className={styles.heroGlow} aria-hidden="true" />
             <HeroDrift />
             <div className={styles.heroInner}>

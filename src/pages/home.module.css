@@ -1863,3 +1863,25 @@
   font-size: 1.1em;
   letter-spacing: -0.01em;
 }
+
+/* ── home spacing ──────────────────────────────────────
+   The hero's bottom padding and the statement's top padding stacked to
+   ~170px of nothing; together they now leave about 80. */
+.heroHome {
+  padding-bottom: 24px;
+}
+
+.statement {
+  padding-top: 56px;
+}
+
+/* The statement is a paragraph, not a second hero: smaller, lighter, a
+   little wider. */
+.statementText {
+  max-width: 34ch;
+  font-size: clamp(1.55rem, 2.9vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+}
+
