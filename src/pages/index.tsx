@@ -58,7 +58,7 @@ const PRINCIPLES: { title: string; body: string }[] = [
   { title: 'Open where it counts.', body: 'Docent and Docent Studio are open source. Read the code that runs on your computer.' },
 ];
 
-const DESCRIPTION = 'Smartloop makes private software that runs on the computer you already own: Docent, Docent Studio and gpushed.';
+const DESCRIPTION = 'Smartloop is an AI company. We make private software that runs on the computer you already own: Docent, Docent Studio and gpushed.';
 
 export default function Home(): ReactNode {
   const orgJsonLd = {
@@ -91,7 +91,7 @@ export default function Home(): ReactNode {
               Frontier quality. <span className={styles.accent}>Local first.</span>
             </h1>
             <p className={styles.lede}>
-              We make private software that runs on the computer you already own: a coding agent for your
+              We’re an AI company. We make private software that runs on the computer you already own: a coding agent for your
               terminal, a desktop app for your documents, and a GPU by the second when a job outgrows your machine.
             </p>
             <div className={styles.prose}>
