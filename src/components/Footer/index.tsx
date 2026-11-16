@@ -6,7 +6,9 @@ export default function Footer() {
             <span>&copy; {new Date().getFullYear()} Smartloop Inc.</span>
             <span>Made in San Francisco, CA</span>
             <div className="sl-footer__links">
+                <Link to="/about">About</Link>
                 <Link to="/docs/getting-started">Docs</Link>
+                <Link to="/pricing">Pricing</Link>
                 <Link to="/contact/?for=partner">Partners</Link>
                 <Link to="/terms">Terms</Link>
                 <Link to="/privacy">Privacy</Link>

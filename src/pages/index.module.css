@@ -2981,3 +2981,113 @@ details[open] .faqQuestion::after {
 .planCardFeatured .planFeatureCheck {
   color: transparent;
 }
+
+/* Pricing: one section per product */
+.pricingProductHead {
+  margin-bottom: 20px;
+}
+
+.pricingProductName {
+  font-family: var(--sl-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--sl-fg);
+  margin: 0 0 4px;
+}
+
+.pricingProductLine {
+  color: var(--sl-dim);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.gpuTable {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  display: table;
+}
+
+.gpuTable th,
+.gpuTable td {
+  text-align: left;
+  padding: 10px 12px;
+  border: none;
+  border-bottom: 1px solid var(--sl-line);
+  background: transparent;
+}
+
+.gpuTable th {
+  color: var(--sl-dim);
+  font-weight: 500;
+}
+
+.gpuTable td {
+  color: var(--sl-fg);
+}
+
+.gpuTable td:last-child,
+.gpuTable th:last-child {
+  text-align: right;
+}
+
+.gpuTable tr {
+  background: transparent;
+}
+
+@media (max-width: 560px) {
+  .gpuTable th:nth-child(3),
+  .gpuTable td:nth-child(3) {
+    display: none;
+  }
+}
+
+/* Pricing: one tab per product */
+.productTabs {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 4px;
+  border: 1px solid var(--sl-line);
+  border-radius: 999px;
+  background: var(--sl-panel);
+  overflow-x: auto;
+}
+
+.productTab {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sl-dim);
+  font-family: var(--sl-display);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.productTab:hover {
+  color: var(--sl-white);
+}
+
+.productTabActive {
+  background: var(--sl-accent);
+  color: var(--sl-on-accent);
+}
+
+.productTabActive:hover {
+  color: var(--sl-on-accent);
+}
+
+@media (max-width: 480px) {
+  .productTab {
+    padding: 7px 12px;
+    font-size: 0.82rem;
+  }
+}

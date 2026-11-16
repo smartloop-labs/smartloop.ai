@@ -1,0 +1,42 @@
+/* About page: the story column. Everything else comes from home.module.css. */
+.story {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.storyLead {
+  margin: 0 0 28px;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  color: var(--sl-white);
+}
+
+.storyText {
+  margin: 0 0 18px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--sl-dim);
+}
+
+.ctaRow {
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.picture {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* Room between the closing call to action and the footer rule. */
+.lastSection {
+  padding-bottom: 120px;
+}
+
+@media (max-width: 640px) {
+  .lastSection {
+    padding-bottom: 80px;
+  }
+}

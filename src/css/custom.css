@@ -458,9 +458,48 @@ body {
 
 .sl-menu__item a.sl-submenu__link {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.sl-submenu__text {
+  display: flex;
   flex-direction: column;
   gap: 2px;
-  text-decoration: none;
+  min-width: 0;
+}
+
+/* Product marks: the same tiles as the product cards on the home page. */
+.sl-submenu__mark {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--sl-line);
+  background: var(--sl-ink);
+}
+
+.sl-submenu__mark--prompt {
+  font-family: var(--sl-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--sl-accent-text);
+}
+
+.sl-submenu__mark--img {
+  border: none;
+  background: none;
+  object-fit: contain;
+}
+
+.sl-submenu__ext {
+  color: var(--sl-dim);
+  font-size: 0.7rem;
 }
 
 @media (min-width: 62em) {
@@ -482,7 +521,7 @@ body {
   }
 
   .sl-submenu__panel {
-    min-width: 270px;
+    min-width: 330px;
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -505,9 +544,10 @@ body {
   }
 
   .sl-submenu__name {
-    font-family: var(--sl-mono);
-    font-size: 0.76rem;
-    text-transform: lowercase;
+    font-family: var(--sl-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     color: var(--sl-white);
   }
 
@@ -520,7 +560,12 @@ body {
 }
 
 @media (max-width: 61.99875em) {
-  /* No hover on a phone: the two products are plain menu items. */
+  /* No hover on a phone: the products are plain menu items, mark and name. */
+  .sl-submenu__mark {
+    width: 28px;
+    height: 28px;
+  }
+
   .sl-menu__group-label,
   .sl-submenu__desc {
     display: none;

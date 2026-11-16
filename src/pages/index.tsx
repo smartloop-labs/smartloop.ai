@@ -3,7 +3,7 @@ import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import HeroDrift from '../components/HeroDrift';
+import HeroDrift, { HeroDriftRows } from '../components/HeroDrift';
 import styles from './home.module.css';
 
 // smartloop.ai is the company, the way 37signals sits over Basecamp and HEY:
@@ -29,17 +29,17 @@ const GROUPS: Group[] = [
       {
         label: 'Private AI assistant',
         name: 'Docent Studio',
-        desc: 'Your personal assistant for work: it produces documents, connects to your external systems and creates skills for the work you repeat.',
+        desc: 'Your assistant for work: it writes documents, connects to the systems you use and turns the work you repeat into skills.',
         facts: 'macOS · Linux · Windows · free',
         to: '/docent#desktop',
         logo: 'studio',
         chrome: 'window',
-        preview: [['prompt', 'Draft the weekly report from Linear'], ['out', 'Linear · 18 issues closed this week'], ['ok', 'weekly-report.docx · saved as /weekly-report']],
+        preview: [['prompt', 'Draft the weekly report from Linear'], ['out', 'Linear · 18 issues closed this week'], ['ok', 'weekly-report.docx · saved']],
       },
       {
         label: 'Coding agent',
-        name: 'Docent',
-        desc: 'Ask for a change and Docent writes it, checks it with your language servers and your build, and fixes what fails.',
+        name: 'Docent Code',
+        desc: 'Ask for a change and Docent Code writes it, checks it with your language servers and your build, and fixes what fails.',
         facts: 'macOS · Linux · Windows · MIT',
         to: '/docent#coding',
         logo: 'docent',
@@ -188,10 +188,12 @@ function renderGroup(g: Group): ReactNode {
                 <span className={styles.cardLabel}>{c.label}</span>
                 <span className={styles.cardHead}>
                   <CardLogo logo={c.logo} />
-                  <span className={styles.cardName}>{c.name} <span className={styles.cardArrow} aria-hidden="true">{c.external ? '↗' : '→'}</span></span>
+                  <span className={styles.cardName}>{c.name}</span>
                 </span>
                 <span className={styles.cardDesc}>{c.desc}</span>
-                <span className={styles.cardFacts}>{c.facts}</span>
+                <span className={styles.cardFacts}>
+                  {c.facts.split(' · ').map((f) => <span key={f} className={styles.cardFact}>{f}</span>)}
+                </span>
               </span>
             </>
           );
@@ -245,7 +247,7 @@ export default function Home(): ReactNode {
             <div className={styles.heroGlow} aria-hidden="true" />
             <HeroDrift />
             <div className={styles.heroInner}>
-              <p className={styles.eyebrow}>smartloop · local-first AI infrastructure</p>
+              <p className={styles.eyebrow}>smartloop · local-first AI research</p>
               <h1 className={styles.heroTitle}>
                 Frontier quality. <span className={styles.accent}>Local first.</span>
               </h1>
@@ -261,6 +263,7 @@ export default function Home(): ReactNode {
                 </div>
               </div>
             </div>
+            <HeroDriftRows />
           </section>
 
           {/* ── The story ──────────────────────────────────── */}
