@@ -118,8 +118,28 @@ export default function Header() {
 					</button>
 					<nav className="sl-menu__body">
 						<ul className="sl-menu__list">
-							<li className="sl-menu__item"><Link to="/pricing" className="sl-menu__link" onClick={closeMenu}>Get started</Link></li>
-							<li className="sl-menu__item"><Link to="/docent" className="sl-menu__link" onClick={closeMenu}>Docent</Link></li>
+							{/* Docent is one product used in two places, so it is one item: on desktop the panel
+							    opens on hover or keyboard focus; in the mobile menu the two
+							    links stand in its place. */}
+							<li className="sl-menu__item sl-menu__group">
+								<Link to="/docent" className="sl-menu__link sl-menu__group-label" aria-haspopup="true" onClick={closeMenu}>
+									Docent
+									<svg className="sl-menu__chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+								</Link>
+								<div className="sl-submenu">
+									<div className="sl-submenu__panel">
+										<Link to="/docent#desktop" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
+											<span className="sl-submenu__name">Docent Studio</span>
+											<span className="sl-submenu__desc">Your private AI assistant: documents, systems, skills</span>
+										</Link>
+										<Link to="/docent#coding" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
+											<span className="sl-submenu__name">Docent</span>
+											<span className="sl-submenu__desc">The coding agent for your terminal: writes, builds and fixes</span>
+										</Link>
+									</div>
+								</div>
+							</li>
+							<li className="sl-menu__item"><a href="https://gpushed.dev" className="sl-menu__link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>gpushed</a></li>
 							<li className="sl-menu__item"><Link to="/docs/intro" className="sl-menu__link" onClick={closeMenu}>Docs</Link></li>
 						</ul>
 					</nav>

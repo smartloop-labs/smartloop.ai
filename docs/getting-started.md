@@ -5,13 +5,13 @@ This document covers how to install the studio app and key concepts to make the 
 
 ## First look
 
-Download [Smartloop Studio](https://www.smartloop.ai/download/) for macOS, Linux, or Windows, then open the app.
+Download [Docent Studio](https://www.smartloop.ai/download/) for macOS, Linux, or Windows, then open the app.
 
-On first launch, Smartloop Studio completes its initial setup. This can take a few minutes, depending on your configuration.
+On first launch, Docent Studio completes its initial setup. This can take a few minutes, depending on your configuration.
 
 When setup is complete, you can start using the app immediately. The app then displays the prompt window shown below.
 
-![Smartloop Studio's empty prompt window, with conversation tabs along the top, the prompt box with Attach and Auto buttons in the middle, starter prompts beneath it, and panel icons down the right edge](first-look.jpg)
+![Docent Studio's empty prompt window, with conversation tabs along the top, the prompt box with Attach and Auto buttons in the middle, starter prompts beneath it, and panel icons down the right edge](first-look.jpg)
 
 * **Conversation tabs** run along the top; the **+** opens a new one.
 * **The prompt box** takes your question. **Attach** adds a file, and **Auto** opens the model selector.
@@ -19,7 +19,7 @@ When setup is complete, you can start using the app immediately. The app then di
 * **The icons on the right** open the side panels: documents, skills, connections, and the activity log.
 
 
-By default, Smartloop Studio includes `sl-mini`, its base model. To select additional models, press `Ctrl+Shift+M` or click the `auto` button to open the model window. You can select one or more of the available free models, which are curated for vision, document processing, and skills. Smartloop Studio also considers your available system resources when selecting models.
+By default, Docent Studio includes `sl-mini`, its base model. To select additional models, press `Ctrl+Shift+M` or click the `auto` button to open the model window. You can select one or more of the available free models, which are curated for vision, document processing, and skills. Docent Studio also considers your available system resources when selecting models.
 
 :::tip Recommended models
 For the best combination, enable **Qwen 3.5** (`qwen3.5-2b`) and **Ministral 3** (`ministral3-3b`). Between them they cover general chat, reasoning, document processing, and vision, giving orchestration a strong model for each step of a request.
@@ -27,7 +27,7 @@ For the best combination, enable **Qwen 3.5** (`qwen3.5-2b`) and **Ministral 3**
 
 
 :::info Best Performance
-Smartloop Studio needs an **Apple Silicon Mac (M3 or newer) with 16 GB of unified memory**, or a **Windows 11 / Linux x86_64 machine with 16 GB of system RAM and a Vulkan-capable GPU** — NVIDIA, AMD, or Intel, including integrated graphics. GPU acceleration runs through Vulkan (Metal on macOS), and the runtime is bundled — you don't need to install the Vulkan SDK on your machine.
+Docent Studio needs an **Apple Silicon Mac (M3 or newer) with 16 GB of unified memory**, or a **Windows 11 / Linux x86_64 machine with 16 GB of system RAM and a Vulkan-capable GPU** — NVIDIA, AMD, or Intel, including integrated graphics. GPU acceleration runs through Vulkan (Metal on macOS), and the runtime is bundled — you don't need to install the Vulkan SDK on your machine.
 
 More memory is better: 24 GB or above gives orchestration room to select larger models.
 
@@ -37,7 +37,7 @@ Larger GPUs allow orchestration to select larger models for better task quality 
 
 ## Creating Project
 
-A project is your workspace for documents, skills, and connected tools. Use it to collect information, extract insights, and tailor Smartloop Studio to your work. Within a project, you can:
+A project is your workspace for documents, skills, and connected tools. Use it to collect information, extract insights, and tailor Docent Studio to your work. Within a project, you can:
 
 * [Add personal documents](#adding-documents)
 * [Create skills](/docs/skills)
@@ -83,7 +83,7 @@ The answer is drawn from the file itself. Here a vision model reads the ID card 
 
 ## Project Instructions
 
-Add project-wide instructions to control the format and style of responses. For example, you can instruct Smartloop Studio to recommend no more than three places to visit. These instructions apply to every conversation in the project.
+Add project-wide instructions to control the format and style of responses. For example, you can instruct Docent Studio to recommend no more than three places to visit. These instructions apply to every conversation in the project.
 
 ![Instructions](./instructions.png)
 
@@ -123,7 +123,7 @@ None of your content or data is sent, since we use this product ourselves and we
 
 ## Installing on Linux
 
-Smartloop Studio for Linux is a `.deb` package for Debian, Ubuntu, and their derivatives on x86_64. It bundles everything the app needs, including the models and the Vulkan runtime. You only need a working graphics driver.
+Docent Studio for Linux is a `.deb` package for Debian, Ubuntu, and their derivatives on x86_64. It bundles everything the app needs, including the models and the Vulkan runtime. You only need a working graphics driver.
 
 Download it from the [downloads page](https://smartloop.ai/download/), then install it with `apt`, which also pulls in any system libraries it depends on:
 
@@ -131,11 +131,11 @@ Download it from the [downloads page](https://smartloop.ai/download/), then inst
 sudo apt install ./studio-*.deb
 ```
 
-Smartloop Studio then appears in your applications menu.
+Docent Studio then appears in your applications menu.
 
 ### Updating
 
-Smartloop Studio does not update itself. When a new version is available, the app tells you. Download the new `.deb` and install it the same way; your projects and settings are kept.
+Docent Studio does not update itself. When a new version is available, the app tells you. Download the new `.deb` and install it the same way; your projects and settings are kept.
 
 ### Uninstalling
 

@@ -359,6 +359,10 @@ html,
 
   --sl-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --sl-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Marketing headlines: a tight sans, with the accent phrase in a serif
+     italic (home.module.css). Body text stays on --sl-display. */
+  --sl-headline: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sl-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
 
   /* Square, not rounded: the chrome is drawn with rules, like a schematic. */
   --sl-btn-radius: 0px;
@@ -422,6 +426,104 @@ body {
 
   .sl-menu__item a.sl-menu__link:hover {
     color: var(--sl-white);
+  }
+}
+
+/* ── header nav: the Docent group (Docent + Docent Studio) ── */
+.sl-menu__group {
+  position: relative;
+}
+
+/* The chevron says "this opens"; it flips while the panel is open. */
+.sl-menu__item a.sl-menu__group-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sl-menu__chevron {
+  transition: transform 0.18s;
+}
+
+.sl-menu__group:hover .sl-menu__chevron,
+.sl-menu__group:focus-within .sl-menu__chevron {
+  transform: rotate(180deg);
+}
+
+.sl-menu__item a.sl-submenu__link {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+}
+
+@media (min-width: 62em) {
+  /* Hidden until hover or focus; padding-top bridges the gap to the link so
+     the panel doesn't close on the way down. */
+  .sl-submenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 12px;
+    display: none;
+    z-index: 50;
+  }
+
+  .sl-menu__group:hover .sl-submenu,
+  .sl-menu__group:focus-within .sl-submenu {
+    display: block;
+  }
+
+  .sl-submenu__panel {
+    min-width: 270px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px;
+    border-radius: 12px;
+    background: var(--sl-panel);
+    border: 1px solid var(--sl-line);
+    box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.35);
+  }
+
+  .sl-menu__item a.sl-submenu__link {
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-transform: none;
+    transition: background 0.18s;
+  }
+
+  .sl-menu__item a.sl-submenu__link:hover {
+    background: var(--sl-accent-wash);
+  }
+
+  .sl-submenu__name {
+    font-family: var(--sl-mono);
+    font-size: 0.76rem;
+    text-transform: lowercase;
+    color: var(--sl-white);
+  }
+
+  .sl-submenu__desc {
+    font-family: var(--sl-display);
+    font-size: 0.8rem;
+    letter-spacing: 0;
+    color: var(--sl-dim);
+  }
+}
+
+@media (max-width: 61.99875em) {
+  /* No hover on a phone: the two products are plain menu items. */
+  .sl-menu__group-label,
+  .sl-submenu__desc {
+    display: none;
+  }
+
+  .sl-submenu__panel {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
   }
 }
 

@@ -267,7 +267,7 @@ export function DirectDownloadButton({
       href={path}
       download
       className={variantClass(styles.directCta, variant)}
-      aria-label={`Download Smartloop Studio for ${name} (${format})`}
+      aria-label={`Download Docent Studio for ${name} (${format})`}
     >
       <Mark name={mark} />
       {/* Names the platform, as Cursor's and Claude's hero buttons do: the
@@ -313,7 +313,7 @@ export function DirectDownloadBlock({
       href={path}
       download
       className={variantClass(styles.directBlock, variant)}
-      aria-label={`Download Smartloop Studio for ${name}${arch ? ` ${ARCH_LABEL[arch]}` : ''} (${size ? `${format}, ${size}` : format})`}
+      aria-label={`Download Docent Studio for ${name}${arch ? ` ${ARCH_LABEL[arch]}` : ''} (${size ? `${format}, ${size}` : format})`}
     >
       <Mark name={mark} />
       <span className={styles.directBlockText}>
@@ -339,7 +339,7 @@ export function SnapStoreButton({ variant = 'primary' }: { variant?: ButtonVaria
       target="_blank"
       rel="noopener noreferrer"
       className={variantClass(styles.directCta, variant)}
-      aria-label="Get Smartloop Studio for Linux from the Snap Store"
+      aria-label="Get Docent Studio for Linux from the Snap Store"
     >
       <Mark name="linux" />
       <span>Download</span>
@@ -355,7 +355,7 @@ export function SnapStoreBlock({ variant = 'primary' }: { variant?: ButtonVarian
       target="_blank"
       rel="noopener noreferrer"
       className={variantClass(styles.directBlock, variant)}
-      aria-label="Get Smartloop Studio for Linux from the Snap Store"
+      aria-label="Get Docent Studio for Linux from the Snap Store"
     >
       <Mark name="linux" />
       <span className={styles.directBlockText}>

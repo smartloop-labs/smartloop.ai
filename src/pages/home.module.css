@@ -1094,6 +1094,386 @@
   color: var(--sl-dim);
 }
 
+/* ── home: statement ───────────────────────────────── */
+.statement {
+  text-align: center;
+}
+
+.statement .kicker {
+  justify-content: center;
+}
+
+.statementText {
+  max-width: 30ch;
+  margin: 0 auto;
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  color: var(--sl-white);
+}
+
+.statementDim {
+  color: var(--sl-dim);
+}
+
+.beliefs {
+  list-style: none;
+  margin: 56px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  text-align: left;
+}
+
+.belief {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--sl-line);
+  background: var(--sl-panel);
+}
+
+.beliefNum {
+  font-family: var(--sl-mono);
+  font-size: 0.68rem;
+  color: var(--sl-accent-text);
+}
+
+.beliefTitle {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--sl-white);
+}
+
+.beliefDesc {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--sl-dim);
+}
+
+/* ── home: products ────────────────────────────────── */
+.centerHead {
+  text-align: center;
+}
+
+.centerHead .kicker {
+  justify-content: center;
+}
+
+/* .h2 caps its width (18ch) and .sub its measure, so both need auto
+   margins to sit in the middle, not just centered text. */
+.centerHead .h2,
+.centerHead .sub {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.centerHead .h2 {
+  max-width: 22ch;
+}
+
+/* Groups grow by their card count, so every card ends up the same width. */
+.productGroups {
+  margin-top: 48px;
+  display: flex;
+  gap: 14px;
+}
+
+/* The tools row under the products: same cards, its own line. */
+.toolsRow {
+  margin-top: 28px;
+}
+
+.productGroup {
+  flex-basis: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.groupLabel {
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--sl-line);
+  font-family: var(--sl-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--sl-dim);
+}
+
+.groupName {
+  color: var(--sl-white);
+  font-weight: 500;
+}
+
+.groupCards {
+  flex: 1;
+  display: flex;
+  gap: 14px;
+}
+
+.productCard {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--sl-line);
+  background: var(--sl-panel);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.productCard:hover {
+  text-decoration: none;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+  border-color: rgba(236, 72, 153, 0.3);
+}
+
+/* The tiny window at the top of each card. */
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 14px 14px 0;
+  padding: 0 14px 16px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--sl-line);
+  background: var(--panel-tint), var(--sl-ink);
+  font-family: var(--sl-mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  /* The title bar runs edge to edge; clip it to the rounded corners. */
+  overflow: hidden;
+}
+
+.previewBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 -14px 6px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--sl-line);
+}
+
+.previewDots {
+  display: flex;
+  gap: 5px;
+}
+
+.previewDots i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--sl-line-2);
+}
+
+.previewTitle {
+  font-size: 0.66rem;
+  color: var(--sl-dim);
+}
+
+.previewLine {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pl_prompt {
+  color: var(--sl-white);
+}
+
+.pl_out {
+  color: var(--sl-dim);
+}
+
+.pl_ok {
+  color: var(--sl-accent-text);
+}
+
+/* Tool cards in their own site's colors, taken from each site's :root
+   (screenforge.studio, anacraft.dev). The preview window is the tool's app;
+   the label and hover take its accent, darker in light mode. */
+.theme_screenforge {
+  --t-ink: #1e1f29;
+  --t-bar: #282a36;
+  --t-line: rgba(248, 248, 242, 0.1);
+  --t-white: #f8f8f2;
+  --t-dim: #8e90a6;
+  --t-accent: #ff8a5c;
+  --t-glow: rgba(255, 138, 92, 0.12);
+}
+
+.theme_anacraft {
+  --t-ink: #09100d;
+  --t-bar: #0d1512;
+  --t-line: rgba(193, 196, 151, 0.11);
+  --t-white: #eef1dc;
+  --t-dim: #6c7f73;
+  --t-accent: #2dd5b7;
+  --t-glow: rgba(45, 213, 183, 0.1);
+}
+
+/* Light mode: ScreenForge's own light theme; Anacraft's dark theme turned
+   light (its own light palettes drop the teal). */
+:global([data-theme='light']) .theme_screenforge {
+  --t-ink: #f6f6fa;
+  --t-bar: #ffffff;
+  --t-line: rgba(30, 31, 41, 0.12);
+  --t-white: #1a1b24;
+  --t-dim: #5f6175;
+  --t-accent: #d4442a;
+  --t-glow: rgba(212, 68, 42, 0.08);
+}
+
+:global([data-theme='light']) .theme_anacraft {
+  /* Anacraft's dark theme turned light: mint-white ground, its green-black
+     for text, and a deeper teal so the accent reads on white. */
+  --t-ink: #f5faf8;
+  --t-bar: #e9f2ee;
+  --t-line: rgba(9, 16, 13, 0.1);
+  --t-white: #0d1512;
+  --t-dim: #5b6d63;
+  --t-accent: #0f8f78;
+  --t-glow: rgba(15, 143, 120, 0.08);
+}
+
+.themed .preview {
+  background: linear-gradient(140deg, var(--t-glow) 0%, transparent 55%), var(--t-ink);
+  border-color: var(--t-line);
+}
+
+.themed .previewBar {
+  background: var(--t-bar);
+  border-color: var(--t-line);
+}
+
+.themed .previewDots i {
+  background: var(--t-line);
+}
+
+.themed .previewTitle,
+.themed .pl_out {
+  color: var(--t-dim);
+}
+
+.themed .pl_prompt {
+  color: var(--t-white);
+}
+
+.themed .pl_ok {
+  color: var(--t-accent);
+}
+
+.themed .cardLabel {
+  color: var(--t-accent);
+}
+
+.themed:hover {
+  border-color: var(--t-accent);
+}
+
+.themed:hover .cardArrow {
+  color: var(--t-accent);
+}
+
+.cardBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 24px 24px;
+}
+
+.cardLabel {
+  font-family: var(--sl-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sl-accent-text);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardLogo,
+.cardLogoImg {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+}
+
+.cardLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--sl-line);
+  background: var(--sl-ink);
+}
+
+/* A logo drawn in its card's tool theme (see .themed). */
+.cardLogoThemed {
+  background: var(--t-ink, var(--sl-ink));
+  border-color: var(--t-line, var(--sl-line));
+  color: var(--t-accent, var(--sl-accent-text));
+}
+
+.cardLogoPrompt {
+  font-family: var(--sl-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--sl-accent-text);
+}
+
+.cardName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--sl-white);
+}
+
+.cardArrow {
+  display: inline-block;
+  color: var(--sl-dim);
+  transition: transform 0.2s, color 0.2s;
+}
+
+.productCard:hover .cardArrow {
+  transform: translateX(3px);
+  color: var(--sl-accent-text);
+}
+
+.cardDesc {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--sl-dim);
+}
+
+.cardFacts {
+  margin-top: auto;
+  padding-top: 8px;
+  font-family: var(--sl-mono);
+  font-size: 0.68rem;
+  color: var(--sl-dim);
+}
+
+@media (max-width: 1024px) {
+  .productGroups {
+    flex-direction: column;
+  }
+}
+
 /* ── docs ───────────────────────────────────────────── */
 .docsGrid {
   margin-top: 40px;
@@ -1447,7 +1827,50 @@
     grid-template-columns: 1fr;
   }
 
+  .productGroups,
+  .groupCards {
+    flex-direction: column;
+  }
+
+  .beliefs {
+    grid-template-columns: 1fr;
+  }
+
   .partnerRow {
     width: 100%;
   }
+}
+
+/* ── headline type ─────────────────────────────────────
+   Last in the file so it wins over each heading's own rule above.
+   Headlines in Inter Tight; the pink accent phrase inside them in
+   Instrument Serif italic, a touch larger because a serif sits smaller. */
+.heroTitle,
+.h2,
+.closingTitle,
+.statementText {
+  font-family: var(--sl-headline);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.heroTitle .accent,
+.h2 .accent,
+.closingTitle .accent {
+  font-family: var(--sl-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1em;
+  letter-spacing: -0.01em;
+}
+
+/* ── home spacing ──────────────────────────────────────
+   The hero's bottom padding and the statement's top padding stacked to
+   ~170px of nothing; together they now leave about 80. */
+.heroHome {
+  padding-bottom: 24px;
+}
+
+.statement {
+  padding-top: 56px;
 }

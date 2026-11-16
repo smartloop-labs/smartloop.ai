@@ -18,7 +18,7 @@ Smartloop lets you bring your own theme and customize the look and feel of the a
 ## Installing a Custom Theme
 
 1. Download the `.yaml` file you want from the [studio-themes](https://github.com/smartloop-ai/studio-themes/blob/main/themes) repository.
-2. Open Smartloop Studio → **Settings → Theme**.
+2. Open Docent Studio → **Settings → Theme**.
 3. Drop the file onto the **Drop a theme** tile (the dashed `+` tile in the Theme grid).
 
 The theme is imported, applied, and saved immediately — no restart required. Imported themes get a `custom-*` id so they never overwrite a built-in.

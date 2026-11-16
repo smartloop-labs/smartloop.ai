@@ -15,7 +15,7 @@ docent
 
 The work is split in two:
 
-- **The framework** is the engine, the same one behind Smartloop Studio. It takes a prompt with its sources and returns the best answer it can. Its orchestrator picks the model that answers and decides on its own whether to search the web, for code as for anything else. See [Model orchestration](./model-orchestration.md).
+- **The framework** is the engine, the same one behind Docent Studio. It takes a prompt with its sources and returns the best answer it can. Its orchestrator picks the model that answers and decides on its own whether to search the web, for code as for anything else. See [Model orchestration](./model-orchestration.md).
 - **Docent** is the harness around it. It builds the prompt from your folder, then takes the answer apart into files to write, checks to run and commands to run, and sends what happened back to the agent.
 
 So the models run on your machine, the same as for documents and chat, and only a web search query ever leaves it. See [Web search](./web-search.md).
