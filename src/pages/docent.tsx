@@ -71,7 +71,9 @@ export default function Docent(): ReactNode {
             </div>
           </div>
 
-          {mode === 'coding' ? <DocentTerminal /> : <DocentDesktop />}
+          <div className={local.modeBody}>
+            {mode === 'coding' ? <DocentTerminal /> : <DocentDesktop />}
+          </div>
 
           <Footer />
         </main>

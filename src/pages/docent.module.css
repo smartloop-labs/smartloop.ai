@@ -158,10 +158,30 @@
 }
 
 /* ── the Coding | Desktop switch at the top of /docent ── */
+/* The site header is absolutely positioned over the top of the page
+   (6.25rem tall, 5rem below 62em), so the switch starts below it. */
 .modeBar {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
-  padding: 28px 16px 0;
+  padding: calc(6.25rem + 16px) 16px 0;
+}
+
+/* The tab's own hero normally clears the header itself; under the switch it
+   only needs a section's breathing room. */
+.modeBody > section:first-of-type {
+  padding-top: 56px;
+}
+
+@media (max-width: 61.99875em) {
+  .modeBar {
+    padding-top: calc(5rem + 12px);
+  }
+
+  .modeBody > section:first-of-type {
+    padding-top: 40px;
+  }
 }
 
 .modeSwitch {
