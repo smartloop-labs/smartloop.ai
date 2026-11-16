@@ -329,6 +329,18 @@ html[data-theme='light'],
    a theme is a palette swap and nothing else.
    ===================================================================== */
 html,
+:root {
+  /* Type is the same in both themes, so it lives here rather than in a
+     theme block (it used to sit in [data-theme='dark'] only, which left
+     light mode on fallbacks). */
+  --sl-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sl-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Marketing headlines: a tight sans, with the accent phrase in a serif
+     italic (home.module.css). Body text stays on --sl-display. */
+  --sl-headline: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sl-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+}
+
 [data-theme='dark'] {
   --sl-ground: #08080a;
   /* Recessed surfaces: code, install boxes, terminal chrome. */
@@ -357,12 +369,6 @@ html,
      than white — in both themes. */
   --sl-on-accent: #0a0a0f;
 
-  --sl-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --sl-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-  /* Marketing headlines: a tight sans, with the accent phrase in a serif
-     italic (home.module.css). Body text stays on --sl-display. */
-  --sl-headline: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
-  --sl-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
 
   /* Square, not rounded: the chrome is drawn with rules, like a schematic. */
   --sl-btn-radius: 0px;
