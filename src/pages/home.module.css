@@ -1420,6 +1420,13 @@
   background: var(--sl-ink);
 }
 
+/* A logo drawn in its card's tool theme (see .themed). */
+.cardLogoThemed {
+  background: var(--t-ink, var(--sl-ink));
+  border-color: var(--t-line, var(--sl-line));
+  color: var(--t-accent, var(--sl-accent-text));
+}
+
 .cardLogoPrompt {
   font-family: var(--sl-mono);
   font-size: 0.72rem;

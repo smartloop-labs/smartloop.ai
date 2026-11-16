@@ -91,7 +91,7 @@ const TOOLS: Group = {
       desc: 'Your Google Analytics (GA4), mined block by block in a Minecraft-themed dashboard for the terminal.',
       facts: 'Terminal (TUI) · GA4',
       to: 'https://anacraft.dev',
-      logo: '/img/logos/anacraft.svg',
+      logo: 'anacraft',
       external: true,
       theme: 'anacraft',
       chrome: 'terminal',
@@ -119,6 +119,38 @@ function CardLogo({ logo }: { logo: string }): ReactNode {
         <svg viewBox="0 0 24 24" width="18" height="18">
           <path d="M10 5H11A6 6 0 0 1 17 11V18H10A6 6 0 0 1 4 12V11A6 6 0 0 1 10 5Z" fill="var(--sl-white)" />
           <circle cx="16.7" cy="8.4" r="3" fill="var(--sl-accent)" />
+        </svg>
+      </span>
+    );
+  }
+  if (logo === 'anacraft') {
+    // Anacraft's pixel "A" from its favicon, without the favicon's black
+    // square: drawn in the card's theme so it follows light and dark.
+    return (
+      <span className={`${styles.cardLogo} ${styles.cardLogoThemed}`} aria-hidden="true">
+        <svg viewBox="0 0 16 16" width="16" height="16" shapeRendering="crispEdges" fill="currentColor">
+          <rect x="6" y="1" width="4" height="1" />
+          <rect x="5" y="2" width="6" height="1" />
+          <rect x="4" y="3" width="8" height="1" />
+          <rect x="4" y="4" width="8" height="1" />
+          <rect x="3" y="5" width="4" height="1" />
+          <rect x="9" y="5" width="4" height="1" />
+          <rect x="3" y="6" width="4" height="1" />
+          <rect x="9" y="6" width="4" height="1" />
+          <rect x="2" y="7" width="4" height="1" />
+          <rect x="10" y="7" width="4" height="1" />
+          <rect x="2" y="8" width="4" height="1" />
+          <rect x="10" y="8" width="4" height="1" />
+          <rect x="1" y="9" width="4" height="1" />
+          <rect x="11" y="9" width="4" height="1" />
+          <rect x="1" y="10" width="14" height="1" />
+          <rect x="1" y="11" width="14" height="1" />
+          <rect x="1" y="12" width="4" height="1" />
+          <rect x="11" y="12" width="4" height="1" />
+          <rect x="1" y="13" width="4" height="1" />
+          <rect x="11" y="13" width="4" height="1" />
+          <rect x="1" y="14" width="4" height="1" />
+          <rect x="11" y="14" width="4" height="1" />
         </svg>
       </span>
     );
