@@ -46,10 +46,10 @@ function TopicIcon({ name }: { name: string }) {
 	}
 }
 
-const contactLinks: { icon: string; label: string; detail: string; href: string; external?: boolean }[] = [
-	{ icon: 'docs', label: 'Docs', detail: 'Guides and reference', href: '/docs/intro' },
-	{ icon: 'x', label: '@smartloop', detail: 'News and releases', href: 'https://x.com/smartloop/', external: true },
-	{ icon: 'mail', label: 'Email us', detail: 'support@smartloop.ai', href: 'mailto:support@smartloop.ai' },
+const contactLinks: { icon: string; label: string; href: string; external?: boolean }[] = [
+	{ icon: 'docs', label: 'Docs', href: '/docs/intro' },
+	{ icon: 'x', label: '@smartloop', href: 'https://x.com/smartloop/', external: true },
+	{ icon: 'mail', label: 'Email us', href: 'mailto:support@smartloop.ai' },
 ];
 
 const DESCRIPTION = 'Talk to the Smartloop team. Docent stays free at any scale: tell us what you are trying to solve and we will get it working on your data, deployed on your own infrastructure, tuned to your use case and rolled out across your team.';
@@ -200,7 +200,6 @@ export default function Contact() {
 												<span className={local.topicIcon}><TopicIcon name={l.icon} /></span>
 												<span className={local.linkText}>
 													<span className={local.linkLabel}>{l.label}</span>
-													<span className={local.linkDetail}>{l.detail}</span>
 												</span>
 												<span className={local.linkArrow} aria-hidden="true">{l.external ? '↗' : '→'}</span>
 											</>
