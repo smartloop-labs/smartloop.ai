@@ -40,7 +40,7 @@ function TopicIcon({ name }: { name: string }) {
 		case 'tune': return <svg {...props}><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0" /><circle cx="16" cy="6" r="2" /><circle cx="10" cy="12" r="2" /><circle cx="18" cy="18" r="2" /></svg>;
 		case 'refresh': return <svg {...props}><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8" /><path d="M4 4v4h4" /><path d="M4 13a8 8 0 0 0 14.6 4.5L20 16" /><path d="M20 20v-4h-4" /></svg>;
 		case 'docs': return <svg {...props}><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z" /><path d="M4 19V5" /><path d="M9 7h6" /></svg>;
-		case 'x': return <svg {...props}><path d="M4 4l16 16M20 4L4 20" /></svg>;
+		case 'x': return <svg width={14} height={14} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.9-6.4L6.3 22H3.2l7.3-8.3L1 2h6.3l4.4 5.9L18.9 2Zm-1.1 18h1.7L6.3 3.9H4.5L17.8 20Z" /></svg>;
 		case 'mail': return <svg {...props}><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>;
 		default: return <svg {...props}><circle cx="12" cy="12" r="9" /><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14" /><path d="M12 17h.01" /></svg>;
 	}
@@ -199,9 +199,10 @@ export default function Contact() {
 											<>
 												<span className={local.topicIcon}><TopicIcon name={l.icon} /></span>
 												<span className={local.linkText}>
-													<span className={local.linkLabel}>{l.label} <span aria-hidden="true">→</span></span>
+													<span className={local.linkLabel}>{l.label}</span>
 													<span className={local.linkDetail}>{l.detail}</span>
 												</span>
+												<span className={local.linkArrow} aria-hidden="true">{l.external ? '↗' : '→'}</span>
 											</>
 										);
 										return l.href.startsWith('/') ? (

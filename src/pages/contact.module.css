@@ -78,50 +78,60 @@
   color: var(--sl-accent-text);
 }
 
-/* Docs, X and email as three small link cards. */
+/* Docs, X and email as full-width rows: icon, label, detail, arrow. */
 .links {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   margin-top: 28px;
 }
 
 .linkCard {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px;
+  gap: 12px;
+  padding: 10px 14px 10px 10px;
   border-radius: var(--r-md);
   border: 1px solid var(--sl-line);
   text-decoration: none;
-  transition: border-color 0.2s, transform 0.2s;
+  transition: border-color 0.2s, background 0.2s;
 }
 
 .linkCard:hover {
   text-decoration: none;
-  transform: translateY(-2px);
   border-color: rgba(236, 72, 153, 0.35);
+  background: var(--sl-panel);
 }
 
 .linkText {
-  display: flex;
-  flex-direction: column;
+  flex: 1;
   min-width: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
 }
 
 .linkLabel {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 500;
   color: var(--sl-white);
 }
 
 .linkDetail {
   font-family: var(--sl-mono);
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   color: var(--sl-dim);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+.linkArrow {
+  color: var(--sl-dim);
+  transition: transform 0.2s, color 0.2s;
+}
+
+.linkCard:hover .linkArrow {
+  transform: translateX(3px);
+  color: var(--sl-accent-text);
 }
 
 /* The form card: a hairline that warms to the brand pink at one corner. */
@@ -166,8 +176,7 @@
     padding: 20px;
   }
 
-  .topics,
-  .links {
+  .topics {
     grid-template-columns: 1fr;
   }
 }
