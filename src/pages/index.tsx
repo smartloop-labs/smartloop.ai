@@ -30,7 +30,7 @@ const GROUPS: Group[] = [
         label: 'Private AI assistant',
         name: 'Docent Studio',
         desc: 'Your personal assistant for work: it produces documents, connects to your external systems and creates skills for the work you repeat.',
-        facts: 'macOS · Linux · Windows · Apache 2.0',
+        facts: 'macOS · Linux · Windows · free',
         to: '/docent#desktop',
         logo: 'studio',
         chrome: 'window',

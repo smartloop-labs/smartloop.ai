@@ -4,7 +4,7 @@ import Head from '@docusaurus/Head';
 import useLatestRelease from '../../hooks/useLatestRelease';
 import useVisitorPlatform from '../../hooks/useVisitorPlatform';
 import { DirectDownloadButton } from '../StoreBadge';
-import { Check, GitHubIcon } from './Terminal';
+import { Check } from './Terminal';
 import styles from '../../pages/home.module.css';
 import local from '../../pages/docent.module.css';
 
@@ -21,6 +21,43 @@ const points: [string, string][] = [
   ['Creates skills.', 'Turn the work you repeat into a skill, a markdown file the assistant runs. Type / to start one.'],
   ['Reads what you give it.', 'PDFs, Office files, scans and photos, indexed on your machine, with a vision model for the scans.'],
 ];
+
+// Drawn from the legal starter's own documents (starters/gen_docs.py), so the
+// panel shows what the download actually answers.
+const legal = {
+  run: {
+    project: 'Halbrook Wren LLP',
+    prompt: 'compare the 2026 draft with the current MSA',
+    rows: [
+      ['Termination', '60 days, no fee', '90 days + 50% fee', true],
+      ['Liability cap', '12 months of fees', '6 months of fees', true],
+      ['Change of control', '§4.3 exit right', 'deleted', true],
+      ['Non-renewal notice', '120 days', '120 days', false],
+    ] as [string, string, string, boolean][],
+    refs: ['MSA-2024.pdf', 'Amendment-1.pdf', '2026-DRAFT.docx'],
+  },
+  points: [
+    ['Five agreements.', 'A services agreement with its amendment and 2026 renewal draft, a mutual NDA, and a one-sided supply agreement.'],
+    ['Issues list.', 'A first-pass review against a checklist — term, termination, liability, assignment — quoting each clause by section.'],
+    ['Version compare.', 'What changed between the signed agreement and the draft, clause by clause.'],
+  ] as [string, string][],
+  models: [
+    ['vision', 'qwen2-vl-2b'],
+    ['document processing', 'ministral3-3b'],
+    ['reasoning', 'qwen3.5-2b'],
+  ] as [string, string][],
+  starter: { href: '/starters/Halbrook-Wren-LLP.zip', size: '80 KB' },
+};
+
+// The few line icons the legal template panel uses.
+function Icon({ name }: { name: 'download' | 'arrow' | 'file' }): ReactNode {
+  const props = { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
+  switch (name) {
+    case 'file': return <svg {...props}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>;
+    case 'download': return <svg {...props}><path d="M12 3v12" /><polyline points="7 10 12 15 17 10" /><path d="M5 21h14" /></svg>;
+    case 'arrow': return <svg {...props}><line x1="7" y1="17" x2="17" y2="7" /><polyline points="8 7 17 7 17 16" /></svg>;
+  }
+}
 
 // What happens from install to answer, in order.
 const loop: [string, string][] = [
@@ -71,7 +108,6 @@ export default function DocentDesktop(): ReactNode {
     operatingSystem: 'macOS, Linux, Windows',
     description: DESCRIPTION,
     url: 'https://smartloop.ai/docent#desktop',
-    license: 'https://www.apache.org/licenses/LICENSE-2.0',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     author: { '@type': 'Organization', name: 'Smartloop Inc.', url: 'https://smartloop.ai' },
   };
@@ -102,7 +138,7 @@ export default function DocentDesktop(): ReactNode {
         <div className={styles.heroGlow} aria-hidden="true" />
         <div className={styles.heroInner}>
           <p className={styles.eyebrow}>
-            {release ? <>docent studio v{release.version} · open source · Apache 2.0</> : <>open source · Apache 2.0</>}
+            {release ? <>docent studio v{release.version} · runs on your device</> : <>runs on your device</>}
           </p>
           <h1 className={styles.heroTitle}>
             Your personal assistant for work. <span className={styles.accent}>On your own machine.</span>
@@ -114,16 +150,6 @@ export default function DocentDesktop(): ReactNode {
               : <Link to="/download" className={styles.btnPrimary}>download</Link>}
             <p className={styles.heroMeta}>free · macOS, Linux, Windows · no account</p>
             <p className={styles.ctaAlt} style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
-              <Link
-                to="https://github.com/smartloop-labs/docent-studio"
-                className={styles.textLink}
-                aria-label="Docent Studio on GitHub"
-                title="Docent Studio on GitHub"
-                style={{ display: 'inline-flex' }}
-              >
-                <GitHubIcon />
-              </Link>
-              <span aria-hidden="true">·</span>
               <Link to="/download" className={styles.textLink}>all downloads</Link>
               <span aria-hidden="true">·</span>
               <Link to="/docs/getting-started" className={styles.textLink}>getting started</Link>
@@ -163,6 +189,77 @@ export default function DocentDesktop(): ReactNode {
               <li key={title}><Check /><span><b>{title}</b> {desc}</span></li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* ── Template: legal ────────────────────────────── */}
+      <section id="use-cases" className={styles.shell}>
+        <div className={styles.section}>
+          <p className={styles.kicker}>On-device privacy</p>
+          <h2 className={styles.h2}>An associate that never leaves the office.</h2>
+          <p className={styles.sub}>
+            Some documents can&rsquo;t go to a cloud model. Docent Studio reads and reasons over them on your own machine, so privileged material never leaves the device — and every answer cites the clause it came from.
+          </p>
+
+          <div className={styles.caseCard}>
+            <div className={styles.caseText}>
+              <p className={styles.caseLead}>
+                The template is a fictional firm&rsquo;s client file: five agreements and two review skills, ready to import into Studio.
+              </p>
+              <ul className={styles.casePoints}>
+                {legal.points.map(([lead, rest]) => (
+                  <li key={lead}><b>{lead}</b> {rest}</li>
+                ))}
+              </ul>
+              <div className={styles.caseActions}>
+                {/* The template is the lead: download it, then the guide
+                    walks through what to ask it. */}
+                <a className={styles.btnPrimary} href={legal.starter.href} download>
+                  <Icon name="download" /> download template
+                  <span className={styles.btnMeta}>{legal.starter.size}</span>
+                </a>
+                <Link to="/docs/templates/legal" className={styles.btnSecondary}>
+                  read the guide <Icon name="arrow" />
+                </Link>
+                <Link to="/contact/" className={styles.btnGhost}>contact us</Link>
+              </div>
+            </div>
+
+            <div className={styles.caseArt} aria-hidden="true">
+              <div className={styles.caseWindow}>
+                <div className={styles.windowBar}>
+                  <i /><i /><i />
+                  <span className={styles.windowTitle}>{legal.run.project}</span>
+                  <span className={styles.pillLocal}><b /> on-device</span>
+                </div>
+                <div className={styles.caseBody}>
+                  <p className={styles.caseAsk}>{legal.run.prompt}</p>
+                  <div className={styles.caseGrid}>
+                    <span className={styles.caseHead}>clause</span>
+                    <span className={styles.caseHead}>current</span>
+                    <span className={styles.caseHead}>2026 draft</span>
+                    {legal.run.rows.map(([clause, now, next, flag]) => (
+                      <div key={clause} className={styles.caseRow}>
+                        <span>{clause}</span>
+                        <span>{now}</span>
+                        <span className={flag ? styles.caseFlag : undefined}>{next}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className={styles.caseRefs}>
+                    {legal.run.refs.map((r) => (
+                      <span key={r}><Icon name="file" /> {r}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className={styles.caseModels}>
+                  {legal.models.map(([role, model]) => (
+                    <span key={role}>{role} <b>{model}</b></span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
