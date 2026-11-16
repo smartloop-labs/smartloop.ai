@@ -9,27 +9,47 @@ import { isValidEmail } from '../utils/validation';
 import { htmlToPlainText, sanitizeHtml } from '../utils/sanitizeHtml';
 import { sendContactRequest, useApiBaseUrl } from '../utils/api';
 
-import { Check } from '../components/Docent/Terminal';
 import form from './index.module.css';
 import styles from './home.module.css';
 import local from './contact.module.css';
 
 // These mirror the Enterprise card on /pricing — someone arriving from that CTA
 // should land on the same four things, worded the same way.
-const topics = [
-	'Rollout across your team',
-	'Setting up your local AI infrastructure',
-	'Models fine-tuned on your data',
-	'Ongoing updates and maintenance',
-	'Product questions and troubleshooting',
+const topics: [string, string][] = [
+	['team', 'Rollout across your team'],
+	['server', 'Setting up your local AI infrastructure'],
+	['tune', 'Models fine-tuned on your data'],
+	['refresh', 'Ongoing updates and maintenance'],
+	['help', 'Product questions and troubleshooting'],
 ];
 
 // The header's Partners link opens this page as /contact/?for=partner.
-const partnerTopics = [
-	'Hands-on support in setting up Docent',
-	'Our hybrid approach to cut your cost per token',
-	'Fine-grained tuning for maximum throughput',
-	'Dedicated point of contact for your deployment',
+const partnerTopics: [string, string][] = [
+	['help', 'Hands-on support in setting up Docent'],
+	['server', 'Our hybrid approach to cut your cost per token'],
+	['tune', 'Fine-grained tuning for maximum throughput'],
+	['team', 'Dedicated point of contact for your deployment'],
+];
+
+// Line icons for the topic tiles and contact cards.
+function TopicIcon({ name }: { name: string }) {
+	const props = { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true };
+	switch (name) {
+		case 'team': return <svg {...props}><circle cx="9" cy="8" r="3.2" /><path d="M3 20a6 6 0 0 1 12 0" /><circle cx="17" cy="9" r="2.4" /><path d="M16 14.5a5 5 0 0 1 5 5.5" /></svg>;
+		case 'server': return <svg {...props}><rect x="3" y="4" width="18" height="7" rx="2" /><rect x="3" y="13" width="18" height="7" rx="2" /><path d="M7 7.5h.01M7 16.5h.01" /></svg>;
+		case 'tune': return <svg {...props}><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0" /><circle cx="16" cy="6" r="2" /><circle cx="10" cy="12" r="2" /><circle cx="18" cy="18" r="2" /></svg>;
+		case 'refresh': return <svg {...props}><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8" /><path d="M4 4v4h4" /><path d="M4 13a8 8 0 0 0 14.6 4.5L20 16" /><path d="M20 20v-4h-4" /></svg>;
+		case 'docs': return <svg {...props}><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z" /><path d="M4 19V5" /><path d="M9 7h6" /></svg>;
+		case 'x': return <svg {...props}><path d="M4 4l16 16M20 4L4 20" /></svg>;
+		case 'mail': return <svg {...props}><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>;
+		default: return <svg {...props}><circle cx="12" cy="12" r="9" /><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14" /><path d="M12 17h.01" /></svg>;
+	}
+}
+
+const contactLinks: { icon: string; label: string; detail: string; href: string; external?: boolean }[] = [
+	{ icon: 'docs', label: 'Docs', detail: 'Guides and reference', href: '/docs/intro' },
+	{ icon: 'x', label: '@smartloop', detail: 'News and releases', href: 'https://x.com/smartloop/', external: true },
+	{ icon: 'mail', label: 'Email us', detail: 'support@smartloop.ai', href: 'mailto:support@smartloop.ai' },
 ];
 
 const DESCRIPTION = 'Talk to the Smartloop team. Docent stays free at any scale: tell us what you are trying to solve and we will get it working on your data, deployed on your own infrastructure, tuned to your use case and rolled out across your team.';
@@ -146,7 +166,7 @@ export default function Contact() {
 								<p className={styles.eyebrow}>{partner ? 'design partners' : 'talk to us'}</p>
 								{partner ? (
 									<>
-										<h1 className={local.title}>Work with us.</h1>
+										<h1 className={local.title}>Work <span className={local.accent}>with us.</span></h1>
 										<p className={local.lead}>
 											If you are rolling out Docent and want to lower your cost per token, we can help. Our hybrid
 											approach combines local and cloud inference to cut costs while keeping throughput high.
@@ -155,31 +175,42 @@ export default function Contact() {
 								) : (
 									<>
 										{/* The product is free; the work is what you hire us for. */}
-										<h1 className={local.title}>Talk to our team.</h1>
+										<h1 className={local.title}>Talk to our <span className={local.accent}>team.</span></h1>
 										<p className={local.lead}>
-											Docent stays free at any scale. Tell us what you are trying to solve and we will get it
-											working on your data: deployed on your own infrastructure, tuned to your use case, and rolled
-											out across your team.
+											Docent stays free at any scale. Tell us what you are trying to solve, and we will get it
+											working on your data and your infrastructure.
 										</p>
 									</>
 								)}
 
 								<p className={styles.kicker}>{partner ? 'What you get' : 'What we help with'}</p>
-								<ul className={styles.docentPoints}>
-									{(partner ? partnerTopics : topics).map((topic) => (
-										<li key={topic}><Check /><span>{topic}</span></li>
+								<ul className={local.topics}>
+									{(partner ? partnerTopics : topics).map(([icon, topic]) => (
+										<li key={topic} className={local.topic}>
+											<span className={local.topicIcon}><TopicIcon name={icon} /></span>
+											<span>{topic}</span>
+										</li>
 									))}
 								</ul>
 
-								<p className={local.links}>
-									<Link to="/docs/intro" className={styles.textLink}>Browse the docs</Link>
-									<span aria-hidden="true">·</span>
-									<a href="https://x.com/smartloop/" target="_blank" rel="noopener noreferrer" className={styles.textLink}>
-										Follow @smartloop
-									</a>
-									<span aria-hidden="true">·</span>
-									<a href="mailto:support@smartloop.ai" className={styles.textLink}>support@smartloop.ai</a>
-								</p>
+								<div className={local.links}>
+									{contactLinks.map((l) => {
+										const inner = (
+											<>
+												<span className={local.topicIcon}><TopicIcon name={l.icon} /></span>
+												<span className={local.linkText}>
+													<span className={local.linkLabel}>{l.label} <span aria-hidden="true">→</span></span>
+													<span className={local.linkDetail}>{l.detail}</span>
+												</span>
+											</>
+										);
+										return l.href.startsWith('/') ? (
+											<Link key={l.label} to={l.href} className={local.linkCard}>{inner}</Link>
+										) : (
+											<a key={l.label} href={l.href} className={local.linkCard} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{inner}</a>
+										);
+									})}
+								</div>
 							</div>
 
 							{/* Form */}

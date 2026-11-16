@@ -16,6 +16,15 @@
   align-items: start;
 }
 
+.accent {
+  font-family: var(--sl-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1em;
+  letter-spacing: -0.01em;
+  color: var(--sl-accent);
+}
+
 .title {
   margin: 0 0 20px;
   font-family: var(--sl-headline);
@@ -34,22 +43,102 @@
   color: var(--sl-fg);
 }
 
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+/* Topics as a grid of small tiles. */
+.topics {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  margin: 32px 0 0;
-  font-size: 0.9rem;
-  color: var(--sl-dim);
 }
 
+.topic {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--sl-line);
+  background: var(--sl-panel);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--sl-fg);
+}
+
+.topicIcon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--sl-accent-wash);
+  color: var(--sl-accent-text);
+}
+
+/* Docs, X and email as three small link cards. */
+.links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.linkCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--sl-line);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.linkCard:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  border-color: rgba(236, 72, 153, 0.35);
+}
+
+.linkText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.linkLabel {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--sl-white);
+}
+
+.linkDetail {
+  font-family: var(--sl-mono);
+  font-size: 0.66rem;
+  color: var(--sl-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The form card: a hairline that warms to the brand pink at one corner. */
 .card {
   padding: 28px;
   border-radius: var(--r-xl);
-  border: 1px solid var(--sl-line);
-  background: var(--sl-panel);
-  box-shadow: var(--shadow-soft);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--sl-panel), var(--sl-panel)) padding-box,
+    linear-gradient(140deg, rgba(236, 72, 153, 0.55), var(--sl-line) 45%, var(--sl-line)) border-box;
+  box-shadow: var(--shadow-lift);
+}
+
+/* Softer, rounder fields inside the card. */
+.card input {
+  border-radius: 10px;
+  background: var(--sl-ink);
 }
 
 .submit {
@@ -75,5 +164,10 @@
 
   .card {
     padding: 20px;
+  }
+
+  .topics,
+  .links {
+    grid-template-columns: 1fr;
   }
 }
