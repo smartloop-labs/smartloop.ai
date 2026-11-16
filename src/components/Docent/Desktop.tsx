@@ -15,6 +15,11 @@ import local from '../../pages/docent.module.css';
 const DESCRIPTION =
   'Docent is your personal assistant for work. It produces documents, connects to your external systems and creates skills for the work you repeat, with open models sized for your machine. Your documents never leave it.';
 
+// The hero line under the headline, which already says "personal assistant
+// for work"; DESCRIPTION (search and social) keeps the full sentence.
+const LEDE =
+  'It produces documents, connects to your external systems and creates skills for the work you repeat, on open models sized for your machine. Your documents never leave it.';
+
 const points: [string, string][] = [
   ['Produces documents.', 'Reports, summaries, comparisons and drafts, written from your files and your systems, with every claim cited to its source.'],
   ['Connects to your systems.', 'Notion, Linear, Trello, monday.com and Canva in one click through MCP; any other server by URL.'],
@@ -143,7 +148,7 @@ export default function DocentDesktop(): ReactNode {
           <h1 className={styles.heroTitle}>
             Your personal assistant for work. <span className={styles.accent}>On your own machine.</span>
           </h1>
-          <p className={styles.heroLede}>{DESCRIPTION}</p>
+          <p className={styles.heroLede}>{LEDE}</p>
           <div className={styles.heroCta}>
             {platform && platform !== 'unknown'
               ? <DirectDownloadButton platform={platform} />
