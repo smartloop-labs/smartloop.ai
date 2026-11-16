@@ -234,9 +234,9 @@ export default function Download(): ReactNode {
   return (
     <div id="app" className="body">
       <Head>
-        <title>Downloads | Smartloop</title>
+        <title>Download Docent Studio | Smartloop</title>
         <meta name="description" content="Download Docent Studio for Mac (.dmg), Windows (.exe), or Linux (.deb). See system requirements for macOS, Windows, and Linux." />
-        <meta property="og:title" content="Downloads | Smartloop" />
+        <meta property="og:title" content="Download Docent Studio | Smartloop" />
         <meta property="og:description" content="Download Docent Studio for Mac (.dmg), Windows (.exe), or Linux (.deb). See system requirements for macOS, Windows, and Linux." />
         <link rel="canonical" href="https://smartloop.ai/download/" />
       </Head>
@@ -246,7 +246,7 @@ export default function Download(): ReactNode {
           <section className="flex flex-col items-center text-center px-6 pt-28 md:pt-36 pb-2 max-w-5xl mx-auto w-full">
             <span className={styles.comingSoonBadge}>Downloads</span>
             <h1 className={`text-3xl md:text-5xl mt-4 mb-3 leading-tight ${styles.heroTitle}`}>
-              Smartloop <span className={styles.studioAccent}>Studio</span>
+              Docent <span className={styles.studioAccent}>Studio</span>
             </h1>
             {/* The version and platform line every download page carries, right
                 under the title. The download always serves the current build, so a
