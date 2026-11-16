@@ -11,7 +11,10 @@ import styles from './home.module.css';
 // Claude and Claude Code: Docent Studio on the desktop, Docent in the terminal
 // for coding. Both live on /docent (#desktop, #coding); gpushed has its own site.
 
-type Card = { label: string; name: string; desc: string; facts: string; to: string; external?: boolean };
+// `preview` is a few lines of the product at work, drawn as a tiny window:
+// [kind, text] where kind styles the line (prompt, out, ok).
+type Line = ['prompt' | 'out' | 'ok', string];
+type Card = { label: string; name: string; desc: string; facts: string; to: string; external?: boolean; chrome: 'window' | 'terminal'; preview: Line[] };
 
 // One product per group; Docent's two cards are the same product used two
 // ways (desktop and coding), like Claude and Claude Code.
@@ -26,6 +29,8 @@ const GROUPS: { product: string; line: string; cards: Card[] }[] = [
         desc: 'Chat with your documents, connect MCP servers and add skills, with the models picked and sized for your machine.',
         facts: 'macOS · Linux · Windows · Apache 2.0',
         to: '/docent#desktop',
+        chrome: 'window',
+        preview: [['prompt', 'What does clause 4.2 commit us to?'], ['out', 'Reading contract.pdf · 12 pages'], ['ok', 'Two obligations, both cited to ¶4.2']],
       },
       {
         label: 'Coding',
@@ -33,6 +38,8 @@ const GROUPS: { product: string; line: string; cards: Card[] }[] = [
         desc: 'Ask for a change and Docent writes it, checks it with your language servers and your build, and fixes what fails.',
         facts: 'macOS · Linux · Windows · MIT',
         to: '/docent#coding',
+        chrome: 'terminal',
+        preview: [['prompt', 'docent "retry failed uploads"'], ['out', '+12 −3  src/upload.rs'], ['ok', 'cargo build · rust-analyzer: clean']],
       },
     ],
   },
@@ -47,16 +54,18 @@ const GROUPS: { product: string; line: string; cards: Card[] }[] = [
         facts: 'Apple silicon Macs · from $0.88/hr',
         to: 'https://gpushed.dev',
         external: true,
+        chrome: 'terminal',
+        preview: [['prompt', 'gpushed up'], ['out', '1x L4 24 GB · us-central1'], ['ok', 'ready · $0.88/hr · gpushed ssh']],
       },
     ],
   },
 ];
 
-const PRINCIPLES: [string, string][] = [
-  ['Local first', 'Your files and prompts stay on your machine unless you choose otherwise.'],
+// What we believe, beside the story headline. Short enough to scan.
+const BELIEFS: [string, string][] = [
+  ['Local first', 'Small open models now read your documents and write and check your code, with no round trip.'],
   ['Opinionated', 'We pick and tune the models, so there is nothing to choose or configure.'],
-  ['Small and sharp', 'Each product does one job, and does it well.'],
-  ['Open where it counts', 'Docent is open source, in the terminal and on the desktop. Read the code that runs on your computer.'],
+  ['No lock-in', 'When a job needs a big GPU, we hand you one by the second, and you delete it when you’re done.'],
 ];
 
 const DESCRIPTION = 'Smartloop is an AI research company. We make private software that runs on the computer you already own: Docent, for your terminal and your desktop, and gpushed, a GPU by the second when a job outgrows your machine.';
@@ -120,44 +129,38 @@ export default function Home(): ReactNode {
 
           {/* ── The story ──────────────────────────────────── */}
           <section className={styles.shell}>
-            {/* Headline left, story right, so a wide screen isn't half empty;
-                stacks on narrow screens with the FAQ layout it borrows. */}
-            <div className={`${styles.section} ${styles.faqWrap}`}>
-              <div>
-                <p className={styles.kicker}>Why we exist</p>
-                <h2 className={styles.h2}>AI shouldn’t mean renting someone else’s computer.</h2>
-              </div>
-              <div className={styles.storyText}>
-              <p className={styles.sub}>
-                Most AI tools send every prompt, file and answer on a round trip through a data center you’ll never
-                see, billed by the token. We think much of that work belongs on your own machine.
+            <div className={`${styles.section} ${styles.statement}`}>
+              <p className={styles.kicker}>Why we exist</p>
+              {/* One statement, read at a glance: the claim in full contrast,
+                  the context dimmed. */}
+              <p className={styles.statementText}>
+                AI shouldn’t mean renting someone else’s computer.{' '}
+                <span className={styles.statementDim}>
+                  Most tools send every prompt and file through a data center you’ll never see, billed by the token.
+                </span>{' '}
+                We build private AI that runs on yours.
               </p>
-              <p className={styles.sub}>
-                Small open models are now good enough to read your documents and to write and check your code
-                without the round trip. So we build tools around them: opinionated, quick to install, and private by
-                default. And when a job really does need a big GPU, we’d rather hand you one by the second than lock
-                you into a platform.
-              </p>
-              </div>
+              <ol className={styles.beliefs}>
+                {BELIEFS.map(([title, desc], i) => (
+                  <li key={title} className={styles.belief}>
+                    <span className={styles.beliefNum}>{String(i + 1).padStart(2, '0')}</span>
+                    <span className={styles.beliefTitle}>{title}</span>
+                    <span className={styles.beliefDesc}>{desc}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
           </section>
 
           {/* ── What we make ───────────────────────────────── */}
           <section className={styles.shell} id="products">
             <div className={styles.section}>
-              {/* Same two-column header as Why we exist. */}
-              <div className={styles.faqWrap}>
-                <div>
-                  <p className={styles.kicker}>What we make</p>
-                  <h2 className={styles.h2}>Your complete local AI suite.</h2>
-                </div>
-                <div className={styles.storyText}>
-                  <p className={styles.sub}>
-                    Docent is your private AI: Docent Studio on your desktop for documents and everyday work, and
-                    Docent in your terminal for coding. When a job outgrows your machine, gpushed hands you a GPU by the
-                    second.
-                  </p>
-                </div>
+              <div className={styles.centerHead}>
+                <p className={styles.kicker}>What we make</p>
+                <h2 className={styles.h2}>Your complete local AI suite.</h2>
+                <p className={styles.sub}>
+                  Docent on your desktop and in your terminal, and a GPU by the second when a job outgrows your machine.
+                </p>
               </div>
 
               {/* Equal cards, grouped by product: Docent spans two, gpushed one. */}
@@ -171,39 +174,36 @@ export default function Home(): ReactNode {
                       {g.cards.map((c) => {
                         const body = (
                           <>
-                            <span className={styles.cardLabel}>{c.label}</span>
-                            <p className={styles.docTitle}>{c.name}</p>
-                            <p className={styles.docDesc}>{c.desc}</p>
-                            <span className={styles.cardFacts}>{c.facts}</span>
-                            <span className={styles.docArrow} aria-hidden="true">{c.external ? '↗' : '→'}</span>
+                            <span className={styles.preview} aria-hidden="true">
+                              <span className={styles.previewBar}>
+                                <span className={styles.previewDots}><i /><i /><i /></span>
+                                <span className={styles.previewTitle}>{c.chrome === 'window' ? c.name : 'zsh'}</span>
+                              </span>
+                              {c.preview.map(([kind, text]) => (
+                                <span key={text} className={`${styles.previewLine} ${styles[`pl_${kind}`]}`}>
+                                  {kind === 'prompt' ? (c.chrome === 'terminal' ? '$ ' : '› ') : kind === 'ok' ? '✓ ' : '  '}
+                                  {text}
+                                </span>
+                              ))}
+                            </span>
+                            <span className={styles.cardBody}>
+                              <span className={styles.cardLabel}>{c.label}</span>
+                              <span className={styles.cardName}>{c.name} <span className={styles.cardArrow} aria-hidden="true">{c.external ? '↗' : '→'}</span></span>
+                              <span className={styles.cardDesc}>{c.desc}</span>
+                              <span className={styles.cardFacts}>{c.facts}</span>
+                            </span>
                           </>
                         );
                         return c.external ? (
-                          <a key={c.name} href={c.to} className={styles.docCard} target="_blank" rel="noopener noreferrer">{body}</a>
+                          <a key={c.name} href={c.to} className={styles.productCard} target="_blank" rel="noopener noreferrer">{body}</a>
                         ) : (
-                          <Link key={c.name} to={c.to} className={styles.docCard}>{body}</Link>
+                          <Link key={c.name} to={c.to} className={styles.productCard}>{body}</Link>
                         );
                       })}
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
-          </section>
-
-          {/* ── How we work ────────────────────────────────── */}
-          <section className={styles.shell}>
-            <div className={styles.section}>
-              <h2 className={styles.h2}>How we work</h2>
-              <ol className={styles.steps}>
-                {PRINCIPLES.map(([title, desc], i) => (
-                  <li key={title}>
-                    <span className={styles.stepNum}>{String(i + 1).padStart(2, '0')}</span>
-                    <p className={styles.stepTitle}>{title}</p>
-                    <p className={styles.stepDesc}>{desc}</p>
-                  </li>
-                ))}
-              </ol>
             </div>
           </section>
 
