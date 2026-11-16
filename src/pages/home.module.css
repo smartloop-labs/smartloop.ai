@@ -1840,3 +1840,26 @@
     width: 100%;
   }
 }
+
+/* ── headline type ─────────────────────────────────────
+   Last in the file so it wins over each heading's own rule above.
+   Headlines in Inter Tight; the pink accent phrase inside them in
+   Instrument Serif italic, a touch larger because a serif sits smaller. */
+.heroTitle,
+.h2,
+.closingTitle,
+.statementText {
+  font-family: var(--sl-headline);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.heroTitle .accent,
+.h2 .accent,
+.closingTitle .accent {
+  font-family: var(--sl-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1em;
+  letter-spacing: -0.01em;
+}
