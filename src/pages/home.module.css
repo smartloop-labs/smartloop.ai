@@ -1094,6 +1094,76 @@
   color: var(--sl-dim);
 }
 
+/* ── products (home) ───────────────────────────────── */
+.productsGrid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 14px;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 28px;
+  border-radius: var(--r-xl);
+  background: var(--sl-panel);
+  border: 1px solid var(--sl-line);
+}
+
+.productName {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--sl-white);
+}
+
+.productTagline {
+  margin: 0 0 14px;
+  font-size: 1rem;
+  color: var(--sl-fg);
+}
+
+.productWays {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.productWay {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  padding: 18px 20px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--sl-line);
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.productWay:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+  border-color: rgba(236, 72, 153, 0.3);
+}
+
+.productWayName {
+  font-size: 1.04rem;
+  font-weight: 500;
+  color: var(--sl-accent-text);
+}
+
+.productFacts {
+  font-family: var(--sl-mono);
+  font-size: 0.7rem;
+  color: var(--sl-dim);
+}
+
 /* ── docs ───────────────────────────────────────────── */
 .docsGrid {
   margin-top: 40px;
@@ -1443,6 +1513,7 @@
 
   .steps,
   .docsGrid,
+  .productsGrid,
   .partnerRow {
     grid-template-columns: 1fr;
   }

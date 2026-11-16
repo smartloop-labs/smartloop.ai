@@ -1,66 +1,52 @@
-import { type ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import styles from './company.module.css';
+import HeroDrift from '../components/HeroDrift';
+import styles from './home.module.css';
 
 // smartloop.ai is the company, the way 37signals sits over Basecamp and HEY:
-// the story first, then the products it makes. Each product keeps its own
-// page (/docent, /studio) or its own site (gpushed.dev).
+// the story, then what it makes. Docent comes two ways (terminal and desktop)
+// and has its own pages (/docent, /studio); gpushed has its own site.
 
-type Product = {
-  name: string;
-  mark: string;
-  tagline: string;
-  body: string;
-  facts: string[];
-  cta: string;
-  to: string;
-  external?: boolean;
-};
+type Way = { name: string; desc: string; facts: string; to: string };
 
-const PRODUCTS: Product[] = [
+const DOCENT_WAYS: Way[] = [
   {
     name: 'Docent',
-    mark: 'D',
-    tagline: 'The private coding agent for your terminal.',
-    body: 'Ask for a change and Docent writes it, checks it with your language servers and your build, and hands any errors back to the model until it passes. It chats with your PDFs and Office files too.',
-    facts: ['macOS · Linux · Windows', 'Open source (MIT)'],
-    cta: 'Meet Docent',
+    desc: 'The coding agent for your terminal. Ask for a change and it writes it, checks it with your language servers and your build, and fixes what fails.',
+    facts: 'macOS · Linux · Windows · open source (MIT)',
     to: '/docent',
   },
   {
     name: 'Docent Studio',
-    mark: 'S',
-    tagline: 'A private desktop app for local AI.',
-    body: 'Chat with your documents, connect MCP servers and add skills, with the models picked and sized for your machine. Nothing to configure and no account needed.',
-    facts: ['macOS · Linux · Windows', 'Open source (Apache 2.0)'],
-    cta: 'Meet Docent Studio',
+    desc: 'The desktop app. Chat with your documents, connect MCP servers and add skills, with the models picked and sized for your machine.',
+    facts: 'macOS · Linux · Windows · open source (Apache 2.0)',
     to: '/studio',
   },
-  {
-    name: 'gpushed',
-    mark: 'G',
-    tagline: 'Your own NVIDIA GPU, from your Mac.',
-    body: 'Sign in, add credit and get a GPU box with CUDA, Python, Node.js and Rust ready in a few minutes. No cloud account or quota requests. Billed by the second; delete it when you’re done.',
-    facts: ['Apple silicon Macs', 'From $0.88 an hour'],
-    cta: 'Visit gpushed.dev',
-    to: 'https://gpushed.dev',
-    external: true,
-  },
 ];
 
-const PRINCIPLES: { title: string; body: string }[] = [
-  { title: 'Local first.', body: 'Your files and prompts stay on your machine unless you choose otherwise.' },
-  { title: 'Opinionated.', body: 'We pick and tune the models so you don’t have to learn the difference.' },
-  { title: 'Small and sharp.', body: 'Each product does one job, and does it well.' },
-  { title: 'Open where it counts.', body: 'Docent and Docent Studio are open source. Read the code that runs on your computer.' },
+const PRINCIPLES: [string, string][] = [
+  ['Local first', 'Your files and prompts stay on your machine unless you choose otherwise.'],
+  ['Opinionated', 'We pick and tune the models, so there is nothing to choose or configure.'],
+  ['Small and sharp', 'Each product does one job, and does it well.'],
+  ['Open where it counts', 'Docent and Docent Studio are open source. Read the code that runs on your computer.'],
 ];
 
-const DESCRIPTION = 'Smartloop is an AI company. We make private software that runs on the computer you already own: Docent, Docent Studio and gpushed.';
+const DESCRIPTION = 'Smartloop is an AI company. We make private software that runs on the computer you already own: Docent, for your terminal and your desktop, and gpushed, a GPU by the second when a job outgrows your machine.';
 
 export default function Home(): ReactNode {
+  // Campaign tags ride along to the download and sign-up pages.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach((key) => {
+      const value = params.get(key);
+      if (value) sessionStorage.setItem(key, value);
+    });
+  }, []);
+
   const orgJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -68,7 +54,7 @@ export default function Home(): ReactNode {
     url: 'https://smartloop.ai',
     logo: 'https://smartloop.ai/img/logo-dark.svg',
     description: DESCRIPTION,
-    brand: PRODUCTS.map((p) => ({ '@type': 'Brand', name: p.name })),
+    brand: [{ '@type': 'Brand', name: 'Docent' }, { '@type': 'Brand', name: 'gpushed' }],
   };
 
   return (
@@ -84,87 +70,134 @@ export default function Home(): ReactNode {
       <div className="wrapper">
         <Header />
         <main className={styles.page}>
-          {/* ── The story ─────────────────────────────────── */}
-          <section className={styles.story}>
-            <p className={styles.eyebrow}>Smartloop</p>
-            <h1 className={styles.title}>
-              Frontier quality. <span className={styles.accent}>Local first.</span>
-            </h1>
-            <p className={styles.lede}>
-              We’re an AI company. We make private software that runs on the computer you already own: a coding agent for your
-              terminal, a desktop app for your documents, and a GPU by the second when a job outgrows your machine.
-            </p>
-            <div className={styles.prose}>
-              <p>
-                Most AI tools rent you someone else’s computer. Every prompt, file and answer makes a round trip
-                through a data center you’ll never see, billed by the token.
+          {/* ── Hero ───────────────────────────────────────── */}
+          <section className={styles.hero}>
+            <div className={styles.heroGlow} aria-hidden="true" />
+            <HeroDrift />
+            <div className={styles.heroInner}>
+              <p className={styles.eyebrow}>smartloop · an AI company</p>
+              <h1 className={styles.heroTitle}>
+                Frontier quality. <span className={styles.accent}>Local first.</span>
+              </h1>
+              <p className={styles.heroLede}>
+                We’re an AI company. We make private software that runs on the computer you already own: a coding
+                agent for your terminal, a desktop app for your documents, and a GPU by the second when a job
+                outgrows your machine.
               </p>
-              <p>
-                We think much of that work belongs on your own machine. Small open models are now good enough to
-                read your documents and to write and check your code without the round trip. So we build tools
-                around them: opinionated, quick to install, and private by default.
+              <div className={styles.heroCta}>
+                <div className={styles.heroCtaRow}>
+                  <a href="#products" className={styles.btnPrimary}>what we make</a>
+                  <Link to="/contact/" className={styles.btnGhost}>talk to us</Link>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ── The story ──────────────────────────────────── */}
+          <section className={styles.shell}>
+            <div className={styles.section}>
+              <p className={styles.kicker}>Why we exist</p>
+              <h2 className={styles.h2}>AI shouldn’t mean renting someone else’s computer.</h2>
+              <p className={styles.sub}>
+                Most AI tools send every prompt, file and answer on a round trip through a data center you’ll never
+                see, billed by the token. We think much of that work belongs on your own machine.
               </p>
-              <p>
-                And when a job really does need a big GPU, we’d rather hand you one by the second than lock you
-                into a platform.
+              <p className={styles.sub}>
+                Small open models are now good enough to read your documents and to write and check your code
+                without the round trip. So we build tools around them: opinionated, quick to install, and private by
+                default. And when a job really does need a big GPU, we’d rather hand you one by the second than lock
+                you into a platform.
               </p>
             </div>
           </section>
 
-          {/* ── What we make ──────────────────────────────── */}
-          <section className={styles.section} aria-labelledby="products">
-            <h2 id="products" className={styles.h2}>What we make</h2>
-            <ul className={styles.products}>
-              {PRODUCTS.map((p) => (
-                <li key={p.name} className={styles.product}>
-                  <span className={styles.mark} aria-hidden="true">{p.mark}</span>
-                  <div className={styles.productBody}>
-                    <h3 className={styles.productName}>{p.name}</h3>
-                    <p className={styles.tagline}>{p.tagline}</p>
-                    <p className={styles.productText}>{p.body}</p>
-                    <ul className={styles.facts}>
-                      {p.facts.map((f) => <li key={f}>{f}</li>)}
-                    </ul>
-                    {p.external ? (
-                      <a href={p.to} className={styles.cta} target="_blank" rel="noopener noreferrer">
-                        {p.cta} <span aria-hidden="true">→</span>
-                      </a>
-                    ) : (
-                      <Link to={p.to} className={styles.cta}>
-                        {p.cta} <span aria-hidden="true">→</span>
+          {/* ── What we make ───────────────────────────────── */}
+          <section className={styles.shell} id="products">
+            <div className={styles.section}>
+              <p className={styles.kicker}>What we make</p>
+              <h2 className={styles.h2}>Two products. One idea.</h2>
+              <div className={styles.productsGrid}>
+                <div className={styles.productCard}>
+                  <p className={styles.productName}>Docent</p>
+                  <p className={styles.productTagline}>Your private AI, in the terminal or on the desktop.</p>
+                  <div className={styles.productWays}>
+                    {DOCENT_WAYS.map((w) => (
+                      <Link key={w.to} to={w.to} className={styles.productWay}>
+                        <span className={styles.productWayName}>{w.name} <span aria-hidden="true">→</span></span>
+                        <span className={styles.docDesc}>{w.desc}</span>
+                        <span className={styles.productFacts}>{w.facts}</span>
                       </Link>
-                    )}
+                    ))}
                   </div>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          {/* ── How we work ───────────────────────────────── */}
-          <section className={styles.section} aria-labelledby="principles">
-            <h2 id="principles" className={styles.h2}>How we work</h2>
-            <dl className={styles.principles}>
-              {PRINCIPLES.map((x) => (
-                <div key={x.title} className={styles.principle}>
-                  <dt>{x.title}</dt>
-                  <dd>{x.body}</dd>
                 </div>
-              ))}
-            </dl>
+
+                <div className={styles.productCard}>
+                  <p className={styles.productName}>gpushed</p>
+                  <p className={styles.productTagline}>Your own NVIDIA GPU, from your Mac.</p>
+                  <div className={styles.productWays}>
+                    <a href="https://gpushed.dev" className={styles.productWay} target="_blank" rel="noopener noreferrer">
+                      <span className={styles.productWayName}>gpushed.dev <span aria-hidden="true">↗</span></span>
+                      <span className={styles.docDesc}>
+                        Sign in, add credit and get a GPU box with CUDA, Python, Node.js and Rust ready in a few minutes.
+                        No cloud account or quota requests. Billed by the second; delete it when you’re done.
+                      </span>
+                      <span className={styles.productFacts}>Apple silicon Macs · from $0.88 an hour</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
 
-          {/* ── Sign-off ──────────────────────────────────── */}
-          <section className={styles.signoff}>
-            <p>
-              Smartloop Inc. makes Docent, Docent Studio and gpushed.{' '}
-              <Link to="/contact/" className={styles.inlineLink}>Say hello</Link> or{' '}
-              <a href="https://github.com/smartloop-labs" className={styles.inlineLink} target="_blank" rel="noopener noreferrer">
-                read our code
-              </a>.
-            </p>
+          {/* ── How we work ────────────────────────────────── */}
+          <section className={styles.shell}>
+            <div className={styles.section}>
+              <h2 className={styles.h2}>How we work</h2>
+              <ol className={styles.steps}>
+                {PRINCIPLES.map(([title, desc], i) => (
+                  <li key={title}>
+                    <span className={styles.stepNum}>{String(i + 1).padStart(2, '0')}</span>
+                    <p className={styles.stepTitle}>{title}</p>
+                    <p className={styles.stepDesc}>{desc}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </section>
+
+          {/* ── Closing + partners ─────────────────────────── */}
+          <section className={styles.shell}>
+            <div className={styles.closing}>
+              <div className={styles.heroGlow} aria-hidden="true" />
+              <p className={styles.eyebrow}>free to start</p>
+              <h2 className={styles.closingTitle}>Start asking. <span className={styles.accent}>Locally.</span></h2>
+              <p className={styles.sub}>Pick the way you work: Docent in your terminal, or Docent Studio on your desktop.</p>
+              <div className={styles.closingCta}>
+                <Link to="/docent" className={styles.btnPrimary}>get docent</Link>
+                <Link to="/download" className={styles.btnGhost}>download studio</Link>
+              </div>
+            </div>
+            <div className={styles.partners}>
+              <p className={styles.partnersLabel}>Accelerated by</p>
+              <div className={styles.partnerRow}>
+                <span className={styles.partnerTile}>
+                  <img src="img/logos/nvidia-color.png" className={styles.logoLight} alt="NVIDIA" />
+                  <img src="img/logos/nvidia-color-dark.png" className={styles.logoDark} alt="NVIDIA" />
+                </span>
+                <span className={styles.partnerTile}>
+                  <img src="img/logos/microsoft-logo.svg" className={styles.logoLight} alt="Microsoft" />
+                  <img src="img/logos/microsoft-logo-dark.svg" className={styles.logoDark} alt="Microsoft" />
+                </span>
+                <span className={styles.partnerTile}>
+                  <img src="img/logos/Google_for_Startups_logo.svg.png" className={styles.logoLight} alt="Google for Startups" />
+                  <img src="img/logos/google-for-startups-dark.png" className={styles.logoDark} alt="Google for Startups" />
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <Footer />
         </main>
-        <Footer />
       </div>
     </div>
   );

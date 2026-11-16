@@ -10,6 +10,7 @@ import {
 } from '../components/StoreBadge';
 import DocentInstall from '../components/DocentInstall';
 import useVisitorPlatform from '../hooks/useVisitorPlatform';
+import HeroDrift, { HARDWARE, MODELS, Marquee } from '../components/HeroDrift';
 import styles from './home.module.css';
 
 function Icon({ name }: { name: string }) {
@@ -27,25 +28,6 @@ function Icon({ name }: { name: string }) {
     case 'arrow': return <svg {...props}><line x1="7" y1="17" x2="17" y2="7" /><polyline points="8 7 17 7 17 16" /></svg>;
     default: return null;
   }
-}
-
-// The open models the orchestrator routes between, and the machines it fits
-// them to. Both drift past the hero and the engine panel.
-const MODELS = ['Gemma 4', 'Qwen 3.5', 'Qwen2-VL', 'Ministral 3', 'sl-mini', 'Gemma 3', 'Qwen3', 'Phi'];
-const HARDWARE = ['Apple Silicon', 'NVIDIA', 'AMD', 'Intel', 'Integrated graphics', 'Windows 11', 'Linux', 'macOS'];
-
-function Marquee({ items, reverse = false, slow = false }: { items: string[]; reverse?: boolean; slow?: boolean }) {
-  // Two copies of the row, translated by half: the seam is invisible.
-  const row = [...items, ...items];
-  return (
-    <div className={styles.marquee}>
-      <div className={`${styles.marqueeTrack} ${reverse ? styles.marqueeReverse : ''} ${slow ? styles.marqueeSlow : ''}`}>
-        {row.map((item, i) => (
-          <span key={i} className={styles.chip}>{item}</span>
-        ))}
-      </div>
-    </div>
-  );
 }
 
 type Work = {
@@ -287,18 +269,7 @@ export default function Studio(): ReactNode {
           {/* ── Hero ───────────────────────────────────────── */}
           <section id="studio" className={styles.hero}>
             <div className={styles.heroGlow} aria-hidden="true" />
-            {/* Model and hardware names drift past either side of the
-                headline; wide screens only. */}
-            <div className={`${styles.heroDrift} ${styles.heroDriftLeft}`} aria-hidden="true">
-              <Marquee items={MODELS} />
-              <Marquee items={HARDWARE} reverse slow />
-              <Marquee items={[...MODELS].reverse()} />
-            </div>
-            <div className={`${styles.heroDrift} ${styles.heroDriftRight}`} aria-hidden="true">
-              <Marquee items={HARDWARE} reverse />
-              <Marquee items={MODELS} slow />
-              <Marquee items={[...HARDWARE].reverse()} reverse />
-            </div>
+            <HeroDrift />
 
             <div className={styles.heroInner}>
               <p className={styles.eyebrow}>
