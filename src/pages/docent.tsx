@@ -55,6 +55,12 @@ export default function Docent(): ReactNode {
           <span id="desktop" aria-hidden="true" />
           <div className={local.modeBar}>
             <div className={local.modeSwitch} role="tablist" aria-label="How you use Docent">
+              {/* The raised thumb slides under the selected tab. */}
+              <span
+                className={local.modeThumb}
+                aria-hidden="true"
+                style={{ transform: `translateX(${MODES.findIndex((m) => m.id === mode) * 100}%)` }}
+              />
               {MODES.map((m) => (
                 <button
                   key={m.id}
