@@ -3,7 +3,7 @@ import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import HeroDrift, { HeroDriftRows } from '../components/HeroDrift';
+import HeroDrift from '../components/HeroDrift';
 import styles from './home.module.css';
 
 // smartloop.ai is the company, the way 37signals sits over Basecamp and HEY:
@@ -263,7 +263,6 @@ export default function Home(): ReactNode {
                 </div>
               </div>
             </div>
-            <HeroDriftRows />
           </section>
 
           {/* ── The story ──────────────────────────────────── */}

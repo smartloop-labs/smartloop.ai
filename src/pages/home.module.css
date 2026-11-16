@@ -347,34 +347,8 @@
   }
 }
 
-.heroDrift .chip,
-.heroDriftRows .chip {
+.heroDrift .chip {
   opacity: 0.75;
-}
-
-/* Below the side columns' width: the same chips as two rows under the
-   buttons, faded at both edges so they drift in and out of view. */
-.heroDriftRows {
-  position: relative;
-  z-index: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 48px;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
-}
-
-.heroDriftRows .chip {
-  padding: 8px 14px;
-  font-size: 0.84rem;
-}
-
-@media (min-width: 1240px) {
-  .heroDriftRows {
-    display: none;
-  }
 }
 
 /* ── marquee ────────────────────────────────────────── */
@@ -1912,3 +1886,9 @@
   padding-top: 56px;
 }
 
+
+/* Keep "Local first." together: when the headline doesn't fit on one line,
+   the phrase drops whole to the second line instead of splitting. */
+.heroHome .heroTitle .accent {
+  white-space: nowrap;
+}
