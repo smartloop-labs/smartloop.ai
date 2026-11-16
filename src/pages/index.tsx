@@ -122,7 +122,7 @@ export default function Home(): ReactNode {
           <section className={styles.shell} id="products">
             <div className={styles.section}>
               <p className={styles.kicker}>What we make</p>
-              <h2 className={styles.h2}>Two products. One idea.</h2>
+              <h2 className={styles.h2}>Your complete local AI suite.</h2>
               <div className={styles.productsGrid}>
                 <div className={styles.productCard}>
                   <p className={styles.productName}>Docent</p>
