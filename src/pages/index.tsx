@@ -5,17 +5,15 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HeroDrift from '../components/HeroDrift';
 import styles from './home.module.css';
+import p from './products.module.css';
 
 // smartloop.ai is the company, the way 37signals sits over Basecamp and HEY:
 // the story, then what it makes. Docent is one product used two ways, like
 // Claude and Claude Code: Docent Studio on the desktop, Docent in the terminal
 // for coding. Both live on /docent (#desktop, #coding); gpushed has its own site.
 
-// `preview` is a few lines of the product at work, drawn as a tiny window:
-// [kind, text] where kind styles the line (prompt, out, ok).
-type Line = ['prompt' | 'out' | 'ok', string];
-// `theme` paints the card in that tool's own site colors (home.module.css).
-type Card = { label: string; name: string; desc: string; facts: string; to: string; external?: boolean; chrome: 'window' | 'terminal'; preview: Line[]; theme?: 'screenforge' | 'anacraft'; logo: string };
+// `theme` paints the card's accents in that tool's own site colors.
+type Card = { label: string; name: string; desc: string; facts: string; to: string; external?: boolean; theme?: 'screenforge' | 'anacraft'; logo: string };
 
 // One product per group; Docent's two cards are the same product used two
 // ways (desktop and coding), like Claude and Claude Code.
@@ -33,8 +31,6 @@ const GROUPS: Group[] = [
         facts: 'macOS · Linux · Windows · free',
         to: '/docent#desktop',
         logo: 'studio',
-        chrome: 'window',
-        preview: [['prompt', 'Draft the weekly report from Linear'], ['out', 'Linear · 18 issues closed this week'], ['ok', 'weekly-report.docx · saved']],
       },
       {
         label: 'Coding agent',
@@ -43,8 +39,6 @@ const GROUPS: Group[] = [
         facts: 'macOS · Linux · Windows · MIT',
         to: '/docent#coding',
         logo: 'docent',
-        chrome: 'terminal',
-        preview: [['prompt', 'docent "retry failed uploads"'], ['out', '+12 −3  src/upload.rs'], ['ok', 'cargo build · rust-analyzer: clean']],
       },
     ],
   },
@@ -60,8 +54,6 @@ const GROUPS: Group[] = [
         to: 'https://gpushed.dev',
         logo: '/img/logos/gpushed.svg',
         external: true,
-        chrome: 'terminal',
-        preview: [['prompt', 'gpushed up'], ['out', '1x L4 24 GB · us-central1'], ['ok', 'ready · $0.88/hr · gpushed ssh']],
       },
     ],
   },
@@ -82,8 +74,6 @@ const TOOLS: Group = {
       logo: '/img/logos/screenforge.svg',
       external: true,
       theme: 'screenforge',
-      chrome: 'window',
-      preview: [['prompt', 'cut the ums and the long pauses'], ['out', 'timeline · 14 cuts · 3:12 → 2:41'], ['ok', 'zoomed on clicks · music added']],
     },
     {
       label: 'Analytics dashboard',
@@ -94,8 +84,24 @@ const TOOLS: Group = {
       logo: 'anacraft',
       external: true,
       theme: 'anacraft',
-      chrome: 'terminal',
-      preview: [['prompt', 'anacraft'], ['out', 'GA4 · last 7 days · mining…'], ['ok', 'top page /docent · biggest ore']],
+    },
+  ],
+};
+
+// The third slot in the tools row, so it reads 3 / 3 against the products
+// above: not another product, but the way to hire us for one. The card's
+// own pitch carries the "free at any scale" part; the label stays short.
+const CONTACT: Group = {
+  product: 'Work with us',
+  line: 'Hire us for the work',
+  cards: [
+    {
+      label: 'For teams',
+      name: 'Talk to our team',
+      desc: 'Docent stays free at any scale. Tell us what you are trying to solve, and we will get it working on your data and your infrastructure.',
+      facts: 'rollout · fine-tuning · support',
+      to: '/contact/',
+      logo: 'contact',
     },
   ],
 };
@@ -115,10 +121,20 @@ const DESCRIPTION = 'Smartloop is an AI research company. We make private softwa
 function CardLogo({ logo }: { logo: string }): ReactNode {
   if (logo === 'studio') {
     return (
-      <span className={styles.cardLogo} aria-hidden="true">
+      <span className={p.logo} aria-hidden="true">
         <svg viewBox="0 0 24 24" width="18" height="18">
           <path d="M10 5H11A6 6 0 0 1 17 11V18H10A6 6 0 0 1 4 12V11A6 6 0 0 1 10 5Z" fill="var(--sl-white)" />
           <circle cx="16.7" cy="8.4" r="3" fill="var(--sl-accent)" />
+        </svg>
+      </span>
+    );
+  }
+  if (logo === 'contact') {
+    // A chat balloon for the Work-with-us card, in the brand accent.
+    return (
+      <span className={`${p.logo} ${p.logoContact}`} aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" />
         </svg>
       </span>
     );
@@ -127,7 +143,7 @@ function CardLogo({ logo }: { logo: string }): ReactNode {
     // Anacraft's pixel "A" from its favicon, without the favicon's black
     // square: drawn in the card's theme so it follows light and dark.
     return (
-      <span className={`${styles.cardLogo} ${styles.cardLogoThemed}`} aria-hidden="true">
+      <span className={`${p.logo} ${p.logoThemed}`} aria-hidden="true">
         <svg viewBox="0 0 16 16" width="16" height="16" shapeRendering="crispEdges" fill="currentColor">
           <rect x="6" y="1" width="4" height="1" />
           <rect x="5" y="2" width="6" height="1" />
@@ -156,9 +172,9 @@ function CardLogo({ logo }: { logo: string }): ReactNode {
     );
   }
   if (logo === 'docent') {
-    return <span className={`${styles.cardLogo} ${styles.cardLogoPrompt}`} aria-hidden="true">›_</span>;
+    return <span className={`${p.logo} ${p.logoPrompt}`} aria-hidden="true">›_</span>;
   }
-  return <img className={styles.cardLogoImg} src={logo} alt="" width={28} height={28} />;
+  return <img className={p.logoImg} src={logo} alt="" width={28} height={28} />;
 }
 
 function renderGroup(g: Group): ReactNode {
@@ -169,31 +185,22 @@ function renderGroup(g: Group): ReactNode {
       </p>
       <div className={styles.groupCards}>
         {g.cards.map((c) => {
-          const cls = c.theme ? `${styles.productCard} ${styles.themed} ${styles[`theme_${c.theme}`]}` : styles.productCard;
+          const cls = c.theme ? `${p.card} ${p.themed} ${p[`theme_${c.theme}`]}` : p.card;
           const body = (
             <>
-              <span className={styles.preview} aria-hidden="true">
-                <span className={styles.previewBar}>
-                  <span className={styles.previewDots}><i /><i /><i /></span>
-                  <span className={styles.previewTitle}>{c.chrome === 'window' ? c.name : 'zsh'}</span>
+              <span className={p.head}>
+                <CardLogo logo={c.logo} />
+                <span className={p.headText}>
+                  <span className={p.label}>{c.label}</span>
+                  <span className={p.name}>{c.name}</span>
                 </span>
-                {c.preview.map(([kind, text]) => (
-                  <span key={text} className={`${styles.previewLine} ${styles[`pl_${kind}`]}`}>
-                    {kind === 'prompt' ? (c.chrome === 'terminal' ? '$ ' : '› ') : kind === 'ok' ? '✓ ' : '  '}
-                    {text}
-                  </span>
-                ))}
+                {/* The card is a link; the arrow says so at a glance, and
+                    says "opens elsewhere" for the external products. */}
+                <span className={p.arrow} aria-hidden="true">{c.external ? '↗' : '→'}</span>
               </span>
-              <span className={styles.cardBody}>
-                <span className={styles.cardLabel}>{c.label}</span>
-                <span className={styles.cardHead}>
-                  <CardLogo logo={c.logo} />
-                  <span className={styles.cardName}>{c.name}</span>
-                </span>
-                <span className={styles.cardDesc}>{c.desc}</span>
-                <span className={styles.cardFacts}>
-                  {c.facts.split(' · ').map((f) => <span key={f} className={styles.cardFact}>{f}</span>)}
-                </span>
+              <span className={p.desc}>{c.desc}</span>
+              <span className={p.facts}>
+                {c.facts.split(' · ').map((f) => <span key={f} className={p.fact}>{f}</span>)}
               </span>
             </>
           );
@@ -302,12 +309,13 @@ export default function Home(): ReactNode {
               </div>
 
               {/* Equal cards, grouped by product: Docent spans two, gpushed one;
-                  the tools sit in their own row underneath. */}
+                  the tools and the work-with-us card make the same 2 + 1 below. */}
               <div className={styles.productGroups}>
                 {GROUPS.map(renderGroup)}
               </div>
               <div className={`${styles.productGroups} ${styles.toolsRow}`}>
                 {renderGroup(TOOLS)}
+                {renderGroup(CONTACT)}
               </div>
             </div>
           </section>
