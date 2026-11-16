@@ -64,11 +64,23 @@ export default function Docent(): ReactNode {
                   className={`${local.modeTab} ${mode === m.id ? local.modeTabActive : ''}`}
                   onClick={() => pick(m.id)}
                 >
+                  <span className={local.modeIcon} aria-hidden="true">
+                    {m.id === 'desktop' ? (
+                      <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M10 5H11A6 6 0 0 1 17 11V18H10A6 6 0 0 1 4 12V11A6 6 0 0 1 10 5Z" fill="currentColor" />
+                        <circle cx="16.7" cy="8.4" r="3" fill="var(--sl-accent)" />
+                      </svg>
+                    ) : (
+                      <span className={local.modePrompt}>›_</span>
+                    )}
+                  </span>
                   <span className={local.modeLabel}>{m.label}</span>
-                  <span className={local.modeDetail}>{m.detail}</span>
                 </button>
               ))}
             </div>
+            {/* One caption for the selected product, not a description in
+                every tab. */}
+            <p className={local.modeCaption}>{MODES.find((m) => m.id === mode)?.detail}</p>
           </div>
 
           <div className={local.modeBody}>

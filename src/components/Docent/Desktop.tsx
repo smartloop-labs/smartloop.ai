@@ -208,8 +208,8 @@ export default function DocentDesktop(): ReactNode {
       <section className={styles.shell}>
         <div className={styles.section}>
           <p className={styles.kicker}>What it does</p>
-          <h2 className={styles.h2}>Hand it the work. Check the result.</h2>
-          <ul className={styles.docentPoints}>
+          <h2 className={styles.h2}>From a request to a finished document.</h2>
+          <ul className={`${styles.docentPoints} ${local.pointGrid}`}>
             {points.map(([title, desc]) => (
               <li key={title}><Check /><span><b>{title}</b> {desc}</span></li>
             ))}
@@ -341,7 +341,7 @@ export default function DocentDesktop(): ReactNode {
         <div className={styles.section}>
           <p className={styles.kicker}>More than chat</p>
           <h2 className={styles.h2}>Your documents, your tools, your apps.</h2>
-          <ul className={styles.docentPoints}>
+          <ul className={`${styles.docentPoints} ${local.pointGrid}`}>
             {beyond.map(([title, desc]) => (
               <li key={title}><Check /><span><b>{title}.</b> {desc}</span></li>
             ))}

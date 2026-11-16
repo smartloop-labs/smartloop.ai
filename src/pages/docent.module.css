@@ -164,7 +164,8 @@
   position: relative;
   z-index: 1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: calc(6.25rem + 16px) 16px 0;
 }
 
@@ -231,25 +232,28 @@
 
 .modeSwitch {
   display: inline-flex;
-  gap: 4px;
+  gap: 2px;
   padding: 4px;
   border-radius: 999px;
   border: 1px solid var(--sl-line);
-  background: var(--sl-panel);
+  background: var(--sl-ink);
 }
 
+/* A segmented control: equal tabs, the selected one raised. */
 .modeTab {
+  min-width: 168px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 8px 18px;
+  padding: 9px 18px;
   border: none;
   border-radius: 999px;
   background: transparent;
   color: var(--sl-dim);
-  font-family: var(--sl-display);
+  font-family: var(--sl-headline);
   cursor: pointer;
-  transition: background 0.18s, color 0.18s;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
 }
 
 .modeTab:hover {
@@ -257,27 +261,81 @@
 }
 
 .modeTabActive {
-  background: var(--sl-accent-wash);
+  background: var(--sl-panel);
   color: var(--sl-white);
-  box-shadow: inset 0 0 0 1px rgba(236, 72, 153, 0.3);
+  box-shadow: 0 1px 2px rgba(10, 10, 20, 0.08), 0 4px 14px -6px rgba(10, 10, 20, 0.25);
+}
+
+.modeIcon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.modePrompt {
+  font-family: var(--sl-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--sl-accent-text);
 }
 
 .modeLabel {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
-.modeDetail {
+.modeCaption {
+  margin: 10px 0 0;
   font-family: var(--sl-mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--sl-dim);
 }
 
 @media (max-width: 480px) {
   .modeTab {
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    padding: 8px 14px;
+    min-width: 0;
+    padding: 9px 14px;
+  }
+}
+
+
+/* Points on the product tabs: a two-column grid of small cards, the check in
+   a tile beside a title line and its description, instead of full-width
+   lines with the icon floating below the text. */
+.pointGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.pointGrid li {
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--sl-line);
+  background: var(--sl-panel);
+  line-height: 1.55;
+}
+
+.pointGrid li svg {
+  box-sizing: content-box;
+  width: 16px;
+  height: 16px;
+  margin-top: 0;
+  padding: 7px;
+  border-radius: 9px;
+  background: var(--sl-accent-wash);
+  color: var(--sl-accent-text);
+}
+
+.pointGrid li b {
+  display: block;
+  margin-bottom: 3px;
+}
+
+@media (max-width: 760px) {
+  .pointGrid {
+    grid-template-columns: 1fr;
   }
 }

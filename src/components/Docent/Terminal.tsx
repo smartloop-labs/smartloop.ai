@@ -224,7 +224,7 @@ export default function DocentTerminal(): ReactNode {
             <div className={styles.section}>
               <p className={styles.kicker}>What it does</p>
               <h2 className={styles.h2}>Ask for a change. Get a build that passes.</h2>
-              <ul className={styles.docentPoints}>
+              <ul className={`${styles.docentPoints} ${local.pointGrid}`}>
                 {points.map(([title, desc]) => (
                   <li key={title}><Check /><span><b>{title}</b> {desc}</span></li>
                 ))}
@@ -310,7 +310,7 @@ export default function DocentTerminal(): ReactNode {
             <div className={styles.section}>
               <p className={styles.kicker}>More than code</p>
               <h2 className={styles.h2}>An agent harness, not just an autocomplete.</h2>
-              <ul className={styles.docentPoints}>
+              <ul className={`${styles.docentPoints} ${local.pointGrid}`}>
                 {beyond.map(([title, desc]) => (
                   <li key={title}><Check /><span><b>{title}.</b> {desc}</span></li>
                 ))}
