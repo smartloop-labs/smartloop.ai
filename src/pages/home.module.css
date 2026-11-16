@@ -347,8 +347,34 @@
   }
 }
 
-.heroDrift .chip {
+.heroDrift .chip,
+.heroDriftRows .chip {
   opacity: 0.75;
+}
+
+/* Below the side columns' width: the same chips as two rows under the
+   buttons, faded at both edges so they drift in and out of view. */
+.heroDriftRows {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 48px;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+}
+
+.heroDriftRows .chip {
+  padding: 8px 14px;
+  font-size: 0.84rem;
+}
+
+@media (min-width: 1240px) {
+  .heroDriftRows {
+    display: none;
+  }
 }
 
 /* ── marquee ────────────────────────────────────────── */
@@ -1225,6 +1251,7 @@
   border-radius: var(--r-xl);
   border: 1px solid var(--sl-line);
   background: var(--sl-panel);
+  box-shadow: var(--shadow-soft);
   overflow: hidden;
   text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
@@ -1380,10 +1407,6 @@
   border-color: var(--t-accent);
 }
 
-.themed:hover .cardArrow {
-  color: var(--t-accent);
-}
-
 .cardBody {
   flex: 1;
   display: flex;
@@ -1409,9 +1432,9 @@
 .cardLogo,
 .cardLogoImg {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 7px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
 }
 
 .cardLogo {
@@ -1443,29 +1466,43 @@
   color: var(--sl-white);
 }
 
-.cardArrow {
-  display: inline-block;
-  color: var(--sl-dim);
-  transition: transform 0.2s, color 0.2s;
-}
-
-.productCard:hover .cardArrow {
-  transform: translateX(3px);
-  color: var(--sl-accent-text);
-}
-
 .cardDesc {
   font-size: 0.9rem;
   line-height: 1.55;
   color: var(--sl-dim);
 }
 
+/* Platforms, license and price as small pills along the bottom. */
 .cardFacts {
   margin-top: auto;
-  padding-top: 8px;
+  padding-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cardFact {
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--sl-line);
+  background: var(--sl-ground);
   font-family: var(--sl-mono);
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   color: var(--sl-dim);
+  white-space: nowrap;
+}
+
+/* The last fact is the price or license: the one worth a second look. */
+.cardFact:last-child {
+  border-color: rgba(236, 72, 153, 0.25);
+  background: var(--sl-accent-wash);
+  color: var(--sl-accent-text);
+}
+
+.themed .cardFact:last-child {
+  border-color: var(--t-line);
+  background: var(--t-glow);
+  color: var(--t-accent);
 }
 
 @media (max-width: 1024px) {
@@ -1874,3 +1911,4 @@
 .statement {
   padding-top: 56px;
 }
+

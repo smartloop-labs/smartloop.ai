@@ -1,0 +1,101 @@
+/* Golden Gate illustration: a sunset in light, a night in dark. */
+.frame {
+  --gg-sky-1: #fde2ec;
+  --gg-sky-2: #fbd0c4;
+  --gg-sky-3: #f9c3a6;
+  --gg-sun: #fb9a6c;
+  --gg-water-1: #e9a7a0;
+  --gg-water-2: #b9c3d6;
+  --gg-hill-far: #c99aa6;
+  --gg-hill-near: #8d6a78;
+  --gg-city: #b58d9b;
+  --gg-bridge: #c0392b;
+  --gg-fog: rgba(255, 255, 255, 0.75);
+  --gg-glint: rgba(255, 255, 255, 0.7);
+
+  position: relative;
+  margin: 0;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid var(--sl-line);
+  box-shadow: 0 1px 2px rgba(10, 10, 20, 0.04), 0 30px 80px -24px rgba(10, 10, 20, 0.22);
+  background: var(--gg-sky-1);
+}
+
+[data-theme='dark'] .frame {
+  --gg-sky-1: #07071a;
+  --gg-sky-2: #1a1033;
+  --gg-sky-3: #3a1838;
+  --gg-sun: #ec4899;
+  --gg-water-1: #1d1027;
+  --gg-water-2: #07070d;
+  --gg-hill-far: #1b1424;
+  --gg-hill-near: #0e0b14;
+  --gg-city: #241a30;
+  --gg-bridge: #a2352b;
+  --gg-fog: rgba(190, 170, 220, 0.16);
+  --gg-glint: rgba(236, 72, 153, 0.5);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.bridge,
+.bridge rect { fill: var(--gg-bridge); }
+.truss { opacity: 0.55; }
+.pier { fill: var(--gg-hill-near); }
+.cable path { fill: none; stroke: var(--gg-bridge); stroke-width: 3.5; stroke-linecap: round; }
+.ropes line { stroke: var(--gg-bridge); stroke-width: 1; opacity: 0.8; }
+.hillFar { fill: var(--gg-hill-far); }
+.hillNear { fill: var(--gg-hill-near); }
+.city { fill: var(--gg-city); }
+.fog { fill: var(--gg-fog); }
+.glint rect { fill: var(--gg-glint); }
+
+/* Night-only details */
+.stars circle { fill: #fff; }
+.stars, .moon, .lights, .beacon { opacity: 0; transition: opacity 0.4s; }
+.moon { fill: #f4f1ff; }
+.lights circle { fill: #fcd34d; }
+.beacon { fill: #ff4d4d; }
+[data-theme='dark'] .stars { opacity: 0.8; }
+[data-theme='dark'] .moon { opacity: 0.95; }
+[data-theme='dark'] .lights { opacity: 0.9; }
+[data-theme='dark'] .beacon { opacity: 1; }
+[data-theme='dark'] .sun { opacity: 0.35; }
+
+/* Fog drifts slowly; held still for reduced motion. */
+.fog { animation: gg-drift 26s ease-in-out infinite alternate; }
+.fogFront { animation-duration: 34s; animation-direction: alternate-reverse; }
+
+@keyframes gg-drift {
+  from { transform: translateX(-40px); }
+  to { transform: translateX(40px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fog { animation: none; }
+}
+
+.caption {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-family: var(--sl-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(10, 10, 20, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+@media (max-width: 640px) {
+  .frame { border-radius: 18px; }
+  .caption { left: 12px; bottom: 10px; font-size: 0.56rem; }
+}

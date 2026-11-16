@@ -1,6 +1,27 @@
 import Link from '@docusaurus/Link';
 import { useState, useEffect } from 'react';
 
+// A product's mark in the Products menu, matching the cards on the home page:
+// Docent Studio's mark drawn in the site colors, Docent Code's prompt, gpushed's icon.
+function ProductMark({ product }: { product: 'studio' | 'docent' | 'gpushed' }) {
+	if (product === 'studio') {
+		return (
+			<span className="sl-submenu__mark" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="18" height="18">
+					<path d="M10 5H11A6 6 0 0 1 17 11V18H10A6 6 0 0 1 4 12V11A6 6 0 0 1 10 5Z" fill="var(--sl-white)" />
+					<circle cx="16.7" cy="8.4" r="3" fill="var(--sl-accent)" />
+				</svg>
+			</span>
+		);
+	}
+	if (product === 'docent') {
+		return <span className="sl-submenu__mark sl-submenu__mark--prompt" aria-hidden="true">›_</span>;
+	}
+	return <img className="sl-submenu__mark sl-submenu__mark--img" src="/img/logos/gpushed.svg" alt="" width={32} height={32} />;
+}
+
+// One header on every page. Like anthropic.com, the toolbar is the company's
+// (products, docs, about); pricing is linked from the footer.
 export default function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -118,29 +139,41 @@ export default function Header() {
 					</button>
 					<nav className="sl-menu__body">
 						<ul className="sl-menu__list">
-							{/* Docent is one product used in two places, so it is one item: on desktop the panel
-							    opens on hover or keyboard focus; in the mobile menu the two
-							    links stand in its place. */}
+							{/* All products live under one menu: on desktop the panel opens on
+							    hover or keyboard focus; in the mobile menu the links stand in its place. */}
 							<li className="sl-menu__item sl-menu__group">
 								<Link to="/docent" className="sl-menu__link sl-menu__group-label" aria-haspopup="true" onClick={closeMenu}>
-									Docent
+									Products
 									<svg className="sl-menu__chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
 								</Link>
 								<div className="sl-submenu">
 									<div className="sl-submenu__panel">
 										<Link to="/docent#desktop" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
-											<span className="sl-submenu__name">Docent Studio</span>
-											<span className="sl-submenu__desc">Your private AI assistant: documents, systems, skills</span>
+											<ProductMark product="studio" />
+											<span className="sl-submenu__text">
+												<span className="sl-submenu__name">Docent Studio</span>
+												<span className="sl-submenu__desc">Your private AI assistant: documents, systems, skills</span>
+											</span>
 										</Link>
 										<Link to="/docent#coding" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
-											<span className="sl-submenu__name">Docent</span>
-											<span className="sl-submenu__desc">The coding agent for your terminal: writes, builds and fixes</span>
+											<ProductMark product="docent" />
+											<span className="sl-submenu__text">
+												<span className="sl-submenu__name">Docent Code</span>
+												<span className="sl-submenu__desc">The coding agent for your terminal: writes, builds and fixes</span>
+											</span>
 										</Link>
+										<a href="https://gpushed.dev" className="sl-menu__link sl-submenu__link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
+											<ProductMark product="gpushed" />
+											<span className="sl-submenu__text">
+												<span className="sl-submenu__name">gpushed <span className="sl-submenu__ext" aria-hidden="true">↗</span></span>
+												<span className="sl-submenu__desc">A GPU by the second from your Mac: no cloud account needed</span>
+											</span>
+										</a>
 									</div>
 								</div>
 							</li>
-							<li className="sl-menu__item"><a href="https://gpushed.dev" className="sl-menu__link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>gpushed</a></li>
 							<li className="sl-menu__item"><Link to="/docs/intro" className="sl-menu__link" onClick={closeMenu}>Docs</Link></li>
+							<li className="sl-menu__item"><Link to="/about" className="sl-menu__link" onClick={closeMenu}>About</Link></li>
 						</ul>
 					</nav>
 				</div>

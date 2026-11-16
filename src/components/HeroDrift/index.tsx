@@ -37,3 +37,14 @@ export default function HeroDrift(): ReactNode {
     </>
   );
 }
+
+/** The same names as two full-width rows under the hero on narrower screens,
+ *  where the side columns would sit on top of the headline. */
+export function HeroDriftRows(): ReactNode {
+  return (
+    <div className={styles.heroDriftRows} aria-hidden="true">
+      <Marquee items={MODELS} />
+      <Marquee items={HARDWARE} reverse slow />
+    </div>
+  );
+}
