@@ -1233,6 +1233,19 @@
   gap: 56px;
 }
 
+/* The home page story column: the paragraphs sit level with the headline. */
+.storyText {
+  align-self: end;
+}
+
+.storyText .sub {
+  max-width: none;
+}
+
+.storyText .sub:first-child {
+  margin-top: 0;
+}
+
 .faqList {
   display: flex;
   flex-direction: column;

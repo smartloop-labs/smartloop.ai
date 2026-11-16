@@ -7,24 +7,24 @@ import HeroDrift from '../components/HeroDrift';
 import styles from './home.module.css';
 
 // smartloop.ai is the company, the way 37signals sits over Basecamp and HEY:
-// the story, then what it makes. Docent is one product used in two places,
-// the terminal (/docent) and the desktop, Studio (/studio); gpushed has its
-// own site.
+// the story, then what it makes. Docent is one product used two ways, like
+// Claude and Claude Code: Docent Studio on the desktop, Docent in the terminal
+// for coding. Both live on /docent (#desktop, #coding); gpushed has its own site.
 
 type Way = { name: string; desc: string; facts: string; to: string };
 
 const DOCENT_WAYS: Way[] = [
   {
-    name: 'In your terminal',
+    name: 'For coding, in your terminal',
     desc: 'Ask for a change and Docent writes it, checks it with your language servers and your build, and fixes what fails.',
     facts: 'macOS · Linux · Windows · open source (MIT)',
-    to: '/docent',
+    to: '/docent#coding',
   },
   {
     name: 'On your desktop: Docent Studio',
     desc: 'Chat with your documents, connect MCP servers and add skills, with the models picked and sized for your machine.',
     facts: 'macOS · Linux · Windows · open source (Apache 2.0)',
-    to: '/studio',
+    to: '/docent#desktop',
   },
 ];
 
@@ -96,9 +96,14 @@ export default function Home(): ReactNode {
 
           {/* ── The story ──────────────────────────────────── */}
           <section className={styles.shell}>
-            <div className={styles.section}>
-              <p className={styles.kicker}>Why we exist</p>
-              <h2 className={styles.h2}>AI shouldn’t mean renting someone else’s computer.</h2>
+            {/* Headline left, story right, so a wide screen isn't half empty;
+                stacks on narrow screens with the FAQ layout it borrows. */}
+            <div className={`${styles.section} ${styles.faqWrap}`}>
+              <div>
+                <p className={styles.kicker}>Why we exist</p>
+                <h2 className={styles.h2}>AI shouldn’t mean renting someone else’s computer.</h2>
+              </div>
+              <div className={styles.storyText}>
               <p className={styles.sub}>
                 Most AI tools send every prompt, file and answer on a round trip through a data center you’ll never
                 see, billed by the token. We think much of that work belongs on your own machine.
@@ -109,6 +114,7 @@ export default function Home(): ReactNode {
                 default. And when a job really does need a big GPU, we’d rather hand you one by the second than lock
                 you into a platform.
               </p>
+              </div>
             </div>
           </section>
 
@@ -120,7 +126,7 @@ export default function Home(): ReactNode {
               <div className={styles.productsGrid}>
                 <div className={styles.productCard}>
                   <p className={styles.productName}>Docent</p>
-                  <p className={styles.productTagline}>Your private AI, in the terminal or on the desktop.</p>
+                  <p className={styles.productTagline}>Your private AI: on your desktop, and for coding in your terminal.</p>
                   <div className={styles.productWays}>
                     {DOCENT_WAYS.map((w) => (
                       <Link key={w.to} to={w.to} className={styles.productWay}>
@@ -172,10 +178,10 @@ export default function Home(): ReactNode {
               <div className={styles.heroGlow} aria-hidden="true" />
               <p className={styles.eyebrow}>free to start</p>
               <h2 className={styles.closingTitle}>Start asking. <span className={styles.accent}>Locally.</span></h2>
-              <p className={styles.sub}>Use Docent where you work: in your terminal, or on your desktop with Docent Studio.</p>
+              <p className={styles.sub}>Use Docent where you work: on your desktop with Docent Studio, or in your terminal for coding.</p>
               <div className={styles.closingCta}>
                 <Link to="/docent" className={styles.btnPrimary}>get docent</Link>
-                <Link to="/download" className={styles.btnGhost}>download studio</Link>
+                <Link to="/docent#desktop" className={styles.btnGhost}>docent studio</Link>
               </div>
             </div>
             <div className={styles.partners}>

@@ -126,12 +126,12 @@ export default function Header() {
 								<Link to="/docent" className="sl-menu__link sl-menu__group-label" aria-haspopup="true" onClick={closeMenu}>Docent</Link>
 								<div className="sl-submenu">
 									<div className="sl-submenu__panel">
-										<Link to="/docent" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
-											<span className="sl-submenu__name">In your terminal</span>
-											<span className="sl-submenu__desc">Docent writes and checks your code</span>
+										<Link to="/docent#coding" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
+											<span className="sl-submenu__name">Coding</span>
+											<span className="sl-submenu__desc">Docent in your terminal</span>
 										</Link>
-										<Link to="/studio" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
-											<span className="sl-submenu__name">On your desktop</span>
+										<Link to="/docent#desktop" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
+											<span className="sl-submenu__name">Desktop</span>
 											<span className="sl-submenu__desc">Docent Studio, for your documents</span>
 										</Link>
 									</div>
