@@ -11,20 +11,44 @@ import styles from './home.module.css';
 // Claude and Claude Code: Docent Studio on the desktop, Docent in the terminal
 // for coding. Both live on /docent (#desktop, #coding); gpushed has its own site.
 
-type Way = { name: string; desc: string; facts: string; to: string };
+type Card = { label: string; name: string; desc: string; facts: string; to: string; external?: boolean };
 
-const DOCENT_WAYS: Way[] = [
+// One product per group; Docent's two cards are the same product used two
+// ways (desktop and coding), like Claude and Claude Code.
+const GROUPS: { product: string; line: string; cards: Card[] }[] = [
   {
-    name: 'For coding, in your terminal',
-    desc: 'Ask for a change and Docent writes it, checks it with your language servers and your build, and fixes what fails.',
-    facts: 'macOS · Linux · Windows · open source (MIT)',
-    to: '/docent#coding',
+    product: 'Docent',
+    line: 'Your private AI, on your desktop and in your terminal',
+    cards: [
+      {
+        label: 'Desktop',
+        name: 'Docent Studio',
+        desc: 'Chat with your documents, connect MCP servers and add skills, with the models picked and sized for your machine.',
+        facts: 'macOS · Linux · Windows · Apache 2.0',
+        to: '/docent#desktop',
+      },
+      {
+        label: 'Coding',
+        name: 'Docent',
+        desc: 'Ask for a change and Docent writes it, checks it with your language servers and your build, and fixes what fails.',
+        facts: 'macOS · Linux · Windows · MIT',
+        to: '/docent#coding',
+      },
+    ],
   },
   {
-    name: 'On your desktop: Docent Studio',
-    desc: 'Chat with your documents, connect MCP servers and add skills, with the models picked and sized for your machine.',
-    facts: 'macOS · Linux · Windows · open source (Apache 2.0)',
-    to: '/docent#desktop',
+    product: 'gpushed',
+    line: 'A GPU by the second',
+    cards: [
+      {
+        label: 'GPU',
+        name: 'gpushed',
+        desc: 'An NVIDIA GPU box from your Mac in minutes, with CUDA, Python, Node.js and Rust ready. No cloud account; billed by the second.',
+        facts: 'Apple silicon Macs · from $0.88/hr',
+        to: 'https://gpushed.dev',
+        external: true,
+      },
+    ],
   },
 ];
 
@@ -121,37 +145,48 @@ export default function Home(): ReactNode {
           {/* ── What we make ───────────────────────────────── */}
           <section className={styles.shell} id="products">
             <div className={styles.section}>
-              <p className={styles.kicker}>What we make</p>
-              <h2 className={styles.h2}>Your complete local AI suite.</h2>
-              <div className={styles.productsGrid}>
-                <div className={styles.productCard}>
-                  <p className={styles.productName}>Docent</p>
-                  <p className={styles.productTagline}>Your private AI: on your desktop, and for coding in your terminal.</p>
-                  <div className={styles.productWays}>
-                    {DOCENT_WAYS.map((w) => (
-                      <Link key={w.to} to={w.to} className={styles.productWay}>
-                        <span className={styles.productWayName}>{w.name} <span aria-hidden="true">→</span></span>
-                        <span className={styles.docDesc}>{w.desc}</span>
-                        <span className={styles.productFacts}>{w.facts}</span>
-                      </Link>
-                    ))}
-                  </div>
+              {/* Same two-column header as Why we exist. */}
+              <div className={styles.faqWrap}>
+                <div>
+                  <p className={styles.kicker}>What we make</p>
+                  <h2 className={styles.h2}>Your complete local AI suite.</h2>
                 </div>
+                <div className={styles.storyText}>
+                  <p className={styles.sub}>
+                    Docent is your private AI: Docent Studio on your desktop for documents and everyday work, and
+                    Docent in your terminal for coding. When a job outgrows your machine, gpushed hands you a GPU by the
+                    second.
+                  </p>
+                </div>
+              </div>
 
-                <div className={styles.productCard}>
-                  <p className={styles.productName}>gpushed</p>
-                  <p className={styles.productTagline}>Your own NVIDIA GPU, from your Mac.</p>
-                  <div className={styles.productWays}>
-                    <a href="https://gpushed.dev" className={styles.productWay} target="_blank" rel="noopener noreferrer">
-                      <span className={styles.productWayName}>gpushed.dev <span aria-hidden="true">↗</span></span>
-                      <span className={styles.docDesc}>
-                        Sign in, add credit and get a GPU box with CUDA, Python, Node.js and Rust ready in a few minutes.
-                        No cloud account or quota requests. Billed by the second; delete it when you’re done.
-                      </span>
-                      <span className={styles.productFacts}>Apple silicon Macs · from $0.88 an hour</span>
-                    </a>
+              {/* Equal cards, grouped by product: Docent spans two, gpushed one. */}
+              <div className={styles.productGroups}>
+                {GROUPS.map((g) => (
+                  <div key={g.product} className={styles.productGroup} style={{ flexGrow: g.cards.length }}>
+                    <p className={styles.groupLabel}>
+                      <span className={styles.groupName}>{g.product}</span> · {g.line}
+                    </p>
+                    <div className={styles.groupCards}>
+                      {g.cards.map((c) => {
+                        const body = (
+                          <>
+                            <span className={styles.cardLabel}>{c.label}</span>
+                            <p className={styles.docTitle}>{c.name}</p>
+                            <p className={styles.docDesc}>{c.desc}</p>
+                            <span className={styles.cardFacts}>{c.facts}</span>
+                            <span className={styles.docArrow} aria-hidden="true">{c.external ? '↗' : '→'}</span>
+                          </>
+                        );
+                        return c.external ? (
+                          <a key={c.name} href={c.to} className={styles.docCard} target="_blank" rel="noopener noreferrer">{body}</a>
+                        ) : (
+                          <Link key={c.name} to={c.to} className={styles.docCard}>{body}</Link>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </section>

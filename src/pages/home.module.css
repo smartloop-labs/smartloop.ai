@@ -1095,72 +1095,60 @@
 }
 
 /* ── products (home) ───────────────────────────────── */
-.productsGrid {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: 3fr 2fr;
+/* Groups grow by their card count, so every card ends up the same width. */
+.productGroups {
+  margin-top: 48px;
+  display: flex;
   gap: 14px;
 }
 
-.productCard {
+.productGroup {
+  flex-basis: 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 28px;
-  border-radius: var(--r-xl);
-  background: var(--sl-panel);
-  border: 1px solid var(--sl-line);
+  gap: 12px;
 }
 
-.productName {
+.groupLabel {
   margin: 0;
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--sl-line);
+  font-family: var(--sl-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--sl-dim);
+}
+
+.groupName {
   color: var(--sl-white);
-}
-
-.productTagline {
-  margin: 0 0 14px;
-  font-size: 1rem;
-  color: var(--sl-fg);
-}
-
-.productWays {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
-}
-
-.productWay {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-  padding: 18px 20px;
-  border-radius: var(--r-lg);
-  border: 1px solid var(--sl-line);
-  text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-}
-
-.productWay:hover {
-  text-decoration: none;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-soft);
-  border-color: rgba(236, 72, 153, 0.3);
-}
-
-.productWayName {
-  font-size: 1.04rem;
   font-weight: 500;
+}
+
+.groupCards {
+  flex: 1;
+  display: flex;
+  gap: 14px;
+}
+
+.groupCards > .docCard {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardLabel {
+  font-family: var(--sl-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--sl-accent-text);
 }
 
-.productFacts {
+.cardFacts {
+  margin-top: auto;
+  padding-top: 8px;
   font-family: var(--sl-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--sl-dim);
 }
 
@@ -1526,9 +1514,13 @@
 
   .steps,
   .docsGrid,
-  .productsGrid,
   .partnerRow {
     grid-template-columns: 1fr;
+  }
+
+  .productGroups,
+  .groupCards {
+    flex-direction: column;
   }
 
   .partnerRow {
