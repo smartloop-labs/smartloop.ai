@@ -3032,8 +3032,11 @@ details[open] .faqQuestion::after {
   text-align: right;
 }
 
-.gpuTable tr {
+.gpuTable thead,
+.gpuTable tr,
+.gpuTable tr:nth-child(2n) {
   background: transparent;
+  border: none;
 }
 
 @media (max-width: 560px) {

@@ -566,7 +566,8 @@ body {
     height: 28px;
   }
 
-  .sl-menu__group-label,
+  /* Two classes plus the element, to beat the inline-flex above. */
+  .sl-menu__item a.sl-menu__group-label,
   .sl-submenu__desc {
     display: none;
   }
@@ -687,10 +688,11 @@ body {
 }
 
 /* The hamburger bars are hardcoded near-white in app.css, which vanishes
-   on the light theme. The open menu overlay is black, so the X keeps it. */
-.header .sl-menu:not(.menu-open) .icon-menu span,
-.header .sl-menu:not(.menu-open) .icon-menu::before,
-.header .sl-menu:not(.menu-open) .icon-menu::after {
+   on the light theme. The open menu takes the page's ground in both themes,
+   so the X uses the theme's ink too, or it can't be seen to close the menu. */
+.header .sl-menu .icon-menu span,
+.header .sl-menu .icon-menu::before,
+.header .sl-menu .icon-menu::after {
   background-color: var(--sl-fg);
 }
 
