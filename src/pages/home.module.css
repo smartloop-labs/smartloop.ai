@@ -1321,8 +1321,8 @@
   --t-glow: rgba(45, 213, 183, 0.1);
 }
 
-/* Light mode: each tool's own light palette (ScreenForge's
-   [data-theme="light"], Anacraft's Solarized Light). */
+/* Light mode: ScreenForge's own light theme; Anacraft's dark theme turned
+   light (its own light palettes drop the teal). */
 :global([data-theme='light']) .theme_screenforge {
   --t-ink: #f6f6fa;
   --t-bar: #ffffff;
@@ -1334,13 +1334,15 @@
 }
 
 :global([data-theme='light']) .theme_anacraft {
-  --t-ink: #fdf6e3;
-  --t-bar: #eee8d5;
-  --t-line: rgba(147, 161, 161, 0.35);
-  --t-white: #2d373b;
-  --t-dim: #566263;
-  --t-accent: #1c6a64;
-  --t-glow: rgba(28, 106, 100, 0.08);
+  /* Anacraft's dark theme turned light: mint-white ground, its green-black
+     for text, and a deeper teal so the accent reads on white. */
+  --t-ink: #f5faf8;
+  --t-bar: #e9f2ee;
+  --t-line: rgba(9, 16, 13, 0.1);
+  --t-white: #0d1512;
+  --t-dim: #5b6d63;
+  --t-accent: #0f8f78;
+  --t-glow: rgba(15, 143, 120, 0.08);
 }
 
 .themed .preview {
