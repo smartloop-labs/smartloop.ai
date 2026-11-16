@@ -10,7 +10,7 @@ import local from './docent.module.css';
 
 // smartloop.ai/docent: Docent is one product used two ways, the way Claude
 // comes as an app and as Claude Code. Docent in the terminal is for coding;
-// Docent Studio on the desktop is for your documents and everyday work.
+// Docent Studio on the desktop is your personal assistant for work.
 // The hash picks the way (#coding, #desktop). No hash means coding, which is
 // what /docent showed before, so links already posted keep their page.
 

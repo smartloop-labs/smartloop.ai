@@ -134,7 +134,7 @@ export default function Header() {
 										</Link>
 										<Link to="/docent#desktop" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
 											<span className="sl-submenu__name">Desktop</span>
-											<span className="sl-submenu__desc">Docent Studio, for your documents</span>
+											<span className="sl-submenu__desc">Docent Studio, your assistant for work</span>
 										</Link>
 									</div>
 								</div>

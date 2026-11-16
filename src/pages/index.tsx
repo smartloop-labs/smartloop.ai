@@ -21,16 +21,16 @@ type Card = { label: string; name: string; desc: string; facts: string; to: stri
 const GROUPS: { product: string; line: string; cards: Card[] }[] = [
   {
     product: 'Docent',
-    line: 'Your private AI, on your desktop and in your terminal',
+    line: 'Your personal assistant for work, and for coding',
     cards: [
       {
         label: 'Desktop',
         name: 'Docent Studio',
-        desc: 'Chat with your documents, connect MCP servers and add skills, with the models picked and sized for your machine.',
+        desc: 'Your personal assistant for work: it produces documents, connects to your external systems and creates skills for the work you repeat.',
         facts: 'macOS · Linux · Windows · Apache 2.0',
         to: '/docent#desktop',
         chrome: 'window',
-        preview: [['prompt', 'What does clause 4.2 commit us to?'], ['out', 'Reading contract.pdf · 12 pages'], ['ok', 'Two obligations, both cited to ¶4.2']],
+        preview: [['prompt', 'Draft the weekly report from Linear'], ['out', 'Linear · 18 issues closed this week'], ['ok', 'weekly-report.docx · saved as /weekly-report']],
       },
       {
         label: 'Coding',
@@ -115,7 +115,7 @@ export default function Home(): ReactNode {
               </h1>
               <p className={styles.heroLede}>
                 We’re an AI research company. We make private software that runs on the computer you already own: a coding
-                agent for your terminal, a desktop app for your documents, and a GPU by the second when a job
+                agent for your terminal, a personal assistant for your work, and a GPU by the second when a job
                 outgrows your machine.
               </p>
               <div className={styles.heroCta}>
@@ -159,7 +159,7 @@ export default function Home(): ReactNode {
                 <p className={styles.kicker}>What we make</p>
                 <h2 className={styles.h2}>Your complete local AI suite.</h2>
                 <p className={styles.sub}>
-                  Docent on your desktop and in your terminal, and a GPU by the second when a job outgrows your machine.
+                  Docent, your personal assistant for work and your coding agent in the terminal, and a GPU by the second when a job outgrows your machine.
                 </p>
               </div>
 

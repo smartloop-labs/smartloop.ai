@@ -13,13 +13,13 @@ import local from '../../pages/docent.module.css';
 // models, more, FAQ) so the two read as one product.
 
 const DESCRIPTION =
-  'Docent Studio is Docent on your desktop. Drop in PDFs, Office files and scans, connect your tools and add skills. It picks open models and sizes them for your machine, and your documents never leave it.';
+  'Docent is your personal assistant for work. It produces documents, connects to your external systems and creates skills for the work you repeat, with open models sized for your machine. Your documents never leave it.';
 
 const points: [string, string][] = [
-  ['Reads your documents.', 'PDFs, Office files and scans, indexed on your machine. Every answer shows the file it came from.'],
-  ['Reads scans.', 'Attach a scan, screenshot or photo and pull structured details out of it, with a vision model on-device.'],
-  ['Runs your skills.', 'Pack the work you repeat into a skill, a markdown file the assistant runs. Type / to start one.'],
-  ['Connects your tools.', 'Notion, Linear, Trello, monday.com and Canva in one click through MCP; any other server by URL.'],
+  ['Produces documents.', 'Reports, summaries, comparisons and drafts, written from your files and your systems, with every claim cited to its source.'],
+  ['Connects to your systems.', 'Notion, Linear, Trello, monday.com and Canva in one click through MCP; any other server by URL.'],
+  ['Creates skills.', 'Turn the work you repeat into a skill, a markdown file the assistant runs. Type / to start one.'],
+  ['Reads what you give it.', 'PDFs, Office files, scans and photos, indexed on your machine, with a vision model for the scans.'],
 ];
 
 // What happens from install to answer, in order.
@@ -89,9 +89,9 @@ export default function DocentDesktop(): ReactNode {
   return (
     <>
       <Head>
-        <title>Docent Studio | Private desktop AI for your documents</title>
+        <title>Docent Studio | Your personal assistant for work</title>
         <meta name="description" content={DESCRIPTION} />
-        <meta property="og:title" content="Docent Studio | Private desktop AI for your documents" />
+        <meta property="og:title" content="Docent Studio | Your personal assistant for work" />
         <meta property="og:description" content={DESCRIPTION} />
         <link rel="canonical" href="https://smartloop.ai/docent" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -105,7 +105,7 @@ export default function DocentDesktop(): ReactNode {
             {release ? <>docent studio v{release.version} · open source · Apache 2.0</> : <>open source · Apache 2.0</>}
           </p>
           <h1 className={styles.heroTitle}>
-            A desktop app for your documents. <span className={styles.accent}>On open models.</span>
+            Your personal assistant for work. <span className={styles.accent}>On your own machine.</span>
           </h1>
           <p className={styles.heroLede}>{DESCRIPTION}</p>
           <div className={styles.heroCta}>
@@ -157,7 +157,7 @@ export default function DocentDesktop(): ReactNode {
       <section className={styles.shell}>
         <div className={styles.section}>
           <p className={styles.kicker}>What it does</p>
-          <h2 className={styles.h2}>Drop in a document. Get an answer you can check.</h2>
+          <h2 className={styles.h2}>Hand it the work. Check the result.</h2>
           <ul className={styles.docentPoints}>
             {points.map(([title, desc]) => (
               <li key={title}><Check /><span><b>{title}</b> {desc}</span></li>
