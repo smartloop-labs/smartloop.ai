@@ -9,7 +9,10 @@ import { isValidEmail } from '../utils/validation';
 import { htmlToPlainText, sanitizeHtml } from '../utils/sanitizeHtml';
 import { sendContactRequest, useApiBaseUrl } from '../utils/api';
 
-import styles from './index.module.css';
+import { Check } from '../components/Docent/Terminal';
+import form from './index.module.css';
+import styles from './home.module.css';
+import local from './contact.module.css';
 
 // These mirror the Enterprise card on /pricing — someone arriving from that CTA
 // should land on the same four things, worded the same way.
@@ -23,11 +26,13 @@ const topics = [
 
 // The header's Partners link opens this page as /contact/?for=partner.
 const partnerTopics = [
-	'Hands-on support in setting up Smartloop',
+	'Hands-on support in setting up Docent',
 	'Our hybrid approach to cut your cost per token',
 	'Fine-grained tuning for maximum throughput',
 	'Dedicated point of contact for your deployment',
 ];
+
+const DESCRIPTION = 'Talk to the Smartloop team. Docent stays free at any scale: tell us what you are trying to solve and we will get it working on your data, deployed on your own infrastructure, tuned to your use case and rolled out across your team.';
 
 export default function Contact() {
 	const apiBaseUrl = useApiBaseUrl();
@@ -119,89 +124,80 @@ export default function Contact() {
 	const notesHasError = htmlToPlainText(formData.notes).length === 0 && dirty;
 
 	const inputClass = (hasError: boolean) =>
-		`${styles.contactInput} ${hasError ? styles.contactInputError : ''}`;
+		`${form.contactInput} ${hasError ? form.contactInputError : ''}`;
 
 	return (
 		<div id="app" className="body">
 			<Head>
-				<title>Partners | Smartloop</title>
-				<meta name="description" content="Talk to the Smartloop team. Smartloop stays free at any scale — tell us what you are trying to solve and we will get it working on your data: deployed on your own infrastructure, tuned to your use case, and rolled out across your team." />
-				<meta property="og:title" content="Partners | Smartloop" />
-				<meta property="og:description" content="Talk to the Smartloop team. Smartloop stays free at any scale — tell us what you are trying to solve and we will get it working on your data: deployed on your own infrastructure, tuned to your use case, and rolled out across your team." />
+				<title>{partner ? 'Design partners' : 'Talk to us'} | Smartloop</title>
+				<meta name="description" content={DESCRIPTION} />
+				<meta property="og:title" content="Talk to us | Smartloop" />
+				<meta property="og:description" content={DESCRIPTION} />
 				<link rel="canonical" href="https://smartloop.ai/contact/" />
 			</Head>
 			<div className="wrapper">
 				<Header />
 				<main className={styles.page}>
-					<section className="px-6 pt-28 md:pt-36 pb-16 max-w-5xl mx-auto w-full">
-						<div className={styles.contactGrid}>
+					<section className={local.wrap}>
+						<div className={styles.heroGlow} aria-hidden="true" />
+						<div className={local.grid}>
 							{/* Pitch */}
 							<div>
+								<p className={styles.eyebrow}>{partner ? 'design partners' : 'talk to us'}</p>
 								{partner ? (
 									<>
-										<span className={styles.comingSoonBadge}>Design Partners</span>
-										<h1 className={styles.contactTitle}>Work with us</h1>
-										<p className={styles.contactLead}>
-											If you are looking to install Smartloop and lower your cost per token, we can help — our hybrid approach combines local and cloud inference to cut costs while keeping throughput high.
+										<h1 className={local.title}>Work with us.</h1>
+										<p className={local.lead}>
+											If you are rolling out Docent and want to lower your cost per token, we can help. Our hybrid
+											approach combines local and cloud inference to cut costs while keeping throughput high.
 										</p>
 									</>
 								) : (
 									<>
-										<span className={styles.comingSoonBadge}>Enterprise</span>
-										{/* Same offer as the Enterprise card on /pricing, which is what
-										    sends most people here: the product is free, the work is what
-										    you hire us for. */}
-										<h1 className={styles.contactTitle}>Talk to our team</h1>
-										<p className={styles.contactLead}>
-											Smartloop stays free at any scale. Tell us what you are trying to solve and we
-											will get it working on your data — deployed on your own infrastructure, tuned to
-											your use case, and rolled out across your team.
+										{/* The product is free; the work is what you hire us for. */}
+										<h1 className={local.title}>Talk to our team.</h1>
+										<p className={local.lead}>
+											Docent stays free at any scale. Tell us what you are trying to solve and we will get it
+											working on your data: deployed on your own infrastructure, tuned to your use case, and rolled
+											out across your team.
 										</p>
 									</>
 								)}
-								<p className={styles.contactTopicsLabel}>{partner ? 'What you get' : 'What we help with'}</p>
-								<ul className={styles.contactTopics}>
+
+								<p className={styles.kicker}>{partner ? 'What you get' : 'What we help with'}</p>
+								<ul className={styles.docentPoints}>
 									{(partner ? partnerTopics : topics).map((topic) => (
-										<li key={topic} className={styles.planFeature}>
-											<span className={styles.planFeatureCheck} aria-hidden="true">[x]</span>
-											<span>{topic}</span>
-										</li>
+										<li key={topic}><Check /><span>{topic}</span></li>
 									))}
 								</ul>
 
-								<div className={styles.contactLinks}>
-									<Link to="/docs/intro" className={styles.contactLink}>
-										<span aria-hidden="true">[&rarr;]</span>
-										Browse the docs
-									</Link>
-									<a
-										href="https://x.com/smartloop/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className={styles.contactLink}
-									>
-										<span aria-hidden="true">[&rarr;]</span>
+								<p className={local.links}>
+									<Link to="/docs/intro" className={styles.textLink}>Browse the docs</Link>
+									<span aria-hidden="true">·</span>
+									<a href="https://x.com/smartloop/" target="_blank" rel="noopener noreferrer" className={styles.textLink}>
 										Follow @smartloop
 									</a>
-								</div>
+									<span aria-hidden="true">·</span>
+									<a href="mailto:support@smartloop.ai" className={styles.textLink}>support@smartloop.ai</a>
+								</p>
 							</div>
 
 							{/* Form */}
-							<div className={styles.contactCard}>
+							<div className={local.card}>
 								{successMessage.length > 0 && (
-									<div className={`${styles.contactAlert} ${styles.contactAlertSuccess}`}>
+									<div className={`${form.contactAlert} ${form.contactAlertSuccess}`}>
 										Thanks for reaching out. Our team will get back to you shortly.
 									</div>
 								)}
 								{errorMessage.length > 0 && (
-									<div className={`${styles.contactAlert} ${styles.contactAlertError}`}>
+									<div className={`${form.contactAlert} ${form.contactAlertError}`}>
 										{errorMessage}
 									</div>
 								)}
 
-								<form className={styles.contactForm} onSubmit={submitForm} noValidate>
+								<form className={form.contactForm} onSubmit={submitForm} noValidate>
 									<div>
-										<label className={styles.contactLabel} htmlFor="contact-name">Name</label>
+										<label className={form.contactLabel} htmlFor="contact-name">Name</label>
 										<input
 											id="contact-name"
 											autoComplete="off"
@@ -213,10 +209,10 @@ export default function Contact() {
 											className={inputClass(nameHasError)}
 											aria-invalid={nameHasError}
 										/>
-										{nameHasError && <p className={styles.contactFieldError}>Please enter your name.</p>}
+										{nameHasError && <p className={form.contactFieldError}>Please enter your name.</p>}
 									</div>
 									<div>
-										<label className={styles.contactLabel} htmlFor="contact-email">Email</label>
+										<label className={form.contactLabel} htmlFor="contact-email">Email</label>
 										<input
 											id="contact-email"
 											autoComplete="off"
@@ -228,12 +224,12 @@ export default function Contact() {
 											className={inputClass(emailHasError)}
 											aria-invalid={emailHasError}
 										/>
-										{emailHasError && <p className={styles.contactFieldError}>Please enter your email address.</p>}
+										{emailHasError && <p className={form.contactFieldError}>Please enter your email address.</p>}
 									</div>
 									{/* Optional: individuals write in too, and a required company
 									    field would only make them invent one. */}
 									<div>
-										<label className={styles.contactLabel} htmlFor="contact-company">Company <span className={styles.contactOptional}>(optional)</span></label>
+										<label className={form.contactLabel} htmlFor="contact-company">Company <span className={form.contactOptional}>(optional)</span></label>
 										<input
 											id="contact-company"
 											autoComplete="off"
@@ -246,7 +242,7 @@ export default function Contact() {
 										/>
 									</div>
 									<div>
-										<label className={styles.contactLabel} htmlFor="contact-notes">What are you trying to solve?</label>
+										<label className={form.contactLabel} htmlFor="contact-notes">What are you trying to solve?</label>
 										<RichTextEditor
 											id="contact-notes"
 											ariaLabel="What are you trying to solve?"
@@ -255,12 +251,12 @@ export default function Contact() {
 											onChange={(notes) => setFormData((prevState) => ({ ...prevState, notes }))}
 											hasError={notesHasError}
 										/>
-										{notesHasError && <p className={styles.contactFieldError}>Please describe what you are trying to solve.</p>}
+										{notesHasError && <p className={form.contactFieldError}>Please describe what you are trying to solve.</p>}
 									</div>
-									<button type="submit" disabled={isLoading} className={styles.contactSubmit}>
-										{isLoading ? 'Sending...' : 'Send message'}
+									<button type="submit" disabled={isLoading} className={`${styles.btnPrimary} ${local.submit}`}>
+										{isLoading ? 'Sending…' : 'Send message'}
 									</button>
-									<p className={styles.contactNote}>
+									<p className={form.contactNote}>
 										We only use your details to reply to this message.
 									</p>
 								</form>

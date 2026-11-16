@@ -24,7 +24,7 @@ const GROUPS: { product: string; line: string; cards: Card[] }[] = [
     line: 'Your personal assistant for work, and for coding',
     cards: [
       {
-        label: 'Desktop',
+        label: 'Private AI assistant',
         name: 'Docent Studio',
         desc: 'Your personal assistant for work: it produces documents, connects to your external systems and creates skills for the work you repeat.',
         facts: 'macOS · Linux · Windows · Apache 2.0',
@@ -33,7 +33,7 @@ const GROUPS: { product: string; line: string; cards: Card[] }[] = [
         preview: [['prompt', 'Draft the weekly report from Linear'], ['out', 'Linear · 18 issues closed this week'], ['ok', 'weekly-report.docx · saved as /weekly-report']],
       },
       {
-        label: 'Coding',
+        label: 'Coding agent',
         name: 'Docent',
         desc: 'Ask for a change and Docent writes it, checks it with your language servers and your build, and fixes what fails.',
         facts: 'macOS · Linux · Windows · MIT',

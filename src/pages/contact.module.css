@@ -1,0 +1,79 @@
+/* /contact in the site's current layout: the hero glow behind a two-column
+   pitch and form. The header floats over the top, so the section clears it. */
+
+.wrap {
+  position: relative;
+  padding: 150px 24px 96px;
+}
+
+.grid {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: start;
+}
+
+.title {
+  margin: 0 0 20px;
+  font-family: var(--sl-display);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: var(--sl-white);
+}
+
+.lead {
+  margin: 0 0 40px;
+  max-width: 46ch;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: var(--sl-fg);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 32px 0 0;
+  font-size: 0.9rem;
+  color: var(--sl-dim);
+}
+
+.card {
+  padding: 28px;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--sl-line);
+  background: var(--sl-panel);
+  box-shadow: var(--shadow-soft);
+}
+
+.submit {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+@media (max-width: 900px) {
+  .wrap {
+    padding: 110px 16px 72px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+}

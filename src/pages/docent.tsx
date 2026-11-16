@@ -17,8 +17,8 @@ import local from './docent.module.css';
 type Mode = 'coding' | 'desktop';
 
 const MODES: { id: Mode; label: string; detail: string }[] = [
-  { id: 'coding', label: 'Coding', detail: 'in your terminal' },
-  { id: 'desktop', label: 'Desktop', detail: 'Docent Studio' },
+  { id: 'desktop', label: 'Docent Studio', detail: 'your private AI assistant' },
+  { id: 'coding', label: 'Docent', detail: 'the coding agent for your terminal' },
 ];
 
 const modeOf = (hash: string): Mode => (hash.replace('#', '') === 'desktop' ? 'desktop' : 'coding');

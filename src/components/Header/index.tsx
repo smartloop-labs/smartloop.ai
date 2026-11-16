@@ -128,13 +128,13 @@ export default function Header() {
 								</Link>
 								<div className="sl-submenu">
 									<div className="sl-submenu__panel">
-										<Link to="/docent#coding" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
-											<span className="sl-submenu__name">Coding</span>
-											<span className="sl-submenu__desc">Docent in your terminal</span>
-										</Link>
 										<Link to="/docent#desktop" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
-											<span className="sl-submenu__name">Desktop</span>
-											<span className="sl-submenu__desc">Docent Studio, your assistant for work</span>
+											<span className="sl-submenu__name">Docent Studio</span>
+											<span className="sl-submenu__desc">Your private AI assistant: documents, systems, skills</span>
+										</Link>
+										<Link to="/docent#coding" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
+											<span className="sl-submenu__name">Docent</span>
+											<span className="sl-submenu__desc">The coding agent for your terminal: writes, builds and fixes</span>
 										</Link>
 									</div>
 								</div>
