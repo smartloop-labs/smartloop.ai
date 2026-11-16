@@ -430,6 +430,22 @@ body {
   position: relative;
 }
 
+/* The chevron says "this opens"; it flips while the panel is open. */
+.sl-menu__item a.sl-menu__group-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sl-menu__chevron {
+  transition: transform 0.18s;
+}
+
+.sl-menu__group:hover .sl-menu__chevron,
+.sl-menu__group:focus-within .sl-menu__chevron {
+  transform: rotate(180deg);
+}
+
 .sl-menu__item a.sl-submenu__link {
   display: flex;
   flex-direction: column;
