@@ -34,7 +34,7 @@ const PRINCIPLES: [string, string][] = [
   ['Open where it counts', 'Docent and Docent Studio are open source. Read the code that runs on your computer.'],
 ];
 
-const DESCRIPTION = 'Smartloop is an AI company. We make private software that runs on the computer you already own: Docent, for your terminal and your desktop, and gpushed, a GPU by the second when a job outgrows your machine.';
+const DESCRIPTION = 'Smartloop is an AI research company. We make private software that runs on the computer you already own: Docent, for your terminal and your desktop, and gpushed, a GPU by the second when a job outgrows your machine.';
 
 export default function Home(): ReactNode {
   // Campaign tags ride along to the download and sign-up pages.
@@ -75,12 +75,12 @@ export default function Home(): ReactNode {
             <div className={styles.heroGlow} aria-hidden="true" />
             <HeroDrift />
             <div className={styles.heroInner}>
-              <p className={styles.eyebrow}>smartloop · an AI company</p>
+              <p className={styles.eyebrow}>smartloop · an AI research company</p>
               <h1 className={styles.heroTitle}>
                 Frontier quality. <span className={styles.accent}>Local first.</span>
               </h1>
               <p className={styles.heroLede}>
-                We’re an AI company. We make private software that runs on the computer you already own: a coding
+                We’re an AI research company. We make private software that runs on the computer you already own: a coding
                 agent for your terminal, a desktop app for your documents, and a GPU by the second when a job
                 outgrows your machine.
               </p>
