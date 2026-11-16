@@ -74,9 +74,9 @@ export default function Home(): ReactNode {
   return (
     <div id="app" className="body">
       <Head>
-        <title>Smartloop | Private software for the computer you already own</title>
+        <title>Smartloop | Frontier quality. Local first.</title>
         <meta name="description" content={DESCRIPTION} />
-        <meta property="og:title" content="Smartloop | Private software for the computer you already own" />
+        <meta property="og:title" content="Smartloop | Frontier quality. Local first." />
         <meta property="og:description" content={DESCRIPTION} />
         <link rel="canonical" href="https://smartloop.ai/" />
         <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
@@ -88,8 +88,12 @@ export default function Home(): ReactNode {
           <section className={styles.story}>
             <p className={styles.eyebrow}>Smartloop</p>
             <h1 className={styles.title}>
-              We make private software that runs on the computer <span className={styles.accent}>you already own.</span>
+              Frontier quality. <span className={styles.accent}>Local first.</span>
             </h1>
+            <p className={styles.lede}>
+              We make private software that runs on the computer you already own: a coding agent for your
+              terminal, a desktop app for your documents, and a GPU by the second when a job outgrows your machine.
+            </p>
             <div className={styles.prose}>
               <p>
                 Most AI tools rent you someone else’s computer. Every prompt, file and answer makes a round trip
