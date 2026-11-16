@@ -179,6 +179,9 @@ export default function DocentDesktop(): ReactNode {
               <span aria-hidden="true">·</span>
               <Link to="/docs/getting-started" className={styles.textLink}>getting started</Link>
             </p>
+            <p className={local.crossLink}>
+              Writing code? <Link to="/docent#coding" className={styles.textLink}>Docent, the coding agent for your terminal →</Link>
+            </p>
           </div>
         </div>
       </section>

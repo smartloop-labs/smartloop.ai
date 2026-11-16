@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { useHistory, useLocation } from '@docusaurus/router';
+import { useLocation } from '@docusaurus/router';
 import useBrokenLinks from '@docusaurus/useBrokenLinks';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -16,20 +16,17 @@ import local from './docent.module.css';
 
 type Mode = 'coding' | 'desktop';
 
-const MODES: { id: Mode; label: string; detail: string }[] = [
-  { id: 'desktop', label: 'Docent Studio', detail: 'your private AI assistant' },
-  { id: 'coding', label: 'Docent', detail: 'the coding agent for your terminal' },
-];
+// The hash values that pick a product.
+const MODES: Mode[] = ['desktop', 'coding'];
 
 const modeOf = (hash: string): Mode => (hash.replace('#', '') === 'desktop' ? 'desktop' : 'coding');
 
 export default function Docent(): ReactNode {
   const location = useLocation();
-  const history = useHistory();
   const [mode, setMode] = useState<Mode>('coding');
   // The tab anchors are real targets; tell the build's link checker so.
   const brokenLinks = useBrokenLinks();
-  MODES.forEach((m) => brokenLinks.collectAnchor(m.id));
+  MODES.forEach((m) => brokenLinks.collectAnchor(m));
 
   // Follows the hash, including in-site links to /docent#desktop that arrive
   // while this page is already open.
@@ -37,58 +34,16 @@ export default function Docent(): ReactNode {
     setMode(modeOf(location.hash));
   }, [location.hash]);
 
-  const pick = (next: Mode) => {
-    if (next === mode) return;
-    history.replace({ ...location, hash: next === 'coding' ? '' : `#${next}` });
-    window.scrollTo({ top: 0 });
-  };
-
   return (
     <div id="app" className="body">
       <div className="wrapper">
         <Header />
         <main className={styles.page}>
           {/* Targets for /docent#coding and /docent#desktop: the hash picks
-              the tab, and these keep the link checker (and the scroll) on the
-              switch. */}
+              the product (from the header menu, the home cards and each
+              hero's cross-link), and these keep the link checker happy. */}
           <span id="coding" aria-hidden="true" />
           <span id="desktop" aria-hidden="true" />
-          <div className={local.modeBar}>
-            <div className={local.modeSwitch} role="tablist" aria-label="How you use Docent">
-              {/* The raised thumb slides under the selected tab. */}
-              <span
-                className={local.modeThumb}
-                aria-hidden="true"
-                style={{ transform: `translateX(${MODES.findIndex((m) => m.id === mode) * 100}%)` }}
-              />
-              {MODES.map((m) => (
-                <button
-                  key={m.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={mode === m.id}
-                  className={`${local.modeTab} ${mode === m.id ? local.modeTabActive : ''}`}
-                  onClick={() => pick(m.id)}
-                >
-                  <span className={local.modeIcon} aria-hidden="true">
-                    {m.id === 'desktop' ? (
-                      <svg viewBox="0 0 24 24" width="16" height="16">
-                        <path d="M10 5H11A6 6 0 0 1 17 11V18H10A6 6 0 0 1 4 12V11A6 6 0 0 1 10 5Z" fill="currentColor" />
-                        <circle cx="16.7" cy="8.4" r="3" fill="var(--sl-accent)" />
-                      </svg>
-                    ) : (
-                      <span className={local.modePrompt}>›_</span>
-                    )}
-                  </span>
-                  <span className={local.modeLabel}>{m.label}</span>
-                </button>
-              ))}
-            </div>
-            {/* One caption for the selected product, not a description in
-                every tab. */}
-            <p className={local.modeCaption}>{MODES.find((m) => m.id === mode)?.detail}</p>
-          </div>
-
           <div className={local.modeBody}>
             {mode === 'coding' ? <DocentTerminal /> : <DocentDesktop />}
           </div>

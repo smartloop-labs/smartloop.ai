@@ -191,6 +191,9 @@ export default function DocentTerminal(): ReactNode {
                   <span aria-hidden="true">·</span>
                   <Link to="/docs/command-line-tool" className={styles.textLink}>full reference</Link>
                 </p>
+                <p className={local.crossLink}>
+                  Not coding? <Link to="/docent#desktop" className={styles.textLink}>Docent Studio, your private AI assistant →</Link>
+                </p>
               </div>
             </div>
           </section>
