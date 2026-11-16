@@ -18,7 +18,15 @@ const DESCRIPTION =
 // The hero line under the headline, which already says "personal assistant
 // for work"; DESCRIPTION (search and social) keeps the full sentence.
 const LEDE =
-  'It produces documents, connects to your external systems and creates skills for the work you repeat, on open models sized for your machine. Your documents never leave it.';
+  'Docent Studio is your personal assistant for work, on open models sized for your machine. Your documents never leave it.';
+
+// What it does, as chips under the lede: the hero shows the product, not
+// just a promise.
+const CHIPS: [string, string][] = [
+  ['doc', 'produces documents'],
+  ['plug', 'connects your systems'],
+  ['spark', 'creates skills'],
+];
 
 const points: [string, string][] = [
   ['Produces documents.', 'Reports, summaries, comparisons and drafts, written from your files and your systems, with every claim cited to its source.'],
@@ -53,6 +61,13 @@ const legal = {
   ] as [string, string][],
   starter: { href: '/starters/Halbrook-Wren-LLP.zip', size: '80 KB' },
 };
+
+function ChipIcon({ name }: { name: string }): ReactNode {
+  const props = { width: 14, height: 14, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true };
+  if (name === 'plug') return <svg {...props}><path d="M12 2v6" /><path d="M6 2v6" /><path d="M4 8h10a2 2 0 0 1 2 2v1a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-1a2 2 0 0 1 2-2z" /><path d="M9 15v5" /></svg>;
+  if (name === 'spark') return <svg {...props}><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z" /></svg>;
+  return <svg {...props}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="8" y1="13" x2="16" y2="13" /><line x1="8" y1="17" x2="13" y2="17" /></svg>;
+}
 
 // The few line icons the legal template panel uses.
 function Icon({ name }: { name: 'download' | 'arrow' | 'file' }): ReactNode {
@@ -146,9 +161,14 @@ export default function DocentDesktop(): ReactNode {
             {release ? <>docent studio v{release.version} · runs on your device</> : <>runs on your device</>}
           </p>
           <h1 className={styles.heroTitle}>
-            Your personal assistant for work. <span className={styles.accent}>On your own machine.</span>
+            Hand it the work. <span className={styles.accent}>It stays on your machine.</span>
           </h1>
           <p className={styles.heroLede}>{LEDE}</p>
+          <ul className={local.chips}>
+            {CHIPS.map(([icon, text]) => (
+              <li key={text} className={local.chip}><ChipIcon name={icon} />{text}</li>
+            ))}
+          </ul>
           <div className={styles.heroCta}>
             {platform && platform !== 'unknown'
               ? <DirectDownloadButton platform={platform} />

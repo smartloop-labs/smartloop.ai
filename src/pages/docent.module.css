@@ -177,6 +177,35 @@
   font-size: clamp(34px, 4.6vw, 60px);
   line-height: 1.04;
   letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+/* Capability chips under a product hero's lede. */
+.chips {
+  list-style: none;
+  margin: 24px auto 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--sl-line);
+  background: var(--sl-panel);
+  font-family: var(--sl-mono);
+  font-size: 0.74rem;
+  color: var(--sl-fg);
+}
+
+.chip svg {
+  color: var(--sl-accent-text);
 }
 
 .modeBody h1 + p {
