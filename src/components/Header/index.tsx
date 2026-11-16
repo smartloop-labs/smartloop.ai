@@ -118,7 +118,6 @@ export default function Header() {
 					</button>
 					<nav className="sl-menu__body">
 						<ul className="sl-menu__list">
-							<li className="sl-menu__item"><Link to="/pricing" className="sl-menu__link" onClick={closeMenu}>Get started</Link></li>
 							{/* Docent is one product used in two places, so it is one item: on desktop the panel
 							    opens on hover or keyboard focus; in the mobile menu the two
 							    links stand in its place. */}
