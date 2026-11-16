@@ -235,9 +235,9 @@ export default function Download(): ReactNode {
     <div id="app" className="body">
       <Head>
         <title>Downloads | Smartloop</title>
-        <meta name="description" content="Download Smartloop Studio for Mac (.dmg), Windows (.exe), or Linux (.deb). See system requirements for macOS, Windows, and Linux." />
+        <meta name="description" content="Download Docent Studio for Mac (.dmg), Windows (.exe), or Linux (.deb). See system requirements for macOS, Windows, and Linux." />
         <meta property="og:title" content="Downloads | Smartloop" />
-        <meta property="og:description" content="Download Smartloop Studio for Mac (.dmg), Windows (.exe), or Linux (.deb). See system requirements for macOS, Windows, and Linux." />
+        <meta property="og:description" content="Download Docent Studio for Mac (.dmg), Windows (.exe), or Linux (.deb). See system requirements for macOS, Windows, and Linux." />
         <link rel="canonical" href="https://smartloop.ai/download/" />
       </Head>
       <div className="wrapper">

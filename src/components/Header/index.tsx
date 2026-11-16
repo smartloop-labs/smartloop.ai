@@ -120,6 +120,8 @@ export default function Header() {
 						<ul className="sl-menu__list">
 							<li className="sl-menu__item"><Link to="/pricing" className="sl-menu__link" onClick={closeMenu}>Get started</Link></li>
 							<li className="sl-menu__item"><Link to="/docent" className="sl-menu__link" onClick={closeMenu}>Docent</Link></li>
+							<li className="sl-menu__item"><Link to="/studio" className="sl-menu__link" onClick={closeMenu}>Docent Studio</Link></li>
+							<li className="sl-menu__item"><a href="https://gpushed.dev" className="sl-menu__link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>gpushed</a></li>
 							<li className="sl-menu__item"><Link to="/docs/intro" className="sl-menu__link" onClick={closeMenu}>Docs</Link></li>
 						</ul>
 					</nav>
