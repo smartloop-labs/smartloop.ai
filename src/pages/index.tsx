@@ -7,21 +7,22 @@ import HeroDrift from '../components/HeroDrift';
 import styles from './home.module.css';
 
 // smartloop.ai is the company, the way 37signals sits over Basecamp and HEY:
-// the story, then what it makes. Docent comes two ways (terminal and desktop)
-// and has its own pages (/docent, /studio); gpushed has its own site.
+// the story, then what it makes. Docent is one product used in two places,
+// the terminal (/docent) and the desktop, Studio (/studio); gpushed has its
+// own site.
 
 type Way = { name: string; desc: string; facts: string; to: string };
 
 const DOCENT_WAYS: Way[] = [
   {
-    name: 'Docent',
-    desc: 'The coding agent for your terminal. Ask for a change and it writes it, checks it with your language servers and your build, and fixes what fails.',
+    name: 'In your terminal',
+    desc: 'Ask for a change and Docent writes it, checks it with your language servers and your build, and fixes what fails.',
     facts: 'macOS · Linux · Windows · open source (MIT)',
     to: '/docent',
   },
   {
-    name: 'Docent Studio',
-    desc: 'The desktop app. Chat with your documents, connect MCP servers and add skills, with the models picked and sized for your machine.',
+    name: 'On your desktop: Docent Studio',
+    desc: 'Chat with your documents, connect MCP servers and add skills, with the models picked and sized for your machine.',
     facts: 'macOS · Linux · Windows · open source (Apache 2.0)',
     to: '/studio',
   },
@@ -31,7 +32,7 @@ const PRINCIPLES: [string, string][] = [
   ['Local first', 'Your files and prompts stay on your machine unless you choose otherwise.'],
   ['Opinionated', 'We pick and tune the models, so there is nothing to choose or configure.'],
   ['Small and sharp', 'Each product does one job, and does it well.'],
-  ['Open where it counts', 'Docent and Docent Studio are open source. Read the code that runs on your computer.'],
+  ['Open where it counts', 'Docent is open source, in the terminal and on the desktop. Read the code that runs on your computer.'],
 ];
 
 const DESCRIPTION = 'Smartloop is an AI research company. We make private software that runs on the computer you already own: Docent, for your terminal and your desktop, and gpushed, a GPU by the second when a job outgrows your machine.';
@@ -171,7 +172,7 @@ export default function Home(): ReactNode {
               <div className={styles.heroGlow} aria-hidden="true" />
               <p className={styles.eyebrow}>free to start</p>
               <h2 className={styles.closingTitle}>Start asking. <span className={styles.accent}>Locally.</span></h2>
-              <p className={styles.sub}>Pick the way you work: Docent in your terminal, or Docent Studio on your desktop.</p>
+              <p className={styles.sub}>Use Docent where you work: in your terminal, or on your desktop with Docent Studio.</p>
               <div className={styles.closingCta}>
                 <Link to="/docent" className={styles.btnPrimary}>get docent</Link>
                 <Link to="/download" className={styles.btnGhost}>download studio</Link>

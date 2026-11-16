@@ -119,7 +119,7 @@ export default function Header() {
 					<nav className="sl-menu__body">
 						<ul className="sl-menu__list">
 							<li className="sl-menu__item"><Link to="/pricing" className="sl-menu__link" onClick={closeMenu}>Get started</Link></li>
-							{/* Docent comes two ways, so it is one item: on desktop the panel
+							{/* Docent is one product used in two places, so it is one item: on desktop the panel
 							    opens on hover or keyboard focus; in the mobile menu the two
 							    links stand in its place. */}
 							<li className="sl-menu__item sl-menu__group">
@@ -127,12 +127,12 @@ export default function Header() {
 								<div className="sl-submenu">
 									<div className="sl-submenu__panel">
 										<Link to="/docent" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
-											<span className="sl-submenu__name">Docent</span>
-											<span className="sl-submenu__desc">The coding agent for your terminal</span>
+											<span className="sl-submenu__name">In your terminal</span>
+											<span className="sl-submenu__desc">Docent writes and checks your code</span>
 										</Link>
 										<Link to="/studio" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
-											<span className="sl-submenu__name">Docent Studio</span>
-											<span className="sl-submenu__desc">The desktop app for your documents</span>
+											<span className="sl-submenu__name">On your desktop</span>
+											<span className="sl-submenu__desc">Docent Studio, for your documents</span>
 										</Link>
 									</div>
 								</div>
