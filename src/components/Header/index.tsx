@@ -119,8 +119,24 @@ export default function Header() {
 					<nav className="sl-menu__body">
 						<ul className="sl-menu__list">
 							<li className="sl-menu__item"><Link to="/pricing" className="sl-menu__link" onClick={closeMenu}>Get started</Link></li>
-							<li className="sl-menu__item"><Link to="/docent" className="sl-menu__link" onClick={closeMenu}>Docent</Link></li>
-							<li className="sl-menu__item"><Link to="/studio" className="sl-menu__link" onClick={closeMenu}>Docent Studio</Link></li>
+							{/* Docent comes two ways, so it is one item: on desktop the panel
+							    opens on hover or keyboard focus; in the mobile menu the two
+							    links stand in its place. */}
+							<li className="sl-menu__item sl-menu__group">
+								<Link to="/docent" className="sl-menu__link sl-menu__group-label" aria-haspopup="true" onClick={closeMenu}>Docent</Link>
+								<div className="sl-submenu">
+									<div className="sl-submenu__panel">
+										<Link to="/docent" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
+											<span className="sl-submenu__name">Docent</span>
+											<span className="sl-submenu__desc">The coding agent for your terminal</span>
+										</Link>
+										<Link to="/studio" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
+											<span className="sl-submenu__name">Docent Studio</span>
+											<span className="sl-submenu__desc">The desktop app for your documents</span>
+										</Link>
+									</div>
+								</div>
+							</li>
 							<li className="sl-menu__item"><a href="https://gpushed.dev" className="sl-menu__link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>gpushed</a></li>
 							<li className="sl-menu__item"><Link to="/docs/intro" className="sl-menu__link" onClick={closeMenu}>Docs</Link></li>
 						</ul>
