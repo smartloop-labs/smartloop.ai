@@ -1250,6 +1250,8 @@
   font-family: var(--sl-mono);
   font-size: 0.72rem;
   line-height: 1.5;
+  /* The title bar runs edge to edge; clip it to the rounded corners. */
+  overflow: hidden;
 }
 
 .previewBar {
