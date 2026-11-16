@@ -14,7 +14,8 @@ import styles from './home.module.css';
 // `preview` is a few lines of the product at work, drawn as a tiny window:
 // [kind, text] where kind styles the line (prompt, out, ok).
 type Line = ['prompt' | 'out' | 'ok', string];
-type Card = { label: string; name: string; desc: string; facts: string; to: string; external?: boolean; chrome: 'window' | 'terminal'; preview: Line[] };
+// `theme` paints the card in that tool's own site colors (home.module.css).
+type Card = { label: string; name: string; desc: string; facts: string; to: string; external?: boolean; chrome: 'window' | 'terminal'; preview: Line[]; theme?: 'screenforge' | 'anacraft'; logo: string };
 
 // One product per group; Docent's two cards are the same product used two
 // ways (desktop and coding), like Claude and Claude Code.
@@ -31,6 +32,7 @@ const GROUPS: Group[] = [
         desc: 'Your personal assistant for work: it produces documents, connects to your external systems and creates skills for the work you repeat.',
         facts: 'macOS · Linux · Windows · Apache 2.0',
         to: '/docent#desktop',
+        logo: 'studio',
         chrome: 'window',
         preview: [['prompt', 'Draft the weekly report from Linear'], ['out', 'Linear · 18 issues closed this week'], ['ok', 'weekly-report.docx · saved as /weekly-report']],
       },
@@ -40,6 +42,7 @@ const GROUPS: Group[] = [
         desc: 'Ask for a change and Docent writes it, checks it with your language servers and your build, and fixes what fails.',
         facts: 'macOS · Linux · Windows · MIT',
         to: '/docent#coding',
+        logo: 'docent',
         chrome: 'terminal',
         preview: [['prompt', 'docent "retry failed uploads"'], ['out', '+12 −3  src/upload.rs'], ['ok', 'cargo build · rust-analyzer: clean']],
       },
@@ -55,6 +58,7 @@ const GROUPS: Group[] = [
         desc: 'An NVIDIA GPU box from your Mac in minutes, with CUDA, Python, Node.js and Rust ready. No cloud account; billed by the second.',
         facts: 'Apple silicon Macs · from $0.88/hr',
         to: 'https://gpushed.dev',
+        logo: '/img/logos/gpushed.svg',
         external: true,
         chrome: 'terminal',
         preview: [['prompt', 'gpushed up'], ['out', '1x L4 24 GB · us-central1'], ['ok', 'ready · $0.88/hr · gpushed ssh']],
@@ -75,7 +79,9 @@ const TOOLS: Group = {
       desc: 'Record your screen, then tell it what you want: cut the ums, zoom on your clicks, add music. It edits the timeline while you watch.',
       facts: 'macOS · Linux · Windows · Apache 2.0',
       to: 'https://screenforge.studio',
+      logo: '/img/logos/screenforge.svg',
       external: true,
+      theme: 'screenforge',
       chrome: 'window',
       preview: [['prompt', 'cut the ums and the long pauses'], ['out', 'timeline · 14 cuts · 3:12 → 2:41'], ['ok', 'zoomed on clicks · music added']],
     },
@@ -85,7 +91,9 @@ const TOOLS: Group = {
       desc: 'Your Google Analytics (GA4), mined block by block in a Minecraft-themed dashboard for the terminal.',
       facts: 'Terminal (TUI) · GA4',
       to: 'https://anacraft.dev',
+      logo: '/img/logos/anacraft.svg',
       external: true,
+      theme: 'anacraft',
       chrome: 'terminal',
       preview: [['prompt', 'anacraft'], ['out', 'GA4 · last 7 days · mining…'], ['ok', 'top page /docent · biggest ore']],
     },
@@ -101,6 +109,26 @@ const BELIEFS: [string, string][] = [
 
 const DESCRIPTION = 'Smartloop is an AI research company. We make private software that runs on the computer you already own: Docent, for your terminal and your desktop, and gpushed, a GPU by the second when a job outgrows your machine.';
 
+// A product's logo as a small tile. Docent Studio's mark is drawn inline in
+// the site colors so it follows light and dark; Docent (the CLI) has no
+// mark, so it gets its prompt; the others are their own site icons.
+function CardLogo({ logo }: { logo: string }): ReactNode {
+  if (logo === 'studio') {
+    return (
+      <span className={styles.cardLogo} aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <path d="M10 5H11A6 6 0 0 1 17 11V18H10A6 6 0 0 1 4 12V11A6 6 0 0 1 10 5Z" fill="var(--sl-white)" />
+          <circle cx="16.7" cy="8.4" r="3" fill="var(--sl-accent)" />
+        </svg>
+      </span>
+    );
+  }
+  if (logo === 'docent') {
+    return <span className={`${styles.cardLogo} ${styles.cardLogoPrompt}`} aria-hidden="true">›_</span>;
+  }
+  return <img className={styles.cardLogoImg} src={logo} alt="" width={28} height={28} />;
+}
+
 function renderGroup(g: Group): ReactNode {
   return (
     <div key={g.product} className={styles.productGroup} style={{ flexGrow: g.cards.length }}>
@@ -109,6 +137,7 @@ function renderGroup(g: Group): ReactNode {
       </p>
       <div className={styles.groupCards}>
         {g.cards.map((c) => {
+          const cls = c.theme ? `${styles.productCard} ${styles.themed} ${styles[`theme_${c.theme}`]}` : styles.productCard;
           const body = (
             <>
               <span className={styles.preview} aria-hidden="true">
@@ -125,16 +154,19 @@ function renderGroup(g: Group): ReactNode {
               </span>
               <span className={styles.cardBody}>
                 <span className={styles.cardLabel}>{c.label}</span>
-                <span className={styles.cardName}>{c.name} <span className={styles.cardArrow} aria-hidden="true">{c.external ? '↗' : '→'}</span></span>
+                <span className={styles.cardHead}>
+                  <CardLogo logo={c.logo} />
+                  <span className={styles.cardName}>{c.name} <span className={styles.cardArrow} aria-hidden="true">{c.external ? '↗' : '→'}</span></span>
+                </span>
                 <span className={styles.cardDesc}>{c.desc}</span>
                 <span className={styles.cardFacts}>{c.facts}</span>
               </span>
             </>
           );
           return c.external ? (
-            <a key={c.name} href={c.to} className={styles.productCard} target="_blank" rel="noopener noreferrer">{body}</a>
+            <a key={c.name} href={c.to} className={cls} target="_blank" rel="noopener noreferrer">{body}</a>
           ) : (
-            <Link key={c.name} to={c.to} className={styles.productCard}>{body}</Link>
+            <Link key={c.name} to={c.to} className={cls}>{body}</Link>
           );
         })}
       </div>

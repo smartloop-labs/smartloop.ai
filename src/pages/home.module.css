@@ -1296,6 +1296,90 @@
   color: var(--sl-accent-text);
 }
 
+/* Tool cards in their own site's colors, taken from each site's :root
+   (screenforge.studio, anacraft.dev). The preview window is the tool's app;
+   the label and hover take its accent, darker in light mode. */
+.theme_screenforge {
+  --t-ink: #1e1f29;
+  --t-bar: #282a36;
+  --t-line: rgba(248, 248, 242, 0.1);
+  --t-white: #f8f8f2;
+  --t-dim: #8e90a6;
+  --t-accent: #ff8a5c;
+  --t-glow: rgba(255, 138, 92, 0.12);
+}
+
+.theme_anacraft {
+  --t-ink: #09100d;
+  --t-bar: #0d1512;
+  --t-line: rgba(193, 196, 151, 0.11);
+  --t-white: #eef1dc;
+  --t-dim: #6c7f73;
+  --t-accent: #2dd5b7;
+  --t-glow: rgba(45, 213, 183, 0.1);
+}
+
+/* Light mode: each tool's own light palette (ScreenForge's
+   [data-theme="light"], Anacraft's Solarized Light). */
+:global([data-theme='light']) .theme_screenforge {
+  --t-ink: #f6f6fa;
+  --t-bar: #ffffff;
+  --t-line: rgba(30, 31, 41, 0.12);
+  --t-white: #1a1b24;
+  --t-dim: #5f6175;
+  --t-accent: #d4442a;
+  --t-glow: rgba(212, 68, 42, 0.08);
+}
+
+:global([data-theme='light']) .theme_anacraft {
+  --t-ink: #fdf6e3;
+  --t-bar: #eee8d5;
+  --t-line: rgba(147, 161, 161, 0.35);
+  --t-white: #2d373b;
+  --t-dim: #566263;
+  --t-accent: #1c6a64;
+  --t-glow: rgba(28, 106, 100, 0.08);
+}
+
+.themed .preview {
+  background: linear-gradient(140deg, var(--t-glow) 0%, transparent 55%), var(--t-ink);
+  border-color: var(--t-line);
+}
+
+.themed .previewBar {
+  background: var(--t-bar);
+  border-color: var(--t-line);
+}
+
+.themed .previewDots i {
+  background: var(--t-line);
+}
+
+.themed .previewTitle,
+.themed .pl_out {
+  color: var(--t-dim);
+}
+
+.themed .pl_prompt {
+  color: var(--t-white);
+}
+
+.themed .pl_ok {
+  color: var(--t-accent);
+}
+
+.themed .cardLabel {
+  color: var(--t-accent);
+}
+
+.themed:hover {
+  border-color: var(--t-accent);
+}
+
+.themed:hover .cardArrow {
+  color: var(--t-accent);
+}
+
 .cardBody {
   flex: 1;
   display: flex;
@@ -1309,6 +1393,35 @@
   font-size: 0.66rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--sl-accent-text);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardLogo,
+.cardLogoImg {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+}
+
+.cardLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--sl-line);
+  background: var(--sl-ink);
+}
+
+.cardLogoPrompt {
+  font-family: var(--sl-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
   color: var(--sl-accent-text);
 }
 
