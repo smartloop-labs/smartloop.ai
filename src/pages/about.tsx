@@ -12,6 +12,10 @@ import local from './about.module.css';
 
 const DESCRIPTION = 'Smartloop is a group of passionate individuals in San Francisco with years of experience building software. We make the AI products we want to use ourselves: Docent and gpushed.';
 
+// The About page has its own card: the Golden Gate at night, from the same
+// drawing as <GoldenGate />. Bump ?v= when the image changes so X re-fetches.
+const SOCIAL_CARD = 'https://smartloop.ai/img/about-social-card.png?v=1';
+
 const PRINCIPLES: [string, string][] = [
   ['We use it first', 'Everything we ship, we run on our own work first. If it isn’t good enough for us, it isn’t ready for you.'],
   ['Experience over hype', 'Years of building software for developers and companies taught us to favor what works over what demos well.'],
@@ -26,6 +30,12 @@ export default function About(): ReactNode {
         <meta name="description" content={DESCRIPTION} />
         <meta property="og:title" content="About us | Smartloop" />
         <meta property="og:description" content={DESCRIPTION} />
+        <meta property="og:image" content={SOCIAL_CARD} />
+        <meta property="og:image:secure_url" content={SOCIAL_CARD} />
+        <meta property="og:image:alt" content="Smartloop — We build what we want to use. San Francisco, CA" />
+        <meta name="twitter:image" content={SOCIAL_CARD} />
+        <meta name="twitter:title" content="About us | Smartloop" />
+        <meta name="twitter:description" content={DESCRIPTION} />
         <link rel="canonical" href="https://smartloop.ai/about/" />
       </Head>
       <div className="wrapper">
