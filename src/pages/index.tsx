@@ -18,7 +18,9 @@ type Card = { label: string; name: string; desc: string; facts: string; to: stri
 
 // One product per group; Docent's two cards are the same product used two
 // ways (desktop and coding), like Claude and Claude Code.
-const GROUPS: { product: string; line: string; cards: Card[] }[] = [
+type Group = { product: string; line: string; cards: Card[] };
+
+const GROUPS: Group[] = [
   {
     product: 'Docent',
     line: 'Your personal assistant for work, and for coding',
@@ -61,6 +63,35 @@ const GROUPS: { product: string; line: string; cards: Card[] }[] = [
   },
 ];
 
+// Smaller things we build and use ourselves, in their own row under the
+// products.
+const TOOLS: Group = {
+  product: 'Tools',
+  line: 'Things we build and use ourselves',
+  cards: [
+    {
+      label: 'AI screen editor',
+      name: 'ScreenForge',
+      desc: 'Record your screen, then tell it what you want: cut the ums, zoom on your clicks, add music. It edits the timeline while you watch.',
+      facts: 'macOS · Linux · Windows · Apache 2.0',
+      to: 'https://screenforge.studio',
+      external: true,
+      chrome: 'window',
+      preview: [['prompt', 'cut the ums and the long pauses'], ['out', 'timeline · 14 cuts · 3:12 → 2:41'], ['ok', 'zoomed on clicks · music added']],
+    },
+    {
+      label: 'Analytics dashboard',
+      name: 'Anacraft',
+      desc: 'Your Google Analytics (GA4), mined block by block in a Minecraft-themed dashboard for the terminal.',
+      facts: 'Terminal (TUI) · GA4',
+      to: 'https://anacraft.dev',
+      external: true,
+      chrome: 'terminal',
+      preview: [['prompt', 'anacraft'], ['out', 'GA4 · last 7 days · mining…'], ['ok', 'top page /docent · biggest ore']],
+    },
+  ],
+};
+
 // What we believe, beside the story headline. Short enough to scan.
 const BELIEFS: [string, string][] = [
   ['Local first', 'Small open models now read your documents and write and check your code, with no round trip.'],
@@ -69,6 +100,47 @@ const BELIEFS: [string, string][] = [
 ];
 
 const DESCRIPTION = 'Smartloop is an AI research company. We make private software that runs on the computer you already own: Docent, for your terminal and your desktop, and gpushed, a GPU by the second when a job outgrows your machine.';
+
+function renderGroup(g: Group): ReactNode {
+  return (
+    <div key={g.product} className={styles.productGroup} style={{ flexGrow: g.cards.length }}>
+      <p className={styles.groupLabel}>
+        <span className={styles.groupName}>{g.product}</span> · {g.line}
+      </p>
+      <div className={styles.groupCards}>
+        {g.cards.map((c) => {
+          const body = (
+            <>
+              <span className={styles.preview} aria-hidden="true">
+                <span className={styles.previewBar}>
+                  <span className={styles.previewDots}><i /><i /><i /></span>
+                  <span className={styles.previewTitle}>{c.chrome === 'window' ? c.name : 'zsh'}</span>
+                </span>
+                {c.preview.map(([kind, text]) => (
+                  <span key={text} className={`${styles.previewLine} ${styles[`pl_${kind}`]}`}>
+                    {kind === 'prompt' ? (c.chrome === 'terminal' ? '$ ' : '› ') : kind === 'ok' ? '✓ ' : '  '}
+                    {text}
+                  </span>
+                ))}
+              </span>
+              <span className={styles.cardBody}>
+                <span className={styles.cardLabel}>{c.label}</span>
+                <span className={styles.cardName}>{c.name} <span className={styles.cardArrow} aria-hidden="true">{c.external ? '↗' : '→'}</span></span>
+                <span className={styles.cardDesc}>{c.desc}</span>
+                <span className={styles.cardFacts}>{c.facts}</span>
+              </span>
+            </>
+          );
+          return c.external ? (
+            <a key={c.name} href={c.to} className={styles.productCard} target="_blank" rel="noopener noreferrer">{body}</a>
+          ) : (
+            <Link key={c.name} to={c.to} className={styles.productCard}>{body}</Link>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 export default function Home(): ReactNode {
   // Campaign tags ride along to the download and sign-up pages.
@@ -159,50 +231,17 @@ export default function Home(): ReactNode {
                 <p className={styles.kicker}>What we make</p>
                 <h2 className={styles.h2}>Your complete local AI suite.</h2>
                 <p className={styles.sub}>
-                  Docent, your personal assistant for work and your coding agent in the terminal, and a GPU by the second when a job outgrows your machine.
+                  Docent, your personal assistant for work and your coding agent in the terminal, a GPU by the second when a job outgrows your machine, and the tools we build along the way.
                 </p>
               </div>
 
-              {/* Equal cards, grouped by product: Docent spans two, gpushed one. */}
+              {/* Equal cards, grouped by product: Docent spans two, gpushed one;
+                  the tools sit in their own row underneath. */}
               <div className={styles.productGroups}>
-                {GROUPS.map((g) => (
-                  <div key={g.product} className={styles.productGroup} style={{ flexGrow: g.cards.length }}>
-                    <p className={styles.groupLabel}>
-                      <span className={styles.groupName}>{g.product}</span> · {g.line}
-                    </p>
-                    <div className={styles.groupCards}>
-                      {g.cards.map((c) => {
-                        const body = (
-                          <>
-                            <span className={styles.preview} aria-hidden="true">
-                              <span className={styles.previewBar}>
-                                <span className={styles.previewDots}><i /><i /><i /></span>
-                                <span className={styles.previewTitle}>{c.chrome === 'window' ? c.name : 'zsh'}</span>
-                              </span>
-                              {c.preview.map(([kind, text]) => (
-                                <span key={text} className={`${styles.previewLine} ${styles[`pl_${kind}`]}`}>
-                                  {kind === 'prompt' ? (c.chrome === 'terminal' ? '$ ' : '› ') : kind === 'ok' ? '✓ ' : '  '}
-                                  {text}
-                                </span>
-                              ))}
-                            </span>
-                            <span className={styles.cardBody}>
-                              <span className={styles.cardLabel}>{c.label}</span>
-                              <span className={styles.cardName}>{c.name} <span className={styles.cardArrow} aria-hidden="true">{c.external ? '↗' : '→'}</span></span>
-                              <span className={styles.cardDesc}>{c.desc}</span>
-                              <span className={styles.cardFacts}>{c.facts}</span>
-                            </span>
-                          </>
-                        );
-                        return c.external ? (
-                          <a key={c.name} href={c.to} className={styles.productCard} target="_blank" rel="noopener noreferrer">{body}</a>
-                        ) : (
-                          <Link key={c.name} to={c.to} className={styles.productCard}>{body}</Link>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
+                {GROUPS.map(renderGroup)}
+              </div>
+              <div className={`${styles.productGroups} ${styles.toolsRow}`}>
+                {renderGroup(TOOLS)}
               </div>
             </div>
           </section>

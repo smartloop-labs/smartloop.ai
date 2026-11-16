@@ -1183,6 +1183,11 @@
   gap: 14px;
 }
 
+/* The tools row under the products: same cards, its own line. */
+.toolsRow {
+  margin-top: 28px;
+}
+
 .productGroup {
   flex-basis: 0;
   min-width: 0;
