@@ -1164,9 +1164,16 @@
   justify-content: center;
 }
 
+/* .h2 caps its width (18ch) and .sub its measure, so both need auto
+   margins to sit in the middle, not just centered text. */
+.centerHead .h2,
 .centerHead .sub {
   margin-left: auto;
   margin-right: auto;
+}
+
+.centerHead .h2 {
+  max-width: 22ch;
 }
 
 /* Groups grow by their card count, so every card ends up the same width. */
