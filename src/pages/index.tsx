@@ -245,7 +245,7 @@ export default function Home(): ReactNode {
             <div className={styles.heroGlow} aria-hidden="true" />
             <HeroDrift />
             <div className={styles.heroInner}>
-              <p className={styles.eyebrow}>smartloop · a local-first AI company</p>
+              <p className={styles.eyebrow}>smartloop · local-first AI infrastructure</p>
               <h1 className={styles.heroTitle}>
                 Frontier quality. <span className={styles.accent}>Local first.</span>
               </h1>
