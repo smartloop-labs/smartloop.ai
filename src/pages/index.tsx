@@ -12,17 +12,15 @@ import p from './products.module.css';
 // Claude and Claude Code: Docent Studio on the desktop, Docent in the terminal
 // for coding. Both live on /docent (#desktop, #coding); gpushed has its own site.
 
-// `theme` paints the card's accents in that tool's own site colors.
-type Card = { label: string; name: string; desc: string; facts: string; to: string; external?: boolean; theme?: 'screenforge' | 'anacraft'; logo: string };
+type Card = { label: string; name: string; desc: string; facts: string; to: string; external?: boolean; logo: string; points: string[] };
 
 // One product per group; Docent's two cards are the same product used two
 // ways (desktop and coding), like Claude and Claude Code.
-type Group = { product: string; line: string; cards: Card[] };
+type Group = { product: string; cards: Card[] };
 
 const GROUPS: Group[] = [
   {
     product: 'Docent',
-    line: 'Your personal assistant for work, and for coding',
     cards: [
       {
         label: 'Private AI assistant',
@@ -31,6 +29,7 @@ const GROUPS: Group[] = [
         facts: 'macOS · Linux · Windows · free',
         to: '/docent#desktop',
         logo: 'studio',
+        points: ['Your files indexed on your machine', 'Every answer cites its source', 'Models fitted to your hardware'],
       },
       {
         label: 'Coding agent',
@@ -39,12 +38,12 @@ const GROUPS: Group[] = [
         facts: 'macOS · Linux · Windows · MIT',
         to: '/docent#coding',
         logo: 'docent',
+        points: ['Rust, Go, TypeScript, Python, C and C++', 'Runs commands once you approve them', 'MCP servers and web search'],
       },
     ],
   },
   {
     product: 'gpushed',
-    line: 'A GPU by the second',
     cards: [
       {
         label: 'GPU',
@@ -53,58 +52,12 @@ const GROUPS: Group[] = [
         facts: 'Apple silicon Macs · from $0.88/hr',
         to: 'https://gpushed.dev',
         logo: '/img/logos/gpushed.svg',
+        points: ['NVIDIA T4, L4 or A100', '100 GB SSD and a public IP included', 'Prepaid: never charged more than you add'],
         external: true,
       },
     ],
   },
 ];
-
-// Smaller things we build and use ourselves, in their own row under the
-// products.
-const TOOLS: Group = {
-  product: 'Tools',
-  line: 'Things we build and use ourselves',
-  cards: [
-    {
-      label: 'AI screen editor',
-      name: 'ScreenForge',
-      desc: 'Record your screen, then tell it what you want: cut the ums, zoom on your clicks, add music. It edits the timeline while you watch.',
-      facts: 'macOS · Linux · Windows · Apache 2.0',
-      to: 'https://screenforge.studio',
-      logo: '/img/logos/screenforge.svg',
-      external: true,
-      theme: 'screenforge',
-    },
-    {
-      label: 'Analytics dashboard',
-      name: 'Anacraft',
-      desc: 'Your Google Analytics (GA4), mined block by block in a Minecraft-themed dashboard for the terminal.',
-      facts: 'Terminal (TUI) · GA4',
-      to: 'https://anacraft.dev',
-      logo: 'anacraft',
-      external: true,
-      theme: 'anacraft',
-    },
-  ],
-};
-
-// The third slot in the tools row, so it reads 3 / 3 against the products
-// above: not another product, but the way to hire us for one. The card's
-// own pitch carries the "free at any scale" part; the label stays short.
-const CONTACT: Group = {
-  product: 'Work with us',
-  line: 'Hire us for the work',
-  cards: [
-    {
-      label: 'For teams',
-      name: 'Talk to our team',
-      desc: 'Docent stays free at any scale. Tell us what you are trying to solve, and we will get it working on your data and your infrastructure.',
-      facts: 'rollout · fine-tuning · support',
-      to: '/contact/',
-      logo: 'contact',
-    },
-  ],
-};
 
 // What we believe, beside the story headline. Short enough to scan.
 const BELIEFS: [string, string][] = [
@@ -129,48 +82,6 @@ function CardLogo({ logo }: { logo: string }): ReactNode {
       </span>
     );
   }
-  if (logo === 'contact') {
-    // A chat balloon for the Work-with-us card, in the brand accent.
-    return (
-      <span className={`${p.logo} ${p.logoContact}`} aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" />
-        </svg>
-      </span>
-    );
-  }
-  if (logo === 'anacraft') {
-    // Anacraft's pixel "A" from its favicon, without the favicon's black
-    // square: drawn in the card's theme so it follows light and dark.
-    return (
-      <span className={`${p.logo} ${p.logoThemed}`} aria-hidden="true">
-        <svg viewBox="0 0 16 16" width="16" height="16" shapeRendering="crispEdges" fill="currentColor">
-          <rect x="6" y="1" width="4" height="1" />
-          <rect x="5" y="2" width="6" height="1" />
-          <rect x="4" y="3" width="8" height="1" />
-          <rect x="4" y="4" width="8" height="1" />
-          <rect x="3" y="5" width="4" height="1" />
-          <rect x="9" y="5" width="4" height="1" />
-          <rect x="3" y="6" width="4" height="1" />
-          <rect x="9" y="6" width="4" height="1" />
-          <rect x="2" y="7" width="4" height="1" />
-          <rect x="10" y="7" width="4" height="1" />
-          <rect x="2" y="8" width="4" height="1" />
-          <rect x="10" y="8" width="4" height="1" />
-          <rect x="1" y="9" width="4" height="1" />
-          <rect x="11" y="9" width="4" height="1" />
-          <rect x="1" y="10" width="14" height="1" />
-          <rect x="1" y="11" width="14" height="1" />
-          <rect x="1" y="12" width="4" height="1" />
-          <rect x="11" y="12" width="4" height="1" />
-          <rect x="1" y="13" width="4" height="1" />
-          <rect x="11" y="13" width="4" height="1" />
-          <rect x="1" y="14" width="4" height="1" />
-          <rect x="11" y="14" width="4" height="1" />
-        </svg>
-      </span>
-    );
-  }
   if (logo === 'docent') {
     return <span className={`${p.logo} ${p.logoPrompt}`} aria-hidden="true">›_</span>;
   }
@@ -180,12 +91,9 @@ function CardLogo({ logo }: { logo: string }): ReactNode {
 function renderGroup(g: Group): ReactNode {
   return (
     <div key={g.product} className={styles.productGroup} style={{ flexGrow: g.cards.length }}>
-      <p className={styles.groupLabel}>
-        <span className={styles.groupName}>{g.product}</span> · {g.line}
-      </p>
       <div className={styles.groupCards}>
         {g.cards.map((c) => {
-          const cls = c.theme ? `${p.card} ${p.themed} ${p[`theme_${c.theme}`]}` : p.card;
+          const cls = p.card;
           const body = (
             <>
               <span className={p.head}>
@@ -199,6 +107,9 @@ function renderGroup(g: Group): ReactNode {
                 <span className={p.arrow} aria-hidden="true">{c.external ? '↗' : '→'}</span>
               </span>
               <span className={p.desc}>{c.desc}</span>
+              <span className={p.points}>
+                {c.points.map((pt) => <span key={pt} className={p.point}>{pt}</span>)}
+              </span>
               <span className={p.facts}>
                 {c.facts.split(' · ').map((f) => <span key={f} className={p.fact}>{f}</span>)}
               </span>
@@ -304,18 +215,13 @@ export default function Home(): ReactNode {
                 <p className={styles.kicker}>What we make</p>
                 <h2 className={styles.h2}>Your complete local AI suite.</h2>
                 <p className={styles.sub}>
-                  Docent, your personal assistant for work and your coding agent in the terminal, a GPU by the second when a job outgrows your machine, and the tools we build along the way.
+                  Docent, your personal assistant for work and your coding agent in the terminal, and a GPU by the second when a job outgrows your machine.
                 </p>
               </div>
 
-              {/* Equal cards, grouped by product: Docent spans two, gpushed one;
-                  the tools and the work-with-us card make the same 2 + 1 below. */}
+              {/* Equal cards, grouped by product: Docent spans two, gpushed one. */}
               <div className={styles.productGroups}>
                 {GROUPS.map(renderGroup)}
-              </div>
-              <div className={`${styles.productGroups} ${styles.toolsRow}`}>
-                {renderGroup(TOOLS)}
-                {renderGroup(CONTACT)}
               </div>
             </div>
           </section>
