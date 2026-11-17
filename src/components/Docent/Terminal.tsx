@@ -180,7 +180,7 @@ export default function DocentTerminal(): ReactNode {
                 {/* Secondary on purpose: the install line is the call to action. */}
                 <p className={styles.ctaAlt} style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
                   <Link
-                    to="https://github.com/smartloop-ai/docent"
+                    to="https://github.com/smartloop-labs/docent"
                     className={styles.textLink}
                     aria-label="docent on GitHub"
                     title="docent on GitHub"
@@ -192,7 +192,7 @@ export default function DocentTerminal(): ReactNode {
                   <Link to="/docs/command-line-tool" className={styles.textLink}>full reference</Link>
                 </p>
                 <p className={local.crossLink}>
-                  Not coding? <Link to="/docent#desktop" className={styles.textLink}>Docent Studio, your private AI assistant →</Link>
+                  Not coding? <Link to="/studio" className={styles.textLink}>Docent Studio, your private AI assistant →</Link>
                 </p>
               </div>
             </div>

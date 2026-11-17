@@ -47,7 +47,7 @@ async function fetchLatestRelease(channel = 'stable') {
 async function fetchDocentVersion() {
   try {
     const response = await fetch(
-      'https://api.github.com/repos/smartloop-ai/docent/releases/latest',
+      'https://api.github.com/repos/smartloop-labs/docent/releases/latest',
       { headers: { Accept: 'application/vnd.github+json' } },
     );
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -76,7 +76,7 @@ const config = async (): Promise<Config> => {
   baseUrl: '/',
   trailingSlash: true,
 
-  organizationName: 'smartloop-ai',
+  organizationName: 'smartloop-labs',
   projectName: 'smartloop.ai',
 
   onBrokenLinks: 'throw',
@@ -131,7 +131,7 @@ const config = async (): Promise<Config> => {
         docs: {
           sidebarPath: './sidebars.ts',
           // "Edit this page" on every doc, straight into a GitHub edit/PR.
-          editUrl: 'https://github.com/smartloop-ai/smartloop.ai/edit/main/',
+          editUrl: 'https://github.com/smartloop-labs/smartloop.ai/edit/main/',
           rehypePlugins: [rehypeKatex],
         },
         theme: {
@@ -222,7 +222,7 @@ const config = async (): Promise<Config> => {
       },
       items: [
         {
-          href: 'https://github.com/smartloop-ai',
+          href: 'https://github.com/smartloop-labs',
           className: 'navbar-item-github invert',
           'aria-label': 'GitHub repository',
           position: 'right',

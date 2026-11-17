@@ -56,4 +56,4 @@ request makes review faster.
 
 Open an issue with the page URL, what you expected and what you saw. For a
 problem with Studio or Docent itself rather than the docs, use the
-[Docent repo](https://github.com/smartloop-ai/docent/issues).
+[Docent repo](https://github.com/smartloop-labs/docent/issues).

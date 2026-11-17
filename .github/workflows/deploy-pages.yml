@@ -50,7 +50,7 @@ jobs:
       # uninstall scripts (legacy slp) live in static/ and ship as they are.
       - name: Fetch install scripts
         run: |
-          base=https://raw.githubusercontent.com/smartloop-ai/docent/main
+          base=https://raw.githubusercontent.com/smartloop-labs/docent/main
           for f in install.sh install.ps1; do
             curl -fsSL "$base/$f" -o "build/$f"
           done

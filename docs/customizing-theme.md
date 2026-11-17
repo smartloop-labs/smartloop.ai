@@ -1,6 +1,6 @@
 # Customizing Theme
 
-Smartloop lets you bring your own theme and customize the look and feel of the app. A collection of open source themes is available in the [studio-themes](https://github.com/smartloop-ai/studio-themes) repository.
+Smartloop lets you bring your own theme and customize the look and feel of the app. A collection of open source themes is available in the [studio-themes](https://github.com/smartloop-labs/studio-themes) repository.
 
 ![themes](theme.png)
 
@@ -17,7 +17,7 @@ Smartloop lets you bring your own theme and customize the look and feel of the a
 
 ## Installing a Custom Theme
 
-1. Download the `.yaml` file you want from the [studio-themes](https://github.com/smartloop-ai/studio-themes/blob/main/themes) repository.
+1. Download the `.yaml` file you want from the [studio-themes](https://github.com/smartloop-labs/studio-themes/blob/main/themes) repository.
 2. Open Docent Studio → **Settings → Theme**.
 3. Drop the file onto the **Drop a theme** tile (the dashed `+` tile in the Theme grid).
 
@@ -71,13 +71,13 @@ icons:
 
 > **Note:** Imported YAML is treated as untrusted — rail-icon SVGs are sanitized (`<script>`, `on*=` handlers, and `javascript:` URLs are stripped), and font URLs must use `https`.
 
-Fork the [studio-themes](https://github.com/smartloop-ai/studio-themes) repository to peek into how each theme is built, and use it as a starting point for your own.
+Fork the [studio-themes](https://github.com/smartloop-labs/studio-themes) repository to peek into how each theme is built, and use it as a starting point for your own.
 
 ## Contributing a Theme
 
 Built something you're proud of? We'd love to include it! Just:
 
-1. Fork the [studio-themes](https://github.com/smartloop-ai/studio-themes) repository.
+1. Fork the [studio-themes](https://github.com/smartloop-labs/studio-themes) repository.
 2. Add your theme as `themes/<name>.yaml`.
 3. Add a row to the themes table in the README.
 4. Open a pull request — we'll happily review and merge it.

@@ -7,6 +7,8 @@ Smartloop picks and tunes the open models for your hardware, so there is nothing
 ## Product
 
 - [Home](https://smartloop.ai/): What Smartloop is, who it is for, and how the local-first model works.
+- [Docent Studio](https://smartloop.ai/studio/): The private AI assistant for work on your desktop: documents, connected systems, and skills on open models.
+- [Docent Code](https://smartloop.ai/docent/): The open-source coding agent for your terminal: writes, builds, and fixes code on open models.
 - [Download](https://smartloop.ai/download/): Installers for macOS, Windows, and Linux, plus system requirements.
 - [Pricing](https://smartloop.ai/pricing/): Free to run locally; Pro adds web search credits. Enterprise deployment options.
 - [Contact](https://smartloop.ai/contact/): On-premise deployment, tuning on your own data, and team rollout.
@@ -29,4 +31,4 @@ Smartloop picks and tunes the open models for your hardware, so there is nothing
 
 - [Privacy Policy](https://smartloop.ai/privacy/)
 - [Terms](https://smartloop.ai/terms/)
-- [GitHub](https://github.com/smartloop-ai): Smartloop CLI, studio themes, and other open source repositories.
+- [GitHub](https://github.com/smartloop-labs): Smartloop CLI, studio themes, and other open source repositories.

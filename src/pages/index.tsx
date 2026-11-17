@@ -10,7 +10,7 @@ import p from './products.module.css';
 // smartloop.ai is the company, the way 37signals sits over Basecamp and HEY:
 // the story, then what it makes. Docent is one product used two ways, like
 // Claude and Claude Code: Docent Studio on the desktop, Docent in the terminal
-// for coding. Both live on /docent (#desktop, #coding); gpushed has its own site.
+// for coding. They live on /studio and /docent; gpushed has its own site.
 
 type Card = { label: string; name: string; desc: string; facts: string; to: string; external?: boolean; logo: string; points: string[] };
 
@@ -27,7 +27,7 @@ const GROUPS: Group[] = [
         name: 'Docent Studio',
         desc: 'Your assistant for work: it writes documents, connects to the systems you use and turns the work you repeat into skills.',
         facts: 'macOS · Linux · Windows · free',
-        to: '/docent#desktop',
+        to: '/studio',
         logo: 'studio',
         points: ['Your files indexed on your machine', 'Every answer cites its source', 'Models fitted to your hardware'],
       },
@@ -36,7 +36,7 @@ const GROUPS: Group[] = [
         name: 'Docent Code',
         desc: 'Ask for a change and Docent Code writes it, checks it with your language servers and your build, and fixes what fails.',
         facts: 'macOS · Linux · Windows · MIT',
-        to: '/docent#coding',
+        to: '/docent',
         logo: 'docent',
         points: ['Rust, Go, TypeScript, Python, C and C++', 'Runs commands once you approve them', 'MCP servers and web search'],
       },
@@ -235,7 +235,7 @@ export default function Home(): ReactNode {
               <p className={styles.sub}>Use Docent where you work: on your desktop with Docent Studio, or in your terminal for coding.</p>
               <div className={styles.closingCta}>
                 <Link to="/docent" className={styles.btnPrimary}>get docent</Link>
-                <Link to="/docent#desktop" className={styles.btnGhost}>docent studio</Link>
+                <Link to="/studio" className={styles.btnGhost}>docent studio</Link>
               </div>
             </div>
             <div className={styles.partners}>
