@@ -148,14 +148,14 @@ export default function Header() {
 								</Link>
 								<div className="sl-submenu">
 									<div className="sl-submenu__panel">
-										<Link to="/docent#desktop" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
+										<Link to="/studio" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
 											<ProductMark product="studio" />
 											<span className="sl-submenu__text">
 												<span className="sl-submenu__name">Docent Studio</span>
 												<span className="sl-submenu__desc">Your private AI assistant: documents, systems, skills</span>
 											</span>
 										</Link>
-										<Link to="/docent#coding" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
+										<Link to="/docent" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
 											<ProductMark product="docent" />
 											<span className="sl-submenu__text">
 												<span className="sl-submenu__name">Docent Code</span>

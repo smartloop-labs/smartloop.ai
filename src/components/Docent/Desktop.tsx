@@ -8,8 +8,8 @@ import { Check } from './Terminal';
 import styles from '../../pages/home.module.css';
 import local from '../../pages/docent.module.css';
 
-// The Desktop tab of /docent: Docent Studio, Docent on the desktop. Built on
-// the same sections as the Coding tab (hero, demo, what it does, how it works,
+// smartloop.ai/studio: Docent Studio, Docent on the desktop. Built on
+// the same sections as /docent (hero, demo, what it does, how it works,
 // models, more, FAQ) so the two read as one product.
 
 const DESCRIPTION =
@@ -127,7 +127,7 @@ export default function DocentDesktop(): ReactNode {
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'macOS, Linux, Windows',
     description: DESCRIPTION,
-    url: 'https://smartloop.ai/docent#desktop',
+    url: 'https://smartloop.ai/studio',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     author: { '@type': 'Organization', name: 'Smartloop Inc.', url: 'https://smartloop.ai' },
   };
@@ -149,7 +149,7 @@ export default function DocentDesktop(): ReactNode {
         <meta name="description" content={DESCRIPTION} />
         <meta property="og:title" content="Docent Studio | Your personal assistant for work" />
         <meta property="og:description" content={DESCRIPTION} />
-        <link rel="canonical" href="https://smartloop.ai/docent" />
+        <link rel="canonical" href="https://smartloop.ai/studio" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Head>
@@ -180,7 +180,7 @@ export default function DocentDesktop(): ReactNode {
               <Link to="/docs/getting-started" className={styles.textLink}>getting started</Link>
             </p>
             <p className={local.crossLink}>
-              Writing code? <Link to="/docent#coding" className={styles.textLink}>Docent, the coding agent for your terminal →</Link>
+              Writing code? <Link to="/docent" className={styles.textLink}>Docent, the coding agent for your terminal →</Link>
             </p>
           </div>
         </div>

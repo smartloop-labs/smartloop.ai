@@ -69,7 +69,7 @@ const docentPlans = [
     price: 'Free',
     priceLabel: '',
     cta: 'Install Docent Code',
-    ctaHref: '/docent#coding',
+    ctaHref: '/docent',
     featured: false,
   },
   {

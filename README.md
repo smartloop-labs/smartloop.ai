@@ -1,10 +1,10 @@
 # smartloop.ai
 
-[![Deploy](https://github.com/smartloop-ai/smartloop.ai/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/smartloop-ai/smartloop.ai/actions/workflows/deploy-pages.yml)
+[![Deploy](https://github.com/smartloop-labs/smartloop.ai/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/smartloop-labs/smartloop.ai/actions/workflows/deploy-pages.yml)
 [![Built with Docusaurus](https://img.shields.io/badge/built%20with-Docusaurus-3ECC5F?logo=docusaurus&logoColor=white)](https://docusaurus.io/)
 
 The website and documentation for [Smartloop Studio](https://smartloop.ai) and
-[Docent](https://github.com/smartloop-ai/docent), the command-line tool. It's a
+[Docent](https://github.com/smartloop-labs/docent), the command-line tool. It's a
 static [Docusaurus](https://docusaurus.io/) site served from GitHub Pages at
 **[smartloop.ai](https://smartloop.ai)**.
 
@@ -16,7 +16,7 @@ link at the bottom. See [CONTRIBUTING.md](CONTRIBUTING.md) for anything bigger.
 You need Node.js 20 or later.
 
 ```sh
-git clone https://github.com/smartloop-ai/smartloop.ai.git
+git clone https://github.com/smartloop-labs/smartloop.ai.git
 cd smartloop.ai
 npm ci
 npm start
