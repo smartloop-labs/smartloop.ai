@@ -33,7 +33,7 @@ export default function Terms(): ReactNode {
     >
       <div className={styles.legalIntro}>
         <p>
-          These Terms and Conditions (the "<strong>Agreement</strong>") constitute a legally binding agreement between you ("<strong>User</strong>", "<strong>you</strong>", or "<strong>your</strong>") and Smartloop Inc., a corporation organized and existing under the laws of California ("<strong>Company</strong>", "<strong>we</strong>", "<strong>us</strong>", or "<strong>our</strong>"), concerning your access to and use of the Smartloop platform and related services (the "<strong>Service</strong>").
+          These Terms and Conditions (the "<strong>Agreement</strong>") constitute a legally binding agreement between you ("<strong>User</strong>", "<strong>you</strong>", or "<strong>your</strong>") and Smartloop Inc., a Delaware corporation ("<strong>Company</strong>", "<strong>we</strong>", "<strong>us</strong>", or "<strong>our</strong>"), concerning your access to and use of the Smartloop platform and related services (the "<strong>Service</strong>").
         </p>
         <p>
           By accessing or using the Service, you acknowledge that you have read, understood, and agree to be bound by this Agreement. If you do not agree to these terms, you must not access or use the Service.
