@@ -6,7 +6,7 @@ This guide will help you get started with agent orchestration, learn key concept
 
 Smartloop is a local AI platform to deliver frontier quality results using open models. It runs 100% on your device, without any complex setup requirements and does the hardware math for you.
 
-At its core, it uses a decision model that works like a mission control, selecting the models needed to perform a given task. Instead of relying on a single large model, it uses a capability-based agentic approach that breaks a problem into smaller problems, delivering comparable results without the cloud infrastructure. Selection weighs each model's capabilities, size, and other factors, while staying within the boundary of your device.
+At its core, it uses a decision model that works like a mission control, selecting the models needed to perform a given task. Instead of relying on a single large model, it uses a capability-based agentic approach that breaks a task into smaller problems, delivering comparable results without the cloud infrastructure. Selection weighs each model's capabilities, size, and other factors, while staying within the boundary of your device.
 
 <video src="/img/info-doc-v3.mp4" autoPlay loop muted playsInline style={{width: '100%', borderRadius: '8px'}} />
 
