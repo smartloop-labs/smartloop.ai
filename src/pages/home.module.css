@@ -1183,32 +1183,12 @@
   gap: 14px;
 }
 
-/* The tools row under the products: same cards, its own line. */
-.toolsRow {
-  margin-top: 28px;
-}
-
 .productGroup {
   flex-basis: 0;
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-.groupLabel {
-  margin: 0;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--sl-line);
-  font-family: var(--sl-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  color: var(--sl-dim);
-}
-
-.groupName {
-  color: var(--sl-white);
-  font-weight: 500;
 }
 
 .groupCards {
@@ -1299,88 +1279,6 @@
   color: var(--sl-accent-text);
 }
 
-/* Tool cards in their own site's colors, taken from each site's :root
-   (screenforge.studio, anacraft.dev). The preview window is the tool's app;
-   the label and hover take its accent, darker in light mode. */
-.theme_screenforge {
-  --t-ink: #1e1f29;
-  --t-bar: #282a36;
-  --t-line: rgba(248, 248, 242, 0.1);
-  --t-white: #f8f8f2;
-  --t-dim: #8e90a6;
-  --t-accent: #ff8a5c;
-  --t-glow: rgba(255, 138, 92, 0.12);
-}
-
-.theme_anacraft {
-  --t-ink: #09100d;
-  --t-bar: #0d1512;
-  --t-line: rgba(193, 196, 151, 0.11);
-  --t-white: #eef1dc;
-  --t-dim: #6c7f73;
-  --t-accent: #2dd5b7;
-  --t-glow: rgba(45, 213, 183, 0.1);
-}
-
-/* Light mode: ScreenForge's own light theme; Anacraft's dark theme turned
-   light (its own light palettes drop the teal). */
-:global([data-theme='light']) .theme_screenforge {
-  --t-ink: #f6f6fa;
-  --t-bar: #ffffff;
-  --t-line: rgba(30, 31, 41, 0.12);
-  --t-white: #1a1b24;
-  --t-dim: #5f6175;
-  --t-accent: #d4442a;
-  --t-glow: rgba(212, 68, 42, 0.08);
-}
-
-:global([data-theme='light']) .theme_anacraft {
-  /* Anacraft's dark theme turned light: mint-white ground, its green-black
-     for text, and a deeper teal so the accent reads on white. */
-  --t-ink: #f5faf8;
-  --t-bar: #e9f2ee;
-  --t-line: rgba(9, 16, 13, 0.1);
-  --t-white: #0d1512;
-  --t-dim: #5b6d63;
-  --t-accent: #0f8f78;
-  --t-glow: rgba(15, 143, 120, 0.08);
-}
-
-.themed .preview {
-  background: linear-gradient(140deg, var(--t-glow) 0%, transparent 55%), var(--t-ink);
-  border-color: var(--t-line);
-}
-
-.themed .previewBar {
-  background: var(--t-bar);
-  border-color: var(--t-line);
-}
-
-.themed .previewDots i {
-  background: var(--t-line);
-}
-
-.themed .previewTitle,
-.themed .pl_out {
-  color: var(--t-dim);
-}
-
-.themed .pl_prompt {
-  color: var(--t-white);
-}
-
-.themed .pl_ok {
-  color: var(--t-accent);
-}
-
-.themed .cardLabel {
-  color: var(--t-accent);
-}
-
-.themed:hover {
-  border-color: var(--t-accent);
-}
-
 .cardBody {
   flex: 1;
   display: flex;
@@ -1417,13 +1315,6 @@
   justify-content: center;
   border: 1px solid var(--sl-line);
   background: var(--sl-ink);
-}
-
-/* A logo drawn in its card's tool theme (see .themed). */
-.cardLogoThemed {
-  background: var(--t-ink, var(--sl-ink));
-  border-color: var(--t-line, var(--sl-line));
-  color: var(--t-accent, var(--sl-accent-text));
 }
 
 .cardLogoPrompt {
@@ -1471,12 +1362,6 @@
   border-color: rgba(236, 72, 153, 0.25);
   background: var(--sl-accent-wash);
   color: var(--sl-accent-text);
-}
-
-.themed .cardFact:last-child {
-  border-color: var(--t-line);
-  background: var(--t-glow);
-  color: var(--t-accent);
 }
 
 @media (max-width: 1024px) {

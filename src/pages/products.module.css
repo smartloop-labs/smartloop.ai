@@ -1,10 +1,9 @@
 /* The product cards in "What we make" on the home page.
    One quiet card shape for every product: mark and name, what it does,
-   and its facts, with a corner arrow saying it is a link. The tool cards
-   borrow their own site's accent through --t-* vars. */
+   and its facts, with a corner arrow saying it is a link. */
 
 .card {
-  /* The card's own accent: brand pink by default, a tool's color on .themed.
+  /* The card's own accent: brand pink.
      Everything interactive below reads from these. */
   --c-accent: var(--sl-accent-text);
   --c-line: rgba(236, 72, 153, 0.3);
@@ -22,6 +21,19 @@
   box-shadow: var(--shadow-soft);
   text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+/* Square tiles while the cards sit side by side; stacked on narrow
+   screens they size to their content instead. */
+@media (min-width: 1025px) {
+  .card {
+    aspect-ratio: 1;
+    padding: 28px;
+  }
+
+  .name {
+    font-size: 1.4rem;
+  }
 }
 
 /* A faint wash of the card's accent behind the header on hover, so the
@@ -125,13 +137,6 @@
   background: var(--sl-ink);
 }
 
-/* A logo drawn in its card's tool theme (see .themed). */
-.logoThemed {
-  background: var(--t-ink, var(--sl-ink));
-  border-color: var(--t-line, var(--sl-line));
-  color: var(--t-accent, var(--sl-accent-text));
-}
-
 .logoPrompt {
   font-family: var(--sl-mono);
   font-size: 0.78rem;
@@ -139,15 +144,39 @@
   color: var(--sl-accent-text);
 }
 
-/* The Talk-to-us card's chat mark, in the brand accent. */
-.logoContact {
-  color: var(--sl-accent-text);
-}
-
 .desc {
   font-size: 0.9rem;
   line-height: 1.55;
   color: var(--sl-dim);
+}
+
+/* Key points under the pitch. */
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 2px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px dashed var(--sl-line);
+}
+
+.point {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--sl-white);
+}
+
+.point::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--c-accent);
 }
 
 /* Platforms, license and price as small pills along the bottom. */
@@ -175,46 +204,6 @@
   border-color: var(--c-line);
   background: var(--c-glow);
   color: var(--c-accent);
-}
-
-/* Tool cards in their own site's colors (screenforge.studio, anacraft.dev):
-   label, price pill, arrow, glow and hover all follow the tool's accent. */
-.theme_screenforge {
-  --t-ink: #1e1f29;
-  --t-line: rgba(248, 248, 242, 0.1);
-  --t-accent: #ff8a5c;
-  --t-glow: rgba(255, 138, 92, 0.12);
-}
-
-.theme_anacraft {
-  --t-ink: #09100d;
-  --t-line: rgba(193, 196, 151, 0.11);
-  --t-accent: #2dd5b7;
-  --t-glow: rgba(45, 213, 183, 0.1);
-}
-
-:global([data-theme='light']) .theme_screenforge {
-  --t-ink: #f6f6fa;
-  --t-line: rgba(30, 31, 41, 0.12);
-  --t-accent: #d4442a;
-  --t-glow: rgba(212, 68, 42, 0.08);
-}
-
-:global([data-theme='light']) .theme_anacraft {
-  --t-ink: #f5faf8;
-  --t-line: rgba(9, 16, 13, 0.1);
-  --t-accent: #0f8f78;
-  --t-glow: rgba(15, 143, 120, 0.08);
-}
-
-.themed {
-  --c-accent: var(--t-accent);
-  --c-line: var(--t-line);
-  --c-glow: var(--t-glow);
-}
-
-.themed:hover {
-  border-color: var(--t-accent);
 }
 
 /* Less motion when asked for: colors still answer, nothing moves. */
