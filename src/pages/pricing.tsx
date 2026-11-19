@@ -6,17 +6,23 @@ import { PRODUCTS, PricingLayout, pricingPath, type Product } from '../component
 import styles from './index.module.css';
 
 // The overview: one card per product, each linking to its own pricing page
-// (/studio/pricing, /docent/pricing, /gpushed/pricing). Old tab links
-// (/pricing#studio, #docent, #gpushed) are sent to the matching page.
+// (/studio/pricing, /docent/pricing). Old tab links (/pricing#studio,
+// #docent) go to the matching page; #gpushed goes to gpushed.dev, which has
+// its own pricing (it bills through the smartloop account).
 export default function Pricing(): ReactNode {
   const location = useLocation();
   const history = useHistory();
   const brokenLinks = useBrokenLinks();
   PRODUCTS.forEach((p) => brokenLinks.collectAnchor(p.id));
+  brokenLinks.collectAnchor('gpushed');
 
   useEffect(() => {
-    const id = location.hash.replace('#', '') as Product;
-    if (PRODUCTS.some((p) => p.id === id)) history.replace(pricingPath(id));
+    const id = location.hash.replace('#', '');
+    if (id === 'gpushed') {
+      window.location.replace('https://gpushed.dev');
+      return;
+    }
+    if (PRODUCTS.some((p) => p.id === id)) history.replace(pricingPath(id as Product));
   }, [location.hash, history]);
 
   return (
