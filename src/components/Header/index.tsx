@@ -1,21 +1,17 @@
 import Link from '@docusaurus/Link';
 import { useState, useEffect } from 'react';
+import DocentMark from '../DocentMark';
 
 // A product's mark in the Products menu, matching the cards on the home page:
-// Docent Studio's mark drawn in the site colors, Docent Code's prompt, gpushed's icon.
+// Docent's own marks (Studio on white, Code on black), gpushed's icon.
 function ProductMark({ product }: { product: 'studio' | 'docent' | 'gpushed' }) {
-	if (product === 'studio') {
+	if (product === 'studio' || product === 'docent') {
+		const which = product === 'studio' ? 'studio' : 'code';
 		return (
-			<span className="sl-submenu__mark" aria-hidden="true">
-				<svg viewBox="0 0 24 24" width="18" height="18">
-					<path d="M10 5H11A6 6 0 0 1 17 11V18H10A6 6 0 0 1 4 12V11A6 6 0 0 1 10 5Z" fill="var(--sl-white)" />
-					<circle cx="16.7" cy="8.4" r="3" fill="var(--sl-accent)" />
-				</svg>
+			<span className={`sl-submenu__mark docent-tile--${which}`} aria-hidden="true">
+				<DocentMark product={which} size={22} />
 			</span>
 		);
-	}
-	if (product === 'docent') {
-		return <span className="sl-submenu__mark sl-submenu__mark--prompt" aria-hidden="true">›_</span>;
 	}
 	return <img className="sl-submenu__mark sl-submenu__mark--img" src="/img/logos/gpushed.svg" alt="" width={32} height={32} />;
 }
@@ -159,7 +155,7 @@ export default function Header() {
 											<ProductMark product="docent" />
 											<span className="sl-submenu__text">
 												<span className="sl-submenu__name">Docent Code</span>
-												<span className="sl-submenu__desc">The coding agent for your terminal: writes, builds and fixes</span>
+												<span className="sl-submenu__desc">Your local AI coding agent: writes, builds and fixes</span>
 											</span>
 										</Link>
 										<a href="https://gpushed.dev" className="sl-menu__link sl-submenu__link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>

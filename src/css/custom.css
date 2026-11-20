@@ -484,11 +484,18 @@ body {
   background: var(--sl-ink);
 }
 
-.sl-submenu__mark--prompt {
-  font-family: var(--sl-mono);
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: var(--sl-accent-text);
+/* Docent's marks (components/DocentMark) sit on fixed tiles: Code always
+   pink, Studio always white, in either theme. These follow the tile's own size class. */
+.docent-tile--code {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  background: linear-gradient(180deg, #f26aae 0%, #e23d8c 100%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 6px 14px -6px rgba(226, 61, 140, 0.55);
+}
+
+.docent-tile--studio {
+  border-color: rgba(10, 10, 20, 0.1) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f0f3 100%) !important;
+  box-shadow: inset 0 -1px 0 rgba(10, 10, 20, 0.05), 0 6px 14px -6px rgba(10, 10, 20, 0.28);
 }
 
 .sl-submenu__mark--img {
@@ -543,11 +550,12 @@ body {
     background: var(--sl-accent-wash);
   }
 
+  /* The page's headline face (Inter Tight), like the product cards' names. */
   .sl-submenu__name {
-    font-family: var(--sl-display);
-    font-size: 0.9rem;
+    font-family: var(--sl-headline);
+    font-size: 0.92rem;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     color: var(--sl-white);
   }
 

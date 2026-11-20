@@ -180,7 +180,7 @@ export default function DocentDesktop(): ReactNode {
               <Link to="/docs/getting-started" className={styles.textLink}>getting started</Link>
             </p>
             <p className={local.crossLink}>
-              Writing code? <Link to="/docent" className={styles.textLink}>Docent, the coding agent for your terminal →</Link>
+              Writing code? <Link to="/docent" className={styles.textLink}>Docent, your local AI coding agent →</Link>
             </p>
           </div>
         </div>

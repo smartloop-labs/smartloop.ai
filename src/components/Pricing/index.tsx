@@ -121,7 +121,7 @@ const docentPlans: Plan[] = [
   {
     name: 'Free',
     badge: 'Open source',
-    desc: 'The coding agent for your terminal. MIT licensed and free to use, with no account needed.',
+    desc: 'Your local AI coding agent. MIT licensed and free to use, with no account needed.',
     features: [
       'Source on GitHub under the MIT license',
       'Local models such as Qwen, Gemma and Ministral',
@@ -165,7 +165,7 @@ export const PRODUCTS: { id: Product; name: string; line: string; summary: strin
   {
     id: 'docent',
     name: 'Docent Code',
-    line: 'The coding agent for your terminal. Open source, free, and no account needed.',
+    line: 'Your local AI coding agent. Open source, free, and no account needed.',
     summary: 'Free and open source. Sign in to use your plan’s cloud models.',
   },
 ];
