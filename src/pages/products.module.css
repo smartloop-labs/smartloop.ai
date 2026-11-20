@@ -93,9 +93,12 @@
 }
 
 .name {
+  /* The page's headline face (Inter Tight), so card names match the
+     headings around them. */
+  font-family: var(--sl-headline);
   font-size: 1.2rem;
   font-weight: 600;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   color: var(--sl-white);
 }
 
@@ -135,13 +138,6 @@
   justify-content: center;
   border: 1px solid var(--sl-line);
   background: var(--sl-ink);
-}
-
-.logoPrompt {
-  font-family: var(--sl-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--sl-accent-text);
 }
 
 .desc {

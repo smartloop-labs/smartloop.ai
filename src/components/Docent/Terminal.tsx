@@ -11,7 +11,7 @@ import local from '../../pages/docent.module.css';
 // link) instead of blending into the homepage.
 
 const DESCRIPTION =
-  'docent is an open-source AI coding agent for your terminal that runs on open models. It writes code as diffs, checks it against your language servers and build, fixes its own errors, and runs the commands once you say so.';
+  'docent is your local AI coding agent: open source, on open models. It writes code as diffs, checks it against your language servers and build, fixes its own errors, and runs the commands once you say so.';
 
 const points: [string, string][] = [
   ['Writes code.', 'New files whole, changes as small edits, each shown as a diff as it streams.'],
@@ -71,7 +71,7 @@ const beyond: [string, string][] = [
 const faqs: { q: string; a: string }[] = [
   {
     q: 'What is docent?',
-    a: 'docent is an open-source AI coding agent for the terminal, made by Smartloop. Open it in a project, ask for a change, and it writes the code as diffs, checks it with your language servers and build, fixes its own errors, and runs commands like commits and tests once you approve them. It also answers questions about your documents and the web.',
+    a: 'docent is your local AI coding agent: open source and made by Smartloop. Open it in a project, ask for a change, and it writes the code as diffs, checks it with your language servers and build, fixes its own errors, and runs commands like commits and tests once you approve them. It also answers questions about your documents and the web.',
   },
   {
     q: 'Is docent free and open source?',
@@ -156,9 +156,9 @@ export default function DocentTerminal(): ReactNode {
   return (
     <>
       <Head>
-        <title>docent | Open-source AI coding agent for your terminal</title>
+        <title>docent | Your local AI coding agent, open source</title>
         <meta name="description" content={DESCRIPTION} />
-        <meta property="og:title" content="docent | Open-source AI coding agent for your terminal" />
+        <meta property="og:title" content="docent | Your local AI coding agent, open source" />
         <meta property="og:description" content={DESCRIPTION} />
         <link rel="canonical" href="https://smartloop.ai/docent" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -171,7 +171,7 @@ export default function DocentTerminal(): ReactNode {
                 {docentVersion ? <>docent v{docentVersion} · open source · MIT</> : <>open source · MIT</>}
               </p>
               <h1 className={styles.heroTitle}>
-                A coding agent for your terminal. <span className={styles.accent}>On open models.</span>
+                Your local AI coding agent. <span className={styles.accent}>On open models.</span>
               </h1>
               <p className={styles.heroLede}>{DESCRIPTION}</p>
               <div className={styles.heroCta}>
@@ -312,7 +312,7 @@ export default function DocentTerminal(): ReactNode {
           <section className={styles.shell}>
             <div className={styles.section}>
               <p className={styles.kicker}>More than code</p>
-              <h2 className={styles.h2}>An agent harness, not just an autocomplete.</h2>
+              <h2 className={styles.h2}>A local AI coding agent, not just an autocomplete.</h2>
               <ul className={`${styles.docentPoints} ${local.pointGrid}`}>
                 {beyond.map(([title, desc]) => (
                   <li key={title}><Check /><span><b>{title}.</b> {desc}</span></li>

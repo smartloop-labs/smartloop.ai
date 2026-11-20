@@ -4,6 +4,7 @@ import Head from '@docusaurus/Head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HeroDrift from '../components/HeroDrift';
+import DocentMark from '../components/DocentMark';
 import styles from './home.module.css';
 import p from './products.module.css';
 
@@ -23,7 +24,7 @@ const GROUPS: Group[] = [
     product: 'Docent',
     cards: [
       {
-        label: 'Private AI assistant',
+        label: 'AI assistant',
         name: 'Docent Studio',
         desc: 'Your assistant for work: it writes documents, connects to the systems you use and turns the work you repeat into skills.',
         facts: 'macOS · Linux · Windows · free',
@@ -68,22 +69,16 @@ const BELIEFS: [string, string][] = [
 
 const DESCRIPTION = 'Smartloop is an AI research company. We make private software that runs on the computer you already own: Docent, for your terminal and your desktop, and gpushed, a GPU by the second when a job outgrows your machine.';
 
-// A product's logo as a small tile. Docent Studio's mark is drawn inline in
-// the site colors so it follows light and dark; Docent (the CLI) has no
-// mark, so it gets its prompt; the others are their own site icons.
+// A product's logo as a small tile: Docent's own marks (Studio on white,
+// Code on black, in either theme); the others are their own site icons.
 function CardLogo({ logo }: { logo: string }): ReactNode {
-  if (logo === 'studio') {
+  if (logo === 'studio' || logo === 'docent') {
+    const which = logo === 'studio' ? 'studio' : 'code';
     return (
-      <span className={p.logo} aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="18" height="18">
-          <path d="M10 5H11A6 6 0 0 1 17 11V18H10A6 6 0 0 1 4 12V11A6 6 0 0 1 10 5Z" fill="var(--sl-white)" />
-          <circle cx="16.7" cy="8.4" r="3" fill="var(--sl-accent)" />
-        </svg>
+      <span className={`${p.logo} docent-tile--${which}`} aria-hidden="true">
+        <DocentMark product={which} size={26} />
       </span>
     );
-  }
-  if (logo === 'docent') {
-    return <span className={`${p.logo} ${p.logoPrompt}`} aria-hidden="true">›_</span>;
   }
   return <img className={p.logoImg} src={logo} alt="" width={28} height={28} />;
 }
@@ -170,8 +165,8 @@ export default function Home(): ReactNode {
                 Frontier quality. <span className={styles.accent}>Local first.</span>
               </h1>
               <p className={styles.heroLede}>
-                We’re an AI research company. We make private software that runs on the computer you already own: a coding
-                agent for your terminal, a personal assistant for your work, and a GPU by the second when a job
+                We’re an AI research company. We make private software that runs on the computer you already own: a local AI
+                coding agent, a personal assistant for your work, and a GPU by the second when a job
                 outgrows your machine.
               </p>
               <div className={styles.heroCta}>

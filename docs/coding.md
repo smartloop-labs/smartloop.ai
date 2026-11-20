@@ -1,6 +1,6 @@
 # Coding with Docent
 
-Docent is an AI coding harness for the terminal. Open it in a code project, ask for a change, and the answer comes back as files written into the folder, checked with the project's own build, and fixed until the check passes. Work that isn't a file, such as committing, installing a dependency or running the tests, comes back as shell commands that Docent runs for you once you say so.
+Docent is your local AI coding agent. Open it in a code project, ask for a change, and the answer comes back as files written into the folder, checked with the project's own build, and fixed until the check passes. Work that isn't a file, such as committing, installing a dependency or running the tests, comes back as shell commands that Docent runs for you once you say so.
 
 ```sh
 cd my-project
