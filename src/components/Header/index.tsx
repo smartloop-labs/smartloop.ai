@@ -210,12 +210,12 @@ export default function Header() {
 					</div>
 					<div className="hidden md:flex gap-4 items-center">
 						<a
-							href="https://app.smartloop.ai"
+							href="https://console.smartloop.ai"
 							style={loginStyle}
 							onMouseEnter={() => setLoginHover(true)}
 							onMouseLeave={() => setLoginHover(false)}
 						>Login</a>
-						<a href="https://app.smartloop.ai/signup" style={signUpStyle}>Sign Up</a>
+						<a href="https://console.smartloop.ai/signup" style={signUpStyle}>Sign Up</a>
 					</div>
 				</div>
 			</div>

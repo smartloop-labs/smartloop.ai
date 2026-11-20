@@ -9,7 +9,7 @@ AI search lets a project reach current information from the web, so answers refl
 There is nothing to set up and no API key to sign up for. Searches are proxied through Smartloop, so web search works as soon as you are signed in — on every device, with no per-machine configuration.
 
 :::info What it costs
-Search is the one metered part of Smartloop: every account gets a monthly allowance of searches, and you can buy more from your [dashboard](https://app.smartloop.ai/settings/websearch/). Everything else — the models, your documents, tools and skills — stays free and runs on your machine. See [Pricing](https://smartloop.ai/pricing) for details.
+Search is the one metered part of Smartloop: every account gets a monthly allowance of searches, and you can buy more from your [dashboard](https://console.smartloop.ai/settings/websearch/). Everything else — the models, your documents, tools and skills — stays free and runs on your machine. See [Pricing](https://smartloop.ai/pricing) for details.
 :::
 
 ## Hybrid search
@@ -79,7 +79,7 @@ The only number we keep is the count itself, which is what the monthly allowance
 
 ## Checking your usage
 
-Web search is on by default. You can see whether it is active, how many of your month's searches you have used, and when the count resets at [app.smartloop.ai/settings/websearch](https://app.smartloop.ai/settings/websearch/).
+Web search is on by default. You can see whether it is active, how many of your month's searches you have used, and when the count resets at [console.smartloop.ai/settings/websearch](https://console.smartloop.ai/settings/websearch/).
 
 Within a project, the toggle under the prompt (⌘⌥S, or Ctrl+Alt+S) turns search on and off for that project.
 

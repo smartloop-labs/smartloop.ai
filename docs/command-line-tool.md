@@ -74,7 +74,7 @@ Some models, and hosted features such as [web search](./web-search.md), need a S
 /login
 ```
 
-This opens [app.smartloop.ai](https://app.smartloop.ai) in your browser, the same way Studio does. Once you're in, the page hands the session to the local agent, which stores it. `/login --token` pastes a token into a masked field instead, and `/logout` signs out.
+This opens [console.smartloop.ai](https://console.smartloop.ai) in your browser, the same way Studio does. Once you're in, the page hands the session to the local agent, which stores it. `/login --token` pastes a token into a masked field instead, and `/logout` signs out.
 
 ## Projects
 
@@ -162,7 +162,7 @@ Typing `/` lists the commands, narrowing as you type:
 | `/stop [word]` | Stop the commands still running, or those with the word in their command |
 | `/status` | The project, session, account, agent, loaded model and versions |
 | `/usage` | Web searches and cloud model credits left this month, with your plan and reset date, plus the last 7 days' tokens and the estimated cost saved |
-| `/upgrade` | Open [app.smartloop.ai/upgrade](https://app.smartloop.ai/upgrade) to buy more searches or manage billing |
+| `/upgrade` | Open [console.smartloop.ai/upgrade](https://console.smartloop.ai/upgrade) to buy more searches or manage billing |
 | `/clear` | Clear the chat and start a new session |
 | `/help` | All shortcuts and commands |
 | `/quit` | Quit |
@@ -206,7 +206,7 @@ Open Docent in a code project and ask for a change: the reply's files show as li
 
 ## Checking your usage
 
-`/usage` shows how many of the month's [web searches](./web-search.md) you have left as a bar, with your plan and when the count resets, and the share of the month's cloud model credits left. When credits are spent, answers come from local models. Under it are the tokens your local models used over the last 7 days and an estimate of what they would have cost on a hosted model. Once you've used 70% of the month's searches, the footer under the prompt says how many are left and points at `/upgrade`; you can buy more from the dashboard. You can also check your searches at [app.smartloop.ai/settings/websearch](https://app.smartloop.ai/settings/websearch/).
+`/usage` shows how many of the month's [web searches](./web-search.md) you have left as a bar, with your plan and when the count resets, and the share of the month's cloud model credits left. When credits are spent, answers come from local models. Under it are the tokens your local models used over the last 7 days and an estimate of what they would have cost on a hosted model. Once you've used 70% of the month's searches, the footer under the prompt says how many are left and points at `/upgrade`; you can buy more from the dashboard. You can also check your searches at [console.smartloop.ai/settings/websearch](https://console.smartloop.ai/settings/websearch/).
 
 ## Models
 
@@ -248,7 +248,7 @@ SMARTLOOP_API_URL=http://localhost:9000 docent agent status
 |---|---|---|
 | `SLP_HOME` | `~/.smartloop` | Where the framework, projects, models, and logs live. |
 | `SLP_PORT` | a free port | Pin the local agent to this port instead. |
-| `SMARTLOOP_APP_URL` | `https://app.smartloop.ai` | Where `/login` signs you in. |
+| `SMARTLOOP_APP_URL` | `https://console.smartloop.ai` | Where `/login` signs you in. |
 
 ## Platforms
 

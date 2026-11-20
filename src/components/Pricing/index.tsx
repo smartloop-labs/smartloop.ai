@@ -14,7 +14,7 @@ import styles from '../../pages/index.module.css';
 // are spent first, then credits added in Billing, wherever they are used.
 // Prices mirror what the app sells (Stripe); update them together.
 
-const APP = 'https://app.smartloop.ai';
+const APP = 'https://console.smartloop.ai';
 
 export type Product = 'studio' | 'docent';
 
