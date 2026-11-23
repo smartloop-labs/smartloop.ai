@@ -1,6 +1,6 @@
 import ThemedVideo from '@site/src/components/ThemedVideo';
 
-# Docent - Command Line Interface
+# Command reference
 
 **Docent**, powered by Smartloop, is your private AI assistant in the terminal: think Claude Code for your personal documents, running 100% locally. Chat with your PDFs and Office files, search the web, connect MCP servers, and set up your own local AI infrastructure: the agent, its models, and your projects. It started as the command line companion to Docent Studio and still works alongside it. If no local agent is running, Docent downloads the framework and models it needs and starts one itself.
 
@@ -74,7 +74,7 @@ Some models, and hosted features such as [web search](./web-search.md), need a S
 /login
 ```
 
-This opens [app.smartloop.ai](https://app.smartloop.ai) in your browser, the same way Studio does. Once you're in, the page hands the session to the local agent, which stores it. `/login --token` pastes a token into a masked field instead, and `/logout` signs out.
+The chat shows a link and a code: open the link in any browser, on this machine or another, and confirm the code. Docent waits until you have, then the local agent stores the session. That also works over SSH. `/login --token` pastes a token into a masked field instead, and `/logout` signs out.
 
 ## Projects
 
@@ -88,7 +88,9 @@ This opens [app.smartloop.ai](https://app.smartloop.ai) in your browser, the sam
 
 An import gets a fresh project ID, and connection credentials are stripped from the archive, so you will need to reconnect its services.
 
-Opening Docent in a folder that isn't linked to a project yet gives it one of its own, named after the folder, and [syncs](#syncing-a-folder) the folder to it.
+Opening Docent in a folder that isn't linked to a project yet gives it one of its own, named after the folder. The link is kept in `.docent/manifest.json`, which stays out of git, and a project keeps its folder whichever one you open Docent in. Documents in the folder aren't uploaded: the agent reads the files itself.
+
+Skills go in `.docent/skills/<name>.md` (or `.docent/skills/<name>/SKILL.md`) and are handed on to the project when the chat opens it. They're meant to be committed. Run one with `/<skill>`, followed by a prompt if it takes one.
 
 ## Checking the agent
 
@@ -128,13 +130,15 @@ docent
   └  qwen3.5-2b · 322 tokens · 5.2 tok/s · 62s
 ```
 
-Web sources show their URL and documents show their name. The chat runs in the project given with `--project`, else the one the current folder [syncs to](#syncing-a-folder), else the server's current project.
+Web sources show their URL and documents show their name. The chat runs in the project given with `--project`, else the one the current folder is linked to, else the server's current project.
 
 | Key | Action |
 |---|---|
-| Enter | Send the prompt |
-| Esc | Interrupt the reply |
-| ↑ / ↓ | Earlier prompts |
+| Enter | Send the prompt; while a reply runs, queue it to go once the reply is done |
+| Esc | Interrupt the reply; the next queued prompt goes at once |
+| Esc Esc | Clear the prompt |
+| ↑ (prompts queued) | Take back the last queued prompt to edit it |
+| ↑ / ↓ | Earlier prompts, past the prompt's first or last line |
 | Shift+Enter, Alt+Enter or Ctrl+J | New line in the prompt |
 | Mouse wheel, PgUp / PgDn | Scroll the conversation |
 | Drag | Select text and copy it to the clipboard |
@@ -142,47 +146,33 @@ Web sources show their URL and documents show their name. The chat runs in the p
 | Ctrl+S | Turn web search on or off for the project |
 | Ctrl+P | Projects: switch, create, import or delete |
 | Tab (empty prompt) | Turn auto-approve for the agent's shell commands on or off |
-| ? | All shortcuts |
+| Ctrl+C | Quit |
+| ? (empty prompt) | All shortcuts |
 
 Typing `/` lists the commands, narrowing as you type:
 
 | Command | Action |
 |---|---|
-| `/login` | Sign in in the browser without leaving the chat; `/login --token` pastes a token into a masked field instead |
+| `/login` | Sign in with a code you confirm in the browser; `/login --token` pastes a token into a masked field instead |
 | `/logout` | Log out |
 | `/models` | The project's models: enable one (downloading it first) or disable it |
+| `/models <name> caps <list\|auto>` | Set a model's capabilities, over the catalog's |
+| `/models <name> thinking on\|off` | Have a model reason first, or answer sooner (Ctrl+T in `/models`) |
 | `/mcp` | The project's MCP servers, with each one's state and tool count; `/mcp add <url>` connects a new one |
 | `/project` | Switch projects (in a new session), or create, import and delete them; `/project <name>` switches straight to one |
-| `/sync` | Keep this folder's documents in the project; `/sync status` and `/sync stop` too (see [Syncing a folder](#syncing-a-folder)) |
-| `/code [on\|off\|auto]` | Whether prompts in this folder are answered with code (see [Coding with Docent](./coding.md)) |
-| `/write [path]` | Write the last reply's files that were held back, or one of them |
+| `/memory` | What Docent was asked to remember in this folder, kept in `.docent/memory.md`; `/memory clear` forgets it |
+| `/<skill> [prompt]` | Run one of the project's skills |
 | `!<command>` | Run a shell command in the working directory; its output goes to the agent with your next prompt |
 | `!<command> &` | Run it in the background, as a dev server, listed under the prompt until it ends |
-| `/tasks` | The commands still running: ↑ ↓ pick one, Enter shows all it printed, `x` stops it (also Ctrl+B) |
-| `/stop [word]` | Stop the commands still running, or those with the word in their command |
+| `/tasks` | The commands still running: ↑ ↓ pick one, Enter shows all it printed, `x` stops it (also Ctrl+B); clicking a command's `✕ stop` ends it too |
 | `/status` | The project, session, account, agent, loaded model and versions |
 | `/usage` | Web searches and cloud model credits left this month, with your plan and reset date, plus the last 7 days' tokens and the estimated cost saved |
 | `/upgrade` | Open [app.smartloop.ai/upgrade](https://app.smartloop.ai/upgrade) to buy more searches or manage billing |
 | `/clear` | Clear the chat and start a new session |
 | `/help` | All shortcuts and commands |
-| `/quit` | Quit |
+| `/quit` | Quit (also `/exit` or `/q`) |
 
 Models, MCP servers, status, usage and help open under the prompt, where the commands are listed; Esc closes them. When you quit, the session ID is printed so you can resume it.
-
-### Syncing a folder
-
-`/sync` links the folder you opened Docent in to the current project and keeps the project in step with it: documents you add, change or delete there are added, updated or removed in the project a few seconds later, and indexed for search. Each pass reports what it sent, such as `Synced: 2 added, 1 removed`, and the status line shows the indexing that follows.
-
-It picks up PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx), CSV, Markdown and text files, skipping hidden folders and anything in `.gitignore` or a `.docentignore`. Skills go in `.docent/skills/<name>.md` (or `<name>/SKILL.md`) and are pushed to the project too. The link itself is kept in `.docent/manifest.json`, which stays out of git; the skills are meant to be committed.
-
-A project syncs from one folder, and keeps syncing from it whichever folder you open Docent in, or when you switch to it with `/project`; a notice says where when it isn't the one you're in.
-
-| Command | Action |
-|---|---|
-| `/sync` | Link this folder to the current project and start syncing it. A first sync of more than 200 documents or 500 MB asks for `/sync --yes`; your home folder is never synced. |
-| `/sync --move` | Sync this folder for a project that already syncs another; the old folder is paused |
-| `/sync status` | The project's folder, how many documents and skills are synced, and what's waiting to go |
-| `/sync stop` | Pause syncing until `/sync` again |
 
 Drop a file on the terminal, or paste its path, to attach it. It shows in the prompt as `[Image 1]` or `[Doc 1]`, Backspace removes it, and it's uploaded with your message so the answer can draw on it. Images can be PNG or JPEG; documents can be PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx), CSV, text, HTML or JSON. Any other file is turned away with a note in the chat.
 
@@ -192,17 +182,18 @@ Pass a first prompt to send right away:
 docent run "what are some places to visit in the united states?"
 ```
 
-When stdin or stdout isn't a terminal, or with `--plain`, `run` chats line by line instead, for scripts and pipes. It keeps reading prompts until `/quit`, `/exit` or `exit`. The answer streams on stdout, with its sources listed under it, and the assistant's progress is printed as `[step] message` lines on stderr, followed by a `[stats]` line, so a piped reply stays clean.
+`docent run` needs a terminal: it won't start with its input or output piped.
 
 | Option | Meaning |
 |---|---|
-| `--project <project-id>` | Project to chat in. With `--plain`, `run` otherwise lists your projects and asks which one to use. |
-| `--session <session-id>` | Resume an existing conversation. A new one is started when omitted. |
-| `--plain` | Chat line by line instead of in the full-screen app. |
+| `-p`, `--project <project-id>` | Project to chat in |
+| `-s`, `--session <session-id>` | Resume an existing conversation; a new one is started when omitted |
+
+`docent` takes the same options as `docent run`, so `docent -s <session-id>` resumes a session.
 
 ## Coding
 
-Open Docent in a code project and ask for a change: the reply's files show as live diffs, are written into the folder, and are checked with the project's build (`cargo check`, `go build`, `tsc --noEmit`…), with errors sent back to the agent until the check passes. Commits, installs and test runs come back as shell commands that run once you press Enter. See [Coding with Docent](./coding.md).
+Open Docent in a code project and ask for a change: the reply's files show as live diffs, are written into the folder, and are checked with the project's build (`cargo check`, `go build`, `tsc --noEmit`…), with errors sent back to the agent until the check passes. The project's language servers check each file too. Commits, installs and test runs come back as shell commands that run once you press Enter. See [Coding with Docent](./coding.md).
 
 ## Checking your usage
 
@@ -212,9 +203,9 @@ Open Docent in a code project and ask for a change: the reply's files show as li
 
 The orchestrator picks which model handles each step of a request, choosing from the models enabled for the project. See [Model orchestration](./model-orchestration.md). `/models` (or Ctrl+O) lists the available models with their state and capabilities, and enables or disables them.
 
-Enabling a model downloads it first if it isn't on disk yet, with the same checklist as the first run. Models are shared across projects, so each one downloads only once. Models marked `(sign in)` need [`/login`](#signing-in) first. Disabling one also unloads it from memory. The `sl-mini` orchestration model is always on, so it isn't listed.
+Enabling a model downloads it first if it isn't on disk yet, with the same checklist as the first run. Models are shared across projects, so each one downloads only once. A model that needs an account says `sign in to use` until you [`/login`](#signing-in), and one that needs a paid plan says `pro plan`; until then it shows as disabled. Disabling one also unloads it from memory. The `sl-mini` orchestration model is always on, so it isn't listed.
 
-A model's capabilities (`text`, `vision`, `reasoning`, `thinking`) come from the catalog. For a model the catalog doesn't describe, set them yourself with `/models <name> caps text,vision,reasoning`; `/models <name> caps auto` goes back to the catalog's.
+A model's capabilities (`text`, `vision`, `reasoning`, `thinking`) come from the catalog. For a model the catalog doesn't describe, set them yourself with `/models <name> caps text,vision,reasoning`; `/models <name> caps auto` goes back to the catalog's. `/models <name> thinking off` has a model answer without reasoning first, and `thinking on` turns it back on; Ctrl+T does the same for the selected model in `/models`.
 
 ## Connections
 

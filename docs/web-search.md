@@ -1,5 +1,9 @@
 # Web Search
 
+:::note[In Docent and Docent Studio]
+Search works the same in both and draws on the same monthly allowance. Turn it on or off for a project with `Ctrl+S` in Docent, or the toggle under the prompt in Studio (⌘⌥S, or Ctrl+Alt+S). In Docent, `/usage` shows how many searches are left.
+:::
+
 AI search lets a project reach current information from the web, so answers reflect the latest data rather than only the model's training data and the documents you have indexed locally. Search in Smartloop is hybrid: the web is used only to find pages relevant to your question, and everything else — reading your prompt and attachments, ranking the pages, and writing the answer — runs on local models on your device. Every answer that used search is annotated with the sites it drew from.
 
 ![A conversation answering a product question, with a REFERENCES section below the answer listing the three source sites used](web-search.png)

@@ -14,62 +14,25 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
  */
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
+    'intro',
+    'getting-started',
     {
-      type: 'doc',
-      id: 'intro', // '.' means the root of the docs folder
-    },
-    {
-      type: 'doc',
-      id: 'getting-started',
-    },
-    {
-      type: 'doc',
-      id: 'documents',
-    },
-    {
-      type: 'doc',
-      id: 'model-orchestration',
-    },
-    {
-      type: 'doc',
-      id: 'skills',
-    },
-    {
-      type: 'doc',
-      id: 'mcp-servers',
-    },
-    {
-      type: 'doc',
-      id: 'web-search',
-    },
-    {
-      type: 'doc',
-      id: 'customizing-theme',
-    },
-    {
-      type: 'doc',
-      id: 'memory',
-    },
-    {
-      type: 'doc',
-      id: 'command-line-tool',
-    },
-    {
-      type: 'doc',
-      id: 'coding',
-    },
-    {
-      type: 'doc',
-      id: 'local-ai',
+      type: 'category',
+      label: 'Docent',
+      collapsed: false,
+      items: ['coding', 'command-line-tool'],
     },
     {
       type: 'category',
-      label: 'Use cases',
+      label: 'Docent Studio',
       collapsed: false,
-      items: ['templates/legal'],
+      items: ['documents', 'skills', 'memory', 'customizing-theme', 'best-practices'],
     },
-
-
+    'model-orchestration',
+    'mcp-servers',
+    'web-search',
+    'local-ai',
+    'gpushed',
   ]
 };
 

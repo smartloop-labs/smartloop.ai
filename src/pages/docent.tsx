@@ -7,7 +7,7 @@ import DocentTerminal from '../components/Docent/Terminal';
 import styles from './home.module.css';
 import local from './docent.module.css';
 
-// smartloop.ai/docent: Docent Code, your local AI coding agent.
+// smartloop.ai/docent: Docent, your local AI coding agent.
 // Docent Studio, Docent on the desktop, has its own page at /studio so each
 // product is a crawlable URL of its own rather than a hash on this one.
 // Old links to /docent#desktop are sent on to /studio; /docent#coding just

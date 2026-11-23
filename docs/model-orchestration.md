@@ -3,6 +3,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Model Orchestration
 
+:::note[In Docent and Docent Studio]
+The same orchestrator picks the models in both. Choose which models it can use with `/models` (or `Ctrl+O`) in Docent, and with `Ctrl+Shift+M` (or **Auto** in the prompt box) in Studio.
+:::
+
 Smartloop runs several small models rather than one large one, and picks the right one for each step of a request. You don't choose between a vision model, a reasoning model, or a general one — the orchestrator does, based on what the task needs and what your machine can run.
 
 ## Auto Mode

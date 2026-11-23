@@ -10,19 +10,28 @@ import p from './products.module.css';
 
 // smartloop.ai is the company, the way 37signals sits over Basecamp and HEY:
 // the story, then what it makes. Docent is one product used two ways, like
-// Claude and Claude Code: Docent Studio on the desktop, Docent in the terminal
-// for coding. They live on /studio and /docent; gpushed has its own site.
+// Claude Code and Claude: Docent in the terminal for coding, Docent Studio on
+// the desktop. They live on /docent and /studio; gpushed has its own site.
 
 type Card = { label: string; name: string; desc: string; facts: string; to: string; external?: boolean; logo: string; points: string[] };
 
 // One product per group; Docent's two cards are the same product used two
-// ways (desktop and coding), like Claude and Claude Code.
+// ways (coding and desktop), like Claude Code and Claude.
 type Group = { product: string; cards: Card[] };
 
 const GROUPS: Group[] = [
   {
     product: 'Docent',
     cards: [
+      {
+        label: 'Coding agent',
+        name: 'Docent',
+        desc: 'Ask for a change and Docent writes it, checks it with your language servers and your build, and fixes what fails.',
+        facts: 'macOS · Linux · Windows · MIT',
+        to: '/docent',
+        logo: 'docent',
+        points: ['Rust, Go, TypeScript, Python, C and C++', 'Runs commands once you approve them', 'MCP servers and web search'],
+      },
       {
         label: 'AI assistant',
         name: 'Docent Studio',
@@ -32,15 +41,6 @@ const GROUPS: Group[] = [
         logo: 'studio',
         points: ['Your files indexed on your machine', 'Every answer cites its source', 'Models fitted to your hardware'],
       },
-      {
-        label: 'Coding agent',
-        name: 'Docent Code',
-        desc: 'Ask for a change and Docent Code writes it, checks it with your language servers and your build, and fixes what fails.',
-        facts: 'macOS · Linux · Windows · MIT',
-        to: '/docent',
-        logo: 'docent',
-        points: ['Rust, Go, TypeScript, Python, C and C++', 'Runs commands once you approve them', 'MCP servers and web search'],
-      },
     ],
   },
   {
@@ -49,8 +49,8 @@ const GROUPS: Group[] = [
       {
         label: 'GPU',
         name: 'gpushed',
-        desc: 'An NVIDIA GPU box from your Mac in minutes, with CUDA, Python, Node.js and Rust ready. No cloud account; billed by the second.',
-        facts: 'Apple silicon Macs · from $0.88/hr',
+        desc: 'An NVIDIA GPU box from your Mac or Linux machine in minutes, with CUDA, Python, Node.js and Rust ready. No cloud account; billed by the second.',
+        facts: 'macOS · Linux · from $0.88/hr',
         to: 'https://gpushed.dev',
         logo: '/img/logos/gpushed.svg',
         points: ['NVIDIA T4, L4 or A100', '100 GB SSD and a public IP included', 'Prepaid: never charged more than you add'],
@@ -210,7 +210,7 @@ export default function Home(): ReactNode {
                 <p className={styles.kicker}>What we make</p>
                 <h2 className={styles.h2}>Your complete local AI suite.</h2>
                 <p className={styles.sub}>
-                  Docent, your personal assistant for work and your coding agent in the terminal, and a GPU by the second when a job outgrows your machine.
+                  Docent, your coding agent in the terminal and your personal assistant for work, and a GPU by the second when a job outgrows your machine.
                 </p>
               </div>
 
@@ -227,7 +227,7 @@ export default function Home(): ReactNode {
               <div className={styles.heroGlow} aria-hidden="true" />
               <p className={styles.eyebrow}>free to start</p>
               <h2 className={styles.closingTitle}>Start asking. <span className={styles.accent}>Locally.</span></h2>
-              <p className={styles.sub}>Use Docent where you work: on your desktop with Docent Studio, or in your terminal for coding.</p>
+              <p className={styles.sub}>Use Docent where you work: in your terminal for coding, or on your desktop with Docent Studio.</p>
               <div className={styles.closingCta}>
                 <Link to="/docent" className={styles.btnPrimary}>get docent</Link>
                 <Link to="/studio" className={styles.btnGhost}>docent studio</Link>

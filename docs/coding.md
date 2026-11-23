@@ -26,15 +26,6 @@ A folder is a **code project** when a manifest sits at its top: `Cargo.toml`, `p
 
 In a code project, a prompt that asks for a change or asks about the code is answered with code. Anywhere else, a prompt that asks for something to be made (create, generate, scaffold, write, add, fix…) is answered with files too, and so is one that's plainly about programming.
 
-| Command | Action |
-|---|---|
-| `/code` | Say whether this folder is treated as a code project, and why |
-| `/code on` | Treat this folder as a code project, whatever its files say |
-| `/code off` | Treat it as a documents project |
-| `/code auto` | Go back to deciding from its files |
-
-The choice is kept in `.docent/manifest.json`, next to the folder's [sync](./command-line-tool.md#syncing-a-folder) link.
-
 ## What the agent is sent
 
 Each coding turn, Docent sends the agent:
@@ -47,16 +38,11 @@ How much goes in follows the widest context window among the project's enabled m
 
 ## Files in the reply
 
-The agent answers with whole files, each in a fenced block with its path above. As the reply streams in, each file shows as a diff against the one in the folder: only the changed hunks, each under its `@@` header with a few lines of context, every line numbered in the old and new file, additions on green and removals on red. A new file shows as additions, folded past 40 lines.
+The agent answers with files. A new file comes whole; a change to a file that's already there comes as an edit, a block of search-and-replace pairs. As each one streams in, the chat shows it as a diff against the file in the folder: only the changed hunks, each under its `@@` header with a few lines of context, every line numbered in the old and new file, additions on green and removals on red. A new file shows as additions, folded past 40 lines.
 
-When the reply finishes, its files are written into the folder and the chat lists what each one gained and lost by lines.
+Each file is written into the folder as soon as its block is complete, without asking; only shell commands are asked about. When the reply finishes, the chat lists what each file gained and lost by lines.
 
-A file the agent wasn't shown whole is never replaced by a shorter reply, since that would drop the rest of the file. Its part shows as it is, and `/write` puts it down if it's what you want:
-
-| Command | Action |
-|---|---|
-| `/write` | Write the last reply's files that were held back |
-| `/write <path>` | Write just that one |
+An edit whose search text isn't in the file can't be applied. Docent sends the file back to the agent and asks for the edit again, twice at most, before leaving it to you.
 
 ## Checks and the fix loop
 
@@ -69,7 +55,9 @@ Once the files are written, the project is checked with a quick command for its 
 | JavaScript / TypeScript | the package's `build` script, or `tsc --noEmit` |
 | Scripts with no build | each file by what it is: `bash -n`, `python3 -m py_compile`, `node --check`, `ruby -c`, `php -l`… |
 
-The check runs in the chat like a shell command, its output showing as it comes. If it fails, the errors go back to the agent, which answers with fixed files, which are checked again, round after round until the check passes. It stops early only when a round changes nothing (the same failure again, or a reply with no file), or when you press **Esc**.
+When a language server for the file's language is on your `PATH` (`rust-analyzer`, `gopls`, `typescript-language-server`, `pyright` or `clangd`), each written file also goes to it, and the errors it reports are part of the check.
+
+The check runs in the chat like a shell command, its output showing as it comes. If it fails, the errors go back to the agent, which answers with fixed files, which are checked again, round after round until the check passes. It stops after five rounds (three when it's the tests that fail, since a test can want more than the code changed), when a round gives the same failure as an earlier one, or when you press **Esc**.
 
 ## Shell commands
 
@@ -83,7 +71,7 @@ Work that isn't a file the agent answers with shell commands, in a fenced block 
 
 Tab on an empty prompt turns auto-approve on or off at any time, and the footer says when it's on. A command with a placeholder to fill in, like `<your-username>`, is left out and the chat says so.
 
-Each command shows on its own `$` line over what it printed, streaming as it runs, so a build or test run is watched, not waited on. What the commands print goes back to the agent, the way a tool's result does: a failure to be put right with other commands or files, and the last result so it can say what was done and what's left. That runs for up to three rounds, or until Esc. So "commit and push the changes" ends in a commit, a push and a line saying so.
+Each command shows on its own `$` line over what it printed, streaming as it runs, so a build or test run is watched, not waited on. What the commands print goes back to the agent, the way a tool's result does: a failure to be put right with other commands or files, and the last result so it can say what was done and what's left. That goes on until the work is done, or until Esc. So "commit and push the changes" ends in a commit, a push and a line saying so.
 
 ### Running your own
 
@@ -103,7 +91,6 @@ A command that keeps running, such as a dev server or a watcher, ends with `&`: 
 | See all it printed | Click its line under the prompt, or its command in its entry; Esc closes it |
 | Pick one from the keyboard | `/tasks` or Ctrl+B (twice under tmux), then ↑ ↓ and Enter |
 | Stop one | `x` in `/tasks`, or click its `✕ stop` |
-| Stop several | `/stop` ends every running command; `/stop <word>` ends those with the word in their command |
 
 Quitting Docent ends them all.
 
@@ -124,11 +111,12 @@ For a model the catalog doesn't describe, set its capabilities yourself:
 
 | Command | Action |
 |---|---|
-| `/code [on\|off\|auto]` | Whether prompts in this folder are answered with code |
-| `/write [path]` | Write the last reply's held-back files |
-| `!<command>` | Run a shell command; its output goes to the agent |
+| `!<command>` | Run a shell command; its output goes to the agent with your next prompt |
 | `!<command> &` | Run it in the background |
-| `/tasks`, Ctrl+B | The commands still running |
-| `/stop [word]` | Stop running commands |
+| `/tasks`, Ctrl+B | The commands still running: Enter shows all one printed, `x` stops it |
+| Enter, Tab, Esc | When the agent's commands are asked about: run them, run them and auto-approve from now on, or skip them |
 | Tab (empty prompt) | Auto-approve the agent's commands, on or off |
+| Enter while a reply runs | Queue the prompt; it goes once the reply, its checks and its commands are done |
+| `/memory` | What Docent was asked to remember in this folder; `/memory clear` forgets it |
 | `/models <name> caps <list\|auto>` | Set a model's capabilities |
+| `/models <name> thinking on\|off` | Have a model reason first, or answer sooner |

@@ -764,23 +764,25 @@ html,
   --ifm-navbar-link-hover-color: var(--sl-white);
 }
 
-/* Headings in the display face, set as tight as the landing page's.
-   Tailwind's preflight unsets heading weight (it inherits from body), which
-   is why --ifm-heading-font-weight alone left them at 400. */
+/* Headings in the landing page's headline face (Inter Tight, 600, set
+   tight), so the docs read as the same site; body text stays on
+   --sl-display, as it does there. Tailwind's preflight unsets heading
+   weight (it inherits from body), which is why --ifm-heading-font-weight
+   alone left them at 400. */
 .markdown h1,
 .markdown h2,
 .markdown h3,
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  font-family: var(--sl-display);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-family: var(--sl-headline);
+  font-weight: 600;
+  letter-spacing: -0.025em;
   color: var(--sl-white);
 }
 
 .markdown h1 {
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
 }
 
 .markdown h2 {

@@ -48,7 +48,7 @@ const loop: [string, string][] = [
   ['You see diffs as they stream.', 'Each file shows as numbered hunks, additions in green and removals in red, and is written into the folder as soon as it is done. Changes to files that already exist ask first.'],
   ['It checks the build and fixes it.', 'A fast check for the kind of project runs after every change. Errors go back to the model, round after round, until the check passes.'],
   ['Commands wait for your OK.', 'Commits, installs and test runs come back as shell commands. Enter runs them, Tab approves the rest of the session, Esc skips. Their output goes back to the agent, so a failing test gets fixed next.'],
-  ['Long runs go to the background.', 'Dev servers and watchers keep running under the prompt while you keep chatting. /tasks shows them and /stop ends them.'],
+  ['Long runs go to the background.', 'Dev servers and watchers keep running under the prompt while you keep chatting. /tasks shows them, and x stops one.'],
 ];
 
 // Language → the language server and the build check docent uses.
@@ -65,7 +65,7 @@ const beyond: [string, string][] = [
   ['Chat with your files', 'Drop a PDF, Office file, CSV, text file or image on the terminal and ask about it. Documents are indexed on your machine.'],
   ['Web search', 'Sign in with /login for AI search, so answers can cite current docs and library APIs, with their sources.'],
   ['MCP servers', 'Connect tools with /mcp add <url> and docent can call them while it works.'],
-  ['Scriptable', 'Pipe a plain answer into your scripts with --plain, or run docent over SSH.'],
+  ['Over SSH', 'Run docent on a remote machine: sign in with a code you confirm in any browser.'],
 ];
 
 const faqs: { q: string; a: string }[] = [

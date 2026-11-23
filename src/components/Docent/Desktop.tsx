@@ -246,7 +246,7 @@ export default function DocentDesktop(): ReactNode {
                   <Icon name="download" /> download template
                   <span className={styles.btnMeta}>{legal.starter.size}</span>
                 </a>
-                <Link to="/docs/templates/legal" className={styles.btnSecondary}>
+                <Link to="/docs/best-practices" className={styles.btnSecondary}>
                   read the guide <Icon name="arrow" />
                 </Link>
                 <Link to="/contact/" className={styles.btnGhost}>contact us</Link>
