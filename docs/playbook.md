@@ -1,4 +1,4 @@
-# Project playbook
+# Playbook
 
 The best way to set up a project in Docent Studio, shown by building one from start to finish: **Halbrook Wren LLP**, a fictional law firm reviewing its client Halvorsen Analytics' contracts. When it's done, you download it as a **project template**: a zip your team imports to start their own projects from the same documents and skills.
 
