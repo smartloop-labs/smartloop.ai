@@ -1,6 +1,14 @@
-# Example template
+# Best practices
 
-This page builds a [project template](./project-templates.md) from start to finish: **Halbrook Wren LLP**, a fictional law firm reviewing its client Halvorsen Analytics' contracts. Follow the steps to see how a template is made, then do the same with your own documents and skills.
+The best way to set up a project in Docent Studio, shown by building one from start to finish: **Halbrook Wren LLP**, a fictional law firm reviewing its client Halvorsen Analytics' contracts. The finished project is also a [project template](./project-templates.md) your team can import.
+
+* **Describe the project.** Say what it's for, so whoever imports it knows. ([Step 1](#1-create-the-project))
+* **Add only the documents everyone needs.** Shared forms and precedent go in the template; one client's files go in that client's project. ([Step 2](#2-add-the-documents))
+* **Put the work you repeat into skills.** A checklist in a skill gets the same review every time. ([Step 3](#3-write-the-skills))
+* **Enable a model for each role.** Vision, document processing, and reasoning, as large as your machine allows. ([Step 4](#4-choose-the-models))
+* **Test before you share.** Ask real questions and check the answers against their references. ([Step 5](#5-try-it))
+* **Share a clean project.** Delete your test conversations before you download it. ([Step 6](#6-download-the-template))
+* **Keep one project per matter.** Projects are isolated, so one client's files never inform another's answers.
 
 If you'd rather start with the finished result, [import it](#import-the-finished-template) instead.
 

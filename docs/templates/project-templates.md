@@ -41,8 +41,6 @@ The zip holds:
 The zip carries the project's documents and its conversations as they are. Before you share a template, remove any document or conversation that shouldn't leave your hands, or set up a clean project just for the template.
 :::
 
-## Example template
+## Best practices
 
-| Template | What's in it |
-|---|---|
-| [Example template](./legal.md) | **Halbrook Wren LLP**, built step by step: a fictional law firm's client contracts, with skills for contract review and comparing versions |
+[Best practices](./legal.md) builds a template step by step: **Halbrook Wren LLP**, a fictional law firm's client contracts, with skills for contract review and comparing versions. Follow it to set up your own projects the same way, or download the finished template and import it.
