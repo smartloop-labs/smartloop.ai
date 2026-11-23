@@ -34,6 +34,12 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: ['model-orchestration', 'mcp-servers', 'web-search', 'local-ai'],
     },
+    {
+      type: 'category',
+      label: 'gpushed',
+      collapsed: false,
+      items: ['gpushed'],
+    },
   ]
 };
 
