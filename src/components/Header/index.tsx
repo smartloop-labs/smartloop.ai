@@ -162,7 +162,7 @@ export default function Header() {
 											<ProductMark product="gpushed" />
 											<span className="sl-submenu__text">
 												<span className="sl-submenu__name">gpushed <span className="sl-submenu__ext" aria-hidden="true">↗</span></span>
-												<span className="sl-submenu__desc">A GPU by the second from your Mac: no cloud account needed</span>
+												<span className="sl-submenu__desc">A GPU by the second from your Mac or Linux machine: no cloud account needed</span>
 											</span>
 										</a>
 									</div>

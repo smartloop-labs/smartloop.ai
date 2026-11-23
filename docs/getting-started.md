@@ -104,7 +104,7 @@ Here is how a small project comes together, from an empty folder to a commit.
 ### Next steps
 
 * [Coding with Docent](./coding.md): how Docent writes, checks, and fixes code.
-* [Docent - Command Line Interface](./command-line-tool.md): every command, key binding, and option.
+* [Docent command reference](./command-line-tool.md): every command, key binding, and option.
 
 ## Docent Studio
 

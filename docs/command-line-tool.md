@@ -1,6 +1,6 @@
 import ThemedVideo from '@site/src/components/ThemedVideo';
 
-# Docent - Command Line Interface
+# Command reference
 
 **Docent**, powered by Smartloop, is your private AI assistant in the terminal: think Claude Code for your personal documents, running 100% locally. Chat with your PDFs and Office files, search the web, connect MCP servers, and set up your own local AI infrastructure: the agent, its models, and your projects. It started as the command line companion to Docent Studio and still works alongside it. If no local agent is running, Docent downloads the framework and models it needs and starts one itself.
 

@@ -3,6 +3,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Local AI
 
+:::note[In Docent and Docent Studio]
+Docent and Studio share one local agent: whichever starts first runs it, and the other connects to it. The API on this page is that agent's, so it serves the same projects and models to both. See [Using Docent with Studio](./command-line-tool.md#using-docent-with-studio).
+:::
+
 Smartloop runs its models on your own hardware. Inference happens on the device, not on a hosted service, and your documents never leave it — the only traffic out is what you ask for, such as a [web search](./web-search.md) or a call to a [connection](./mcp-servers.md). On top of that, it serves an **OpenAI-compatible** API, so you can build on local infrastructure with the same clients and SDKs you would use against a cloud provider.
 
 This page covers what runs on your machine, how to check on it, and how to query it.

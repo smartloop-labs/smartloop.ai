@@ -1,5 +1,9 @@
 # Connections
 
+:::note[In Docent and Docent Studio]
+Connections work the same in both, and a server added in one shows up in the other. In Docent, connect one with `/mcp add <url>` and list them with `/mcp`; in Studio, use the Connections panel. See [Docent's connections](./command-line-tool.md#connections).
+:::
+
 Connections let your assistant work with tools and data beyond this app. Connecting one gives it new capabilities through a [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) server — so it can search a wiki, file a ticket, or read a board on your behalf, using your own account.
 
 Connections belong to a project, not to the app. Each project decides what it can reach, so a work project and a personal one need not share the same services.

@@ -152,7 +152,7 @@ Download the template the steps above build, or use one a colleague shared:
 
 The documents are indexed in the background; they show as **INDEXING** in the Documents panel for a few seconds. Then try the prompts from [step 5](#5-try-it).
 
-Docent imports templates too: `/project import <zip>` in the chat, or drop the zip on an empty prompt. See [Docent - Command Line Interface](./command-line-tool.md#projects).
+Docent imports templates too: `/project import <zip>` in the chat, or drop the zip on an empty prompt. See [Docent command reference](./command-line-tool.md#projects).
 
 :::caution Keep a matter fully offline
 Two features reach off your machine, and only when you use them: [web search](./web-search.md) sends the search query, and [connections](./mcp-servers.md) send what a tool call needs to the service you connected. For a privileged matter, turn search off and leave connections off for that project. Everything else stays local.

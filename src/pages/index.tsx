@@ -49,8 +49,8 @@ const GROUPS: Group[] = [
       {
         label: 'GPU',
         name: 'gpushed',
-        desc: 'An NVIDIA GPU box from your Mac in minutes, with CUDA, Python, Node.js and Rust ready. No cloud account; billed by the second.',
-        facts: 'Apple silicon Macs · from $0.88/hr',
+        desc: 'An NVIDIA GPU box from your Mac or Linux machine in minutes, with CUDA, Python, Node.js and Rust ready. No cloud account; billed by the second.',
+        facts: 'macOS · Linux · from $0.88/hr',
         to: 'https://gpushed.dev',
         logo: '/img/logos/gpushed.svg',
         points: ['NVIDIA T4, L4 or A100', '100 GB SSD and a public IP included', 'Prepaid: never charged more than you add'],

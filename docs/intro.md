@@ -12,7 +12,7 @@ At its core, it uses a decision model that works like a mission control, selecti
 
 ## What you can do
 
-- **Code from the terminal.** Docent is a local AI coding agent: ask for a change and it writes the files, checks them with your project's build and language servers, and fixes what fails. It also chats with your projects, shows the sources behind each answer, and manages the agent and models, with or without Studio. See [Coding with Docent](./coding.md) and [Docent - Command Line Interface](./command-line-tool.md).
+- **Code from the terminal.** Docent is a local AI coding agent: ask for a change and it writes the files, checks them with your project's build and language servers, and fixes what fails. It also chats with your projects, shows the sources behind each answer, and manages the agent and models, with or without Studio. See [Coding with Docent](./coding.md) and [Docent command reference](./command-line-tool.md).
 - **Ask questions across your own documents.** Drop PDFs, Office files, text, or images into a project and a single prompt can draw on all of them at once, with the sources it used shown alongside the answer. See [Bring your documents](./documents.md).
 - **Extract information from images and files.** Attach a scan, screenshot, or photo to a prompt and pull structured details out of it — a vision model does the reading. Useful for forms, IDs, receipts, and scanned pages.
 - **Generate new content.** Ask for summaries, comparisons, tables, or drafts grounded in your project's context rather than written from a blank page.
