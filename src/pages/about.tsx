@@ -80,7 +80,7 @@ export default function About(): ReactNode {
                 </p>
                 <p className={local.storyText}>
                   It worked, and other clients had the same problem. What we built for one bank became the foundation we now
-                  use to serve all of them, and the products anyone can use: Docent Studio, Docent Code and gpushed.
+                  use to serve all of them, and the products anyone can use: Docent, Docent Studio and gpushed.
                 </p>
               </div>
 

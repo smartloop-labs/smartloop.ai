@@ -24,6 +24,14 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
+      id: 'coding',
+    },
+    {
+      type: 'doc',
+      id: 'command-line-tool',
+    },
+    {
+      type: 'doc',
       id: 'documents',
     },
     {
@@ -52,21 +60,13 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      id: 'command-line-tool',
-    },
-    {
-      type: 'doc',
-      id: 'coding',
-    },
-    {
-      type: 'doc',
       id: 'local-ai',
     },
     {
       type: 'category',
-      label: 'Use cases',
+      label: 'Studio templates',
       collapsed: false,
-      items: ['templates/legal'],
+      items: ['templates/project-templates', 'templates/legal'],
     },
 
 

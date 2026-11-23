@@ -144,18 +144,18 @@ export default function Header() {
 								</Link>
 								<div className="sl-submenu">
 									<div className="sl-submenu__panel">
+										<Link to="/docent" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
+											<ProductMark product="docent" />
+											<span className="sl-submenu__text">
+												<span className="sl-submenu__name">Docent</span>
+												<span className="sl-submenu__desc">Your local AI coding agent: writes, builds and fixes</span>
+											</span>
+										</Link>
 										<Link to="/studio" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
 											<ProductMark product="studio" />
 											<span className="sl-submenu__text">
 												<span className="sl-submenu__name">Docent Studio</span>
 												<span className="sl-submenu__desc">Your private AI assistant: documents, systems, skills</span>
-											</span>
-										</Link>
-										<Link to="/docent" className="sl-menu__link sl-submenu__link" onClick={closeMenu}>
-											<ProductMark product="docent" />
-											<span className="sl-submenu__text">
-												<span className="sl-submenu__name">Docent Code</span>
-												<span className="sl-submenu__desc">Your local AI coding agent: writes, builds and fixes</span>
 											</span>
 										</Link>
 										<a href="https://gpushed.dev" className="sl-menu__link sl-submenu__link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>

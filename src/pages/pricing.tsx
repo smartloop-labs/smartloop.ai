@@ -6,7 +6,7 @@ import { PRODUCTS, PricingLayout, pricingPath, type Product } from '../component
 import styles from './index.module.css';
 
 // The overview: one card per product, each linking to its own pricing page
-// (/studio/pricing, /docent/pricing). Old tab links (/pricing#studio,
+// (/docent/pricing, /studio/pricing). Old tab links (/pricing#studio,
 // #docent) go to the matching page; #gpushed goes to gpushed.dev, which has
 // its own pricing (it bills through the smartloop account).
 export default function Pricing(): ReactNode {
@@ -28,7 +28,7 @@ export default function Pricing(): ReactNode {
   return (
     <PricingLayout
       title="Pricing | Smartloop"
-      description="Smartloop pricing: Docent Studio and Docent Code are free, with Pro, Plus and Max plans for cloud models; gpushed GPUs from $0.88/hr, billed through your smartloop account."
+      description="Smartloop pricing: Docent and Docent Studio are free, with Pro, Plus and Max plans for cloud models; gpushed GPUs from $0.88/hr, billed through your smartloop account."
       canonical="https://smartloop.ai/pricing/"
       current={null}
     >

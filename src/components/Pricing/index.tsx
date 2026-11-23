@@ -5,7 +5,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import styles from '../../pages/index.module.css';
 
-// Pricing, one page per product: /studio/pricing and /docent/pricing, with
+// Pricing, one page per product: /docent/pricing and /studio/pricing, with
 // /pricing as the overview.
 //
 // The smartloop account is the central account and billing. gpushed
@@ -115,7 +115,7 @@ const studioPlans: Plan[] = [
   },
 ];
 
-// Docent Code, the coding agent: MIT licensed and free; signing in is
+// Docent, the coding agent: MIT licensed and free; signing in is
 // optional and uses the account's plan credits for cloud models and search.
 const docentPlans: Plan[] = [
   {
@@ -132,14 +132,14 @@ const docentPlans: Plan[] = [
     featuresLabel: 'Included in Free',
     price: 'Free',
     priceLabel: '',
-    cta: 'Install Docent Code',
+    cta: 'Install Docent',
     ctaHref: '/docent',
     featured: false,
   },
   {
     name: 'Enterprise',
     badge: 'For teams',
-    desc: 'Docent Code stays free at any scale. Hire us to roll it out and get it working on your codebase.',
+    desc: 'Docent stays free at any scale. Hire us to roll it out and get it working on your codebase.',
     features: [
       'Rollout across your engineering team',
       'Setting up your local AI infrastructure',
@@ -157,16 +157,16 @@ const docentPlans: Plan[] = [
 
 export const PRODUCTS: { id: Product; name: string; line: string; summary: string }[] = [
   {
+    id: 'docent',
+    name: 'Docent',
+    line: 'Your local AI coding agent. Open source, free, and no account needed.',
+    summary: 'Free and open source. Sign in to use your plan’s cloud models.',
+  },
+  {
     id: 'studio',
     name: 'Docent Studio',
     line: 'Your private AI assistant for work. Free on your machine; paid plans add cloud models.',
     summary: 'Free locally. Pro $5, Plus $20 and Max $50 a month for cloud models.',
-  },
-  {
-    id: 'docent',
-    name: 'Docent Code',
-    line: 'Your local AI coding agent. Open source, free, and no account needed.',
-    summary: 'Free and open source. Sign in to use your plan’s cloud models.',
   },
 ];
 
@@ -267,7 +267,7 @@ export function PricingLayout({
           <section className="flex flex-col items-center text-center px-6 pt-28 md:pt-36 pb-6 max-w-5xl mx-auto w-full">
             <h1 className={`text-3xl md:text-5xl mb-4 leading-tight ${styles.heroTitle}`}>Pricing</h1>
             <p className="text-zinc-400 max-w-xl">
-              Docent Studio and Docent Code are free. A smartloop plan adds cloud models; its credits also cover <a href="https://gpushed.dev" className="underline">gpushed</a>, which bills through the same account.
+              Docent and Docent Studio are free. A smartloop plan adds cloud models; its credits also cover <a href="https://gpushed.dev" className="underline">gpushed</a>, which bills through the same account.
             </p>
           </section>
           <section className="px-6 pt-6 max-w-4xl mx-auto w-full">
@@ -297,8 +297,8 @@ const META: Record<Product, { title: string; description: string }> = {
     description: 'Docent Studio is free on your machine. Pro ($5), Plus ($20) and Max ($50) a month add cloud model credits.',
   },
   docent: {
-    title: 'Docent Code pricing | Smartloop',
-    description: 'Docent Code is free and open source (MIT). Sign in to use your smartloop plan’s cloud models and AI search.',
+    title: 'Docent pricing | Smartloop',
+    description: 'Docent is free and open source (MIT). Sign in to use your smartloop plan’s cloud models and AI search.',
   },
 };
 
@@ -326,7 +326,7 @@ export function ProductPricing({ product }: { product: Product }): ReactNode {
         <>
           <PlanGrid plans={docentPlans} />
           <p className={`${styles.pricingNote} mt-6`}>
-            Signed in, Docent Code uses the same plan as Docent Studio; see{' '}
+            Signed in, Docent uses the same plan as Docent Studio; see{' '}
             <Link to={pricingPath('studio')} className="underline">Studio pricing</Link> for Pro, Plus and Max. {searchNote}
           </p>
         </>

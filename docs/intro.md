@@ -12,6 +12,7 @@ At its core, it uses a decision model that works like a mission control, selecti
 
 ## What you can do
 
+- **Code from the terminal.** Docent is a local AI coding agent: ask for a change and it writes the files, checks them with your project's build and language servers, and fixes what fails. It also chats with your projects, shows the sources behind each answer, and manages the agent and models, with or without Studio. See [Coding with Docent](./coding.md) and [Docent - Command Line Interface](./command-line-tool.md).
 - **Ask questions across your own documents.** Drop PDFs, Office files, text, or images into a project and a single prompt can draw on all of them at once, with the sources it used shown alongside the answer. See [Bring your documents](./documents.md).
 - **Extract information from images and files.** Attach a scan, screenshot, or photo to a prompt and pull structured details out of it — a vision model does the reading. Useful for forms, IDs, receipts, and scanned pages.
 - **Generate new content.** Ask for summaries, comparisons, tables, or drafts grounded in your project's context rather than written from a blank page.
@@ -20,16 +21,16 @@ At its core, it uses a decision model that works like a mission control, selecti
 - **Search the web for current information.** A project can combine your documents with the latest data from the web — recommending a product, for instance — with every answer annotated with the sites it drew from. Search is hybrid: only the query leaves your machine, and local models read the pages and write the answer. No key or setup needed; every account gets a monthly allowance of searches, and you can buy more from your [dashboard](https://app.smartloop.ai/settings/websearch/). See [Web search](./web-search.md).
 - **Control what it remembers.** A thumbs up or thumbs down on any response decides what enters the project's memory, so you don't supply the same context twice. See [Memory](./memory.md).
 - **Build on the API.** Smartloop exposes an OpenAI-compatible endpoint for automating project creation, uploading documents, and integrating with your own applications. See [Local AI](./local-ai.md).
-- **Work from the terminal.** The CLI runs Smartloop with or without Studio: it sets up the agent and models on first use, signs you in, manages projects and models, and chats with the assistant, showing the sources behind each answer. See [Docent - Command Line Interface](./command-line-tool.md).
 
 ## Where to start
 
-1. [Getting started](./getting-started.md) — install Studio, sign in, and run your first prompt in General Chat.
-2. [Bring your documents](./documents.md) — create a project and give it your own files.
-3. [Skills](./skills.md) — automate a task you repeat.
-4. [Connections](./mcp-servers.md) — let the assistant act on other systems.
-5. [Web search](./web-search.md) — bring in current data from the web.
-6. [Model Orchestration](./model-orchestration.md) — how model selection works under the hood.
+1. [Getting started](./getting-started.md) — install Docent in your terminal or Docent Studio on your desktop, and run your first prompt.
+2. [Coding with Docent](./coding.md) — let Docent write, build, and fix code in your project.
+3. [Bring your documents](./documents.md) — create a project and give it your own files.
+4. [Skills](./skills.md) — automate a task you repeat.
+5. [Connections](./mcp-servers.md) — let the assistant act on other systems.
+6. [Web search](./web-search.md) — bring in current data from the web.
+7. [Model Orchestration](./model-orchestration.md) — how model selection works under the hood.
 
 ## Contact
 For more information, visit [Smartloop](https://smartloop.ai/) or reach out via email: hello@smartloop.ai.
