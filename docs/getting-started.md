@@ -199,7 +199,7 @@ Open Project Settings by pressing `Ctrl+Shift+,` or by clicking the gear icon in
 
 ### Downloading a Project
 
-You can download a project and all its content. To do so, open the project settings by clicking the settings icon, then click the **Download** button. This will package the project — including its documents and skills — into a zip file that you can send to others. The recipient can then import it as a new project. See the [Playbook](./playbook.md).
+You can download a project and all its content. To do so, open the project settings by clicking the settings icon, then click the **Download** button. This will package the project — including its documents and skills — into a zip file that you can send to others. The recipient can then import it as a new project. See [Best practices](./best-practices.md).
 
 ![Downloading Project](./project-settings.png)
 

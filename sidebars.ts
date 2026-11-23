@@ -64,7 +64,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      id: 'playbook',
+      id: 'best-practices',
     },
 
 
