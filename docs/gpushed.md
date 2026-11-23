@@ -1,6 +1,6 @@
 # gpushed
 
-Docent runs its models on your own machine, so the models it can use are the ones your GPU can hold. **gpushed** gives you a bigger machine when you need one: an NVIDIA GPU box, ready in a few minutes from your Mac or Linux machine, where you run Docent the same way you do at home, with larger local models such as Qwen3 Coder 30B.
+Docent runs its models on your own machine, so the models it can use are the ones your GPU can hold. **gpushed** (say "GPU shed") gives you a bigger machine when you need one: an NVIDIA GPU box, ready in a few minutes from your Mac or Linux machine, where you run Docent the same way you do at home, with larger local models such as Qwen3 Coder 30B.
 
 The box is an Ubuntu 22.04 machine with the driver, CUDA, Python, Node.js and Rust ready, and everything Docent needs to run on its GPU. There's no cloud account, quota request or Terraform to set up. You sign in with your Smartloop account, pay per second from a prepaid balance, and stop or delete the box when you're done. See [gpushed.dev](https://gpushed.dev) for an overview.
 
