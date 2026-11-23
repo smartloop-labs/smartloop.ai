@@ -28,12 +28,10 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: ['documents', 'skills', 'memory', 'customizing-theme', 'best-practices'],
     },
-    {
-      type: 'category',
-      label: 'Shared by both',
-      collapsed: false,
-      items: ['model-orchestration', 'mcp-servers', 'web-search', 'local-ai'],
-    },
+    'model-orchestration',
+    'mcp-servers',
+    'web-search',
+    'local-ai',
     {
       type: 'category',
       label: 'gpushed',
