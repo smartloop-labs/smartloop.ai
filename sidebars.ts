@@ -64,9 +64,10 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Studio templates',
+      label: 'Project templates',
       collapsed: false,
-      items: ['templates/project-templates', 'templates/legal'],
+      link: { type: 'doc', id: 'templates/project-templates' },
+      items: ['templates/legal'],
     },
 
 

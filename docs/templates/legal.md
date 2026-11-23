@@ -1,33 +1,18 @@
-# Legal template
+# Example template
 
-**Halbrook Wren LLP** is a Docent Studio [project template](./project-templates.md) for legal work: a fictional law firm reviewing its client Halvorsen Analytics' contracts, with the contracts already in it and two skills for reviewing them. Import it to see how Studio works on privileged material, then make it the base for your own matters.
+This page builds a [project template](./project-templates.md) from start to finish: **Halbrook Wren LLP**, a fictional law firm reviewing its client Halvorsen Analytics' contracts. Follow the steps to see how a template is made, then do the same with your own documents and skills.
 
-<a href="/starters/Halbrook-Wren-LLP.zip" download>**Download Halbrook Wren LLP**</a> (zip, 80 KB)
+If you'd rather start with the finished result, [import it](#import-the-finished-template) instead.
 
 The firm, its client, and every company, person, and term in the template are made up.
 
-## Import the template
+## 1. Create the project
 
-1. In Studio, click **+ New Project**.
-2. Choose **Import**, then pick the zip (or drop it onto the dialog), and click **Create**. The project is named **Halbrook Wren LLP**.
-3. Turn web search off with the toggle under the prompt (⌘⌥S, or Ctrl+Alt+S), so the project works only from its own documents.
-4. Enable the models below. An imported project starts with every model switched off.
+In Docent Studio, click **+ New Project** in the left navigation bar, name it **Halbrook Wren LLP**, and pick a color. Open **Project Settings** (`Ctrl+Shift+,`) and give it a description that says what it's for, such as *"Sample contracts for a fictional company, with contract review skills."* Whoever imports the template sees it.
 
-The documents are indexed in the background; they show as **INDEXING** in the Documents panel for a few seconds.
+## 2. Add the documents
 
-:::tip Models for this template
-Press `Ctrl+Shift+M`, or click **Auto** in the prompt box, and enable a model for each role:
-
-| Role | Model | Used for |
-|---|---|---|
-| Vision | Qwen Vision (`qwen2-vl-2b`) | Reading scanned exhibits or photographed pages |
-| Document processing | Ministral 3 (`ministral3-3b`) | Parsing and indexing the documents |
-| Reasoning | Qwen 3.5 (`qwen3.5-2b`) | Answering your questions |
-
-Bigger is better: if your machine has the memory, a larger model in each role gives better answers.
-:::
-
-## What's in it
+Open the Documents panel (`Ctrl+Shift+D`) and add the files the work is about. For this template, that's five agreements:
 
 | Document | What it is |
 |---|---|
@@ -37,42 +22,13 @@ Bigger is better: if your machine has the memory, a larger model in each role gi
 | `Halvorsen-Brightwater-Mutual-NDA.pdf` | Mutual NDA with a residuals clause |
 | `Pell-Crane-Supply-Agreement.docx` | One-sided office supply agreement |
 
-| Skill | What it does |
-|---|---|
-| `/contract-review` | A first-pass review of one agreement against a fixed checklist |
-| `/compare-versions` | What changed between two versions of an agreement |
+In your own template, these are the documents everyone needs to start with: standard forms, precedent, a policy handbook. Leave out anything that belongs to one client or matter; that goes into each project after it's imported. See [Bring your documents](../documents.md).
 
-Then try:
+## 3. Write the skills
 
-- *"Quote the limitation of liability in the 2026 draft."*
-- *"Which agreements let the other side assign without our consent?"*
-- `/contract-review` on the Pell & Crane supply agreement.
-- `/compare-versions` for the 2024 MSA against the 2026 draft.
+Skills are what make a template more than a folder of files: they carry the way your team does the work. Type `/` in the prompt and create a new skill to open the skill editor. See [Skills](../skills.md).
 
-Every answer lists the documents it drew from in a **REFERENCES** block, so a claim can be checked against the agreement itself.
-
-## Make it your own
-
-The template is a starting point. To turn it into the base your team starts every matter from:
-
-1. **Replace the documents.** Delete the sample contracts in the **Documents** panel and add your firm's own standard forms and precedent. PDFs, Word, Excel, scanned pages, and images are all supported; see [Bring your documents](../documents.md).
-2. **Edit the skills.** Open `contract-review` in the skill editor and change the checklist to match how your team reviews. Add skills for the other reviews you repeat; see [Skills](../skills.md).
-3. **Add instructions.** In **Project Settings**, tell Studio how answers should look, for example *"Quote the clause and give its section number."*
-4. **Download it.** Open **Project Settings** (`Ctrl+Shift+,`) and click **Download**. The zip is your firm's template: each colleague imports it, and each new matter starts from it as its own project.
-
-Before you share it, remove any client document or conversation that shouldn't travel with it; the zip carries both. See [Creating a template](./project-templates.md#creating-a-template).
-
-### One project per matter
-
-Each project has its own documents, [memory](../memory.md), and agent process, isolated from every other project. Import the template once for each matter or client, for example `acme-v-globex` or `acme-msa-renewal`, and add that matter's documents to it. A question in one matter never draws on another client's files.
-
-:::caution Keep the matter fully offline
-Two features reach off your machine, and only when you use them: [web search](../web-search.md) sends the search query, and [connections](../mcp-servers.md) send what a tool call needs to the service you connected. For a privileged matter, turn search off and leave connections off for that project. Everything else stays local.
-:::
-
-## The contract review skill
-
-This is the `contract-review` skill from the template. It runs a first-pass review of any agreement in the project against a fixed checklist:
+This template has two. `contract-review` runs a first-pass review of an agreement against a fixed checklist:
 
 ````markdown
 ---
@@ -101,8 +57,83 @@ Review the named agreement in this project and produce a first-pass issues list.
 - Do not give a legal conclusion; the output is for attorney review
 ````
 
+`compare-versions` compares a signed agreement with a new draft, clause by clause:
 
-Run it from the prompt with `/contract-review`.
+````markdown
+---
+name: compare-versions
+description: When the user asks what changed between two versions of an agreement, or to compare a draft with the signed contract, produce a clause-by-clause comparison
+---
+
+# Compare versions
+Compare two versions of an agreement in this project, such as a signed contract and a new draft.
+
+## Output
+A table with one row per clause that differs:
+
+| Clause | Current version | New version | Effect on our client |
+
+## Guidelines
+- Include clauses that were added or deleted, not only changed
+- Take any signed amendments into account when describing the current version
+- In "Effect on our client", say plainly whether the change is better, worse, or neutral for the client and why
+- End with the three changes most worth negotiating
+- Quote section numbers so each row can be checked against the documents
+````
+
+Write each skill's `description` as the request that should run it, so it also runs when someone asks in their own words rather than typing `/contract-review`.
+
+## 4. Choose the models
+
+Press `Ctrl+Shift+M`, or click **Auto** in the prompt box, and enable a model for each role the work needs:
+
+| Role | Model | Used for |
+|---|---|---|
+| Vision | Qwen Vision (`qwen2-vl-2b`) | Reading scanned exhibits or photographed pages |
+| Document processing | Ministral 3 (`ministral3-3b`) | Parsing and indexing the documents |
+| Reasoning | Qwen 3.5 (`qwen3.5-2b`) | Answering your questions |
+
+Bigger is better: if your machine has the memory, a larger model in each role gives better answers.
+
+Models don't travel with a template: an imported project starts with every model off. Note which ones you used, so you can tell the people you share it with.
+
+## 5. Try it
+
+Turn web search off with the toggle under the prompt (⌘⌥S, or Ctrl+Alt+S), so answers come only from the project's documents. Then check that the documents and skills do what you meant:
+
+- *"Quote the limitation of liability in the 2026 draft."*
+- *"Which agreements let the other side assign without our consent?"*
+- `/contract-review` on the Pell & Crane supply agreement.
+- `/compare-versions` for the 2024 MSA against the 2026 draft.
+
+Every answer lists the documents it drew from in a **REFERENCES** block, so you can check each claim against the agreement. If an answer isn't what you wanted, change the skill and ask again.
+
+## 6. Download the template
+
+When the project works the way you want, open **Project Settings** (`Ctrl+Shift+,`) and click **Download**. The zip is the template.
+
+:::caution Clear your test conversations first
+The zip carries the project's conversations along with its documents and skills. Delete the conversations from step 5 before you download, so the people who import the template start with a clean project.
+:::
+
+Share the zip with your team. Each person imports it, and each new matter or client starts from it as a project of its own, with its own documents and [memory](../memory.md), isolated from every other project.
+
+## Import the finished template
+
+This is the template the steps above build:
+
+<a href="/starters/Halbrook-Wren-LLP.zip" download>**Download Halbrook Wren LLP**</a> (zip, 80 KB)
+
+1. In Studio, click **+ New Project**.
+2. Choose **Import**, then pick the zip (or drop it onto the dialog), and click **Create**.
+3. Turn web search off with the toggle under the prompt (⌘⌥S, or Ctrl+Alt+S).
+4. Enable the models from [step 4](#4-choose-the-models).
+
+The documents are indexed in the background; they show as **INDEXING** in the Documents panel for a few seconds. Then try the prompts from [step 5](#5-try-it).
+
+:::caution Keep a matter fully offline
+Two features reach off your machine, and only when you use them: [web search](../web-search.md) sends the search query, and [connections](../mcp-servers.md) send what a tool call needs to the service you connected. For a privileged matter, turn search off and leave connections off for that project. Everything else stays local.
+:::
 
 :::info
 Docent Studio assists with legal work; it does not replace professional judgment. Review every answer against its cited sources before relying on it, and check your own professional obligations on the use of AI tools.
