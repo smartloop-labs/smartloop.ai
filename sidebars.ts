@@ -63,11 +63,8 @@ const sidebars: SidebarsConfig = {
       id: 'local-ai',
     },
     {
-      type: 'category',
-      label: 'Project templates',
-      collapsed: false,
-      link: { type: 'doc', id: 'templates/project-templates' },
-      items: ['templates/legal'],
+      type: 'doc',
+      id: 'project-playbook',
     },
 
 

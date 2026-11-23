@@ -1,6 +1,6 @@
-# Best practices
+# Project playbook
 
-The best way to set up a project in Docent Studio, shown by building one from start to finish: **Halbrook Wren LLP**, a fictional law firm reviewing its client Halvorsen Analytics' contracts. The finished project is also a [project template](./project-templates.md) your team can import.
+The best way to set up a project in Docent Studio, shown by building one from start to finish: **Halbrook Wren LLP**, a fictional law firm reviewing its client Halvorsen Analytics' contracts. When it's done, you download it as a **project template**: a zip your team imports to start their own projects from the same documents and skills.
 
 * **Describe the project.** Say what it's for, so whoever imports it knows. ([Step 1](#1-create-the-project))
 * **Add only the documents everyone needs.** Shared forms and precedent go in the template; one client's files go in that client's project. ([Step 2](#2-add-the-documents))
@@ -10,7 +10,7 @@ The best way to set up a project in Docent Studio, shown by building one from st
 * **Share a clean project.** Delete your test conversations before you download it. ([Step 6](#6-download-the-template))
 * **Keep one project per matter.** Projects are isolated, so one client's files never inform another's answers.
 
-If you'd rather start with the finished result, [import it](#import-the-finished-template) instead.
+If you'd rather start with the finished result, [import it](#importing-a-template) instead.
 
 The firm, its client, and every company, person, and term in the template are made up.
 
@@ -30,11 +30,11 @@ Open the Documents panel (`Ctrl+Shift+D`) and add the files the work is about. F
 | `Halvorsen-Brightwater-Mutual-NDA.pdf` | Mutual NDA with a residuals clause |
 | `Pell-Crane-Supply-Agreement.docx` | One-sided office supply agreement |
 
-In your own template, these are the documents everyone needs to start with: standard forms, precedent, a policy handbook. Leave out anything that belongs to one client or matter; that goes into each project after it's imported. See [Bring your documents](../documents.md).
+In your own template, these are the documents everyone needs to start with: standard forms, precedent, a policy handbook. Leave out anything that belongs to one client or matter; that goes into each project after it's imported. See [Bring your documents](./documents.md).
 
 ## 3. Write the skills
 
-Skills are what make a template more than a folder of files: they carry the way your team does the work. Type `/` in the prompt and create a new skill to open the skill editor. See [Skills](../skills.md).
+Skills are what make a template more than a folder of files: they carry the way your team does the work. Type `/` in the prompt and create a new skill to open the skill editor. See [Skills](./skills.md).
 
 This template has two. `contract-review` runs a first-pass review of an agreement against a fixed checklist:
 
@@ -120,27 +120,42 @@ Every answer lists the documents it drew from in a **REFERENCES** block, so you 
 
 When the project works the way you want, open **Project Settings** (`Ctrl+Shift+,`) and click **Download**. The zip is the template.
 
+![Project Settings, with the Download button](./project-settings.png)
+
+| Part | What comes across |
+|---|---|
+| Project | Its name and description |
+| Documents | Every file in the project, indexed again on import |
+| Skills | Every skill, as its `SKILL.md` file |
+| Connections | The MCP servers it uses, without their sign-ins |
+| Conversations | The project's conversation history |
+
+Models and the web search setting don't come across.
+
 :::caution Clear your test conversations first
 The zip carries the project's conversations along with its documents and skills. Delete the conversations from step 5 before you download, so the people who import the template start with a clean project.
 :::
 
-Share the zip with your team. Each person imports it, and each new matter or client starts from it as a project of its own, with its own documents and [memory](../memory.md), isolated from every other project.
+Share the zip with your team. Each person imports it, and each new matter or client starts from it as a project of its own, with its own documents and [memory](./memory.md), isolated from every other project.
 
-## Import the finished template
+## Importing a template
 
-This is the template the steps above build:
+Download the template the steps above build, or use one a colleague shared:
 
 <a href="/starters/Halbrook-Wren-LLP.zip" download>**Download Halbrook Wren LLP**</a> (zip, 80 KB)
 
 1. In Studio, click **+ New Project**.
-2. Choose **Import**, then pick the zip (or drop it onto the dialog), and click **Create**.
-3. Turn web search off with the toggle under the prompt (⌘⌥S, or Ctrl+Alt+S).
-4. Enable the models from [step 4](#4-choose-the-models).
+2. Choose **Import**, then pick the zip (or drop it onto the dialog), and click **Create**. The project takes the template's name and gets its own ID.
+3. Turn web search off with the toggle under the prompt (⌘⌥S, or Ctrl+Alt+S) if the project should work only from its documents.
+4. Enable the models. An imported project starts with every model off; for this one, use those from [step 4](#4-choose-the-models).
+5. Reconnect any connections, since they come without their sign-ins.
 
 The documents are indexed in the background; they show as **INDEXING** in the Documents panel for a few seconds. Then try the prompts from [step 5](#5-try-it).
 
+Docent imports templates too: `/project import <zip>` in the chat, or drop the zip on an empty prompt. See [Docent - Command Line Interface](./command-line-tool.md#projects).
+
 :::caution Keep a matter fully offline
-Two features reach off your machine, and only when you use them: [web search](../web-search.md) sends the search query, and [connections](../mcp-servers.md) send what a tool call needs to the service you connected. For a privileged matter, turn search off and leave connections off for that project. Everything else stays local.
+Two features reach off your machine, and only when you use them: [web search](./web-search.md) sends the search query, and [connections](./mcp-servers.md) send what a tool call needs to the service you connected. For a privileged matter, turn search off and leave connections off for that project. Everything else stays local.
 :::
 
 :::info
