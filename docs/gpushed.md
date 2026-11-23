@@ -1,6 +1,8 @@
-# Setting up gpushed
+# gpushed
 
-**gpushed** gives you an NVIDIA GPU box from your Mac or Linux machine in a few minutes: an Ubuntu 22.04 machine with the driver, CUDA, Python, Node.js and Rust ready. There's no cloud account, quota request or Terraform to set up. You sign in with your Smartloop account, pay per second from a prepaid balance, and delete the box when you're done. See [gpushed.dev](https://gpushed.dev) for an overview.
+Docent runs its models on your own machine, so the models it can use are the ones your GPU can hold. **gpushed** gives you a bigger machine when you need one: an NVIDIA GPU box, ready in a few minutes from your Mac or Linux machine, where you run Docent the same way you do at home, with larger local models such as Qwen3 Coder 30B.
+
+The box is an Ubuntu 22.04 machine with the driver, CUDA, Python, Node.js and Rust ready, and everything Docent needs to run on its GPU. There's no cloud account, quota request or Terraform to set up. You sign in with your Smartloop account, pay per second from a prepaid balance, and stop or delete the box when you're done. See [gpushed.dev](https://gpushed.dev) for an overview.
 
 ## Requirements
 
@@ -77,6 +79,51 @@ gpushed down      # delete the box and its disk
 A box is billed per second from when it's created until it's deleted. A stopped box costs only its disk, about $0.03 an hour, so delete it when you're done.
 
 When your balance falls below $2, you get an email. When it's nearly used up, the box is stopped with its disk kept; top up and run `gpushed start` to carry on. A box that stays stopped with no credit for 24 hours is deleted.
+
+## Run Docent on the box
+
+With a box up, set Docent up on it once, and come back to it whenever a job needs the bigger GPU.
+
+1. **Create a box with room for the models.** The default L4 has 24 GB of GPU memory; an A100 has 40 GB, for the largest local models.
+
+   ```bash
+   gpushed up a100
+   ```
+
+2. **Bring your project.** Copy it up, or clone it on the box:
+
+   ```bash
+   gpushed cp my-project :
+   ```
+
+3. **Connect and install Docent.** Start `tmux` first, so Docent keeps running if your connection drops; `tmux attach` picks it up again.
+
+   ```bash
+   gpushed ssh
+   tmux
+   curl -fsSL https://smartloop.ai/install | sh
+   ```
+
+4. **Open Docent in the project.** The first run starts the agent and downloads its models onto the box. See [Docent's first run](./command-line-tool.md#first-run).
+
+   ```bash
+   cd my-project
+   docent
+   ```
+
+5. **Sign in.** Type `/login`: Docent shows a link and a code. Open the link in the browser on your own computer and confirm the code.
+
+6. **Enable the bigger models.** Type `/models` and enable the larger coding models that now fit, such as Qwen3 Coder 30B A3B (`qwen3-coder-30b-a3b`). See [Choosing models](./getting-started.md#choosing-models).
+
+Then work as you would at home: ask for changes, and Docent writes them, builds the project on the box, and fixes what fails. See [Coding with Docent](./coding.md).
+
+When you're done, bring the work back with `git push` from the box, or copy it down:
+
+```bash
+gpushed cp :my-project/ ./my-project/
+```
+
+Then run `gpushed stop` rather than `gpushed down`. A stopped box keeps its disk, with Docent and its downloaded models, for about $0.03 an hour, so the next session starts straight away with `gpushed ssh`.
 
 ## Commands
 

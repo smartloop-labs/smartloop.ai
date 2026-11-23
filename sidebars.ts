@@ -32,12 +32,7 @@ const sidebars: SidebarsConfig = {
     'mcp-servers',
     'web-search',
     'local-ai',
-    {
-      type: 'category',
-      label: 'gpushed',
-      collapsed: false,
-      items: ['gpushed'],
-    },
+    'gpushed',
   ]
 };
 
