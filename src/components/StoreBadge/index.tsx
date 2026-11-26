@@ -3,8 +3,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import { useInstallerUrl, type ReleasePlatform } from '../../utils/api';
 import styles from './styles.module.css';
 
-// Each platform's store listing. Mac and Windows lead with our own installer
-// and offer these underneath; Linux leads with the Snap Store.
+// Each platform's store listing. Every platform leads with our own installer;
+// of these, only the Snap Store is linked from the site today, as the second
+// route on the download page's Linux card.
 export const MAC_APP_STORE_URL =
   'https://apps.apple.com/us/app/smartloop-studio/id6800891411?mt=12';
 
