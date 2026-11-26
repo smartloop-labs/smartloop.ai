@@ -230,7 +230,9 @@ None of your content or data is sent, since we use this product ourselves and we
 
 ### Installing on Linux
 
-Docent Studio for Linux is a `.deb` package for Debian, Ubuntu, and their derivatives on x86_64. It bundles everything the app needs, including the models and the Vulkan runtime. You only need a working graphics driver.
+Docent Studio for Linux comes two ways: a `.deb` package for Debian, Ubuntu, and their derivatives, and a snap for any distribution with `snapd`. Both are built for x86_64 and ARM64, and both bundle everything the app needs, including the models and the Vulkan runtime. You only need a working graphics driver.
+
+#### From the `.deb`
 
 Download it from the [downloads page](https://smartloop.ai/download/), then install it with `apt`, which also pulls in any system libraries it depends on:
 
@@ -240,12 +242,26 @@ sudo apt install ./studio-*.deb
 
 Docent Studio then appears in your applications menu.
 
-#### Updating
+The `.deb` does not update itself. When a new version is available, the app tells you. Download the new `.deb` and install it the same way; your projects and settings are kept.
 
-Docent Studio does not update itself. When a new version is available, the app tells you. Download the new `.deb` and install it the same way; your projects and settings are kept.
-
-#### Uninstalling
+To uninstall:
 
 ```bash
 sudo apt remove smartloop-studio
+```
+
+#### From the Snap Store
+
+On a distribution that isn't Debian-based, or if you'd rather have updates installed for you, install the snap:
+
+```bash
+sudo snap install smartloop-studio
+```
+
+Or install it from the [Snap Store listing](https://snapcraft.io/smartloop-studio). The snap updates itself in the background whenever a new version is published.
+
+To uninstall:
+
+```bash
+sudo snap remove smartloop-studio
 ```

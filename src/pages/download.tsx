@@ -11,6 +11,7 @@ import useLatestRelease, {
 } from '../hooks/useLatestRelease';
 import {
   DirectDownloadBlock,
+  SNAP_STORE_URL,
 } from '../components/StoreBadge';
 import styles from './index.module.css';
 
@@ -47,16 +48,20 @@ type StudioCard = {
   icon: ReactNode;
   minimum: string[];
   recommended: string[];
-  // Every card offers our own installer and nothing else — no store links: it
-  // ships the moment a release is published rather than when store review
-  // clears, and on the Mac it is not sandboxed, so Studio shares ~/.smartloop
-  // with the Docent CLI.
+  // Every card leads with our own installer: it ships the moment a release is
+  // published rather than when store review clears, and on the Mac it is not
+  // sandboxed, so Studio shares ~/.smartloop with the Docent CLI.
   // Installer kinds only — the macOS zip and Linux AppImage are auto-update
   // payloads and must never be offered as a download link.
   platform: ArtifactPlatform;
   kind: ArtifactKind;
   // One download per architecture where the platform ships more than one.
   arches?: ('x64' | 'arm64')[];
+  // A store listing offered as the line under the installer. Linux only: the
+  // .deb reaches Debian derivatives, and the snap is the route for every other
+  // distro, and the one that updates itself. Mac and Windows have no such gap,
+  // so they carry no store link.
+  store?: { name: string; href: string; note: string };
 };
 
 const studioCards: StudioCard[] = [
@@ -96,7 +101,7 @@ const studioCards: StudioCard[] = [
     meta: 'Linux · x86_64 · ARM64',
     icon: <LinuxIcon />,
     minimum: [
-      'Linux x86_64 or ARM64 — Debian, Ubuntu, or a derivative',
+      'Linux x86_64 or ARM64 — Debian or Ubuntu for the .deb, snapd for the snap',
       'Vulkan-capable GPU — NVIDIA, AMD, or Intel, including integrated graphics',
       '16 GB system RAM',
       '10 GB free disk space',
@@ -105,6 +110,7 @@ const studioCards: StudioCard[] = [
     platform: 'linux',
     kind: 'deb',
     arches: ['x64', 'arm64'],
+    store: { name: 'Snap Store', href: SNAP_STORE_URL, note: 'any distro' },
   },
 ];
 
@@ -223,6 +229,26 @@ function DownloadCard({ card, release }: { card: StudioCard; release: Release | 
           size={artifact ? formatSize(artifact.size) : undefined}
           variant="secondary"
         />
+        {/* The line is kept, empty, on the cards without a store, so the three
+            buttons stay level across the row. */}
+        {card.store ? (
+          <p className={styles.downloadAltLine}>
+            or get it from the{' '}
+            <a
+              className={styles.downloadAltLink}
+              href={card.store.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {card.store.name}
+            </a>{' '}
+            · {card.store.note}
+          </p>
+        ) : (
+          <p className={`${styles.downloadAltLine} ${styles.downloadAltLineEmpty}`} aria-hidden="true">
+            &nbsp;
+          </p>
+        )}
       </div>
     </div>
   );
@@ -235,9 +261,9 @@ export default function Download(): ReactNode {
     <div id="app" className="body">
       <Head>
         <title>Download Docent Studio | Smartloop</title>
-        <meta name="description" content="Download Docent Studio for Mac (.dmg), Windows (.exe), or Linux (.deb). See system requirements for macOS, Windows, and Linux." />
+        <meta name="description" content="Download Docent Studio for Mac (.dmg), Windows (.exe), or Linux (.deb or Snap Store). See system requirements for macOS, Windows, and Linux." />
         <meta property="og:title" content="Download Docent Studio | Smartloop" />
-        <meta property="og:description" content="Download Docent Studio for Mac (.dmg), Windows (.exe), or Linux (.deb). See system requirements for macOS, Windows, and Linux." />
+        <meta property="og:description" content="Download Docent Studio for Mac (.dmg), Windows (.exe), or Linux (.deb or Snap Store). See system requirements for macOS, Windows, and Linux." />
         <link rel="canonical" href="https://smartloop.ai/download/" />
       </Head>
       <div className="wrapper">

@@ -798,6 +798,14 @@ details[open] .faqQuestion::after {
   color: var(--sl-dim);
 }
 
+/* The placeholder that keeps the buttons level only matters where the cards
+   sit side by side; stacked, it would just be a gap. */
+@media (max-width: 600px) {
+  .downloadAltLineEmpty {
+    display: none;
+  }
+}
+
 .downloadAltLink {
   color: var(--sl-white);
   text-decoration: none;
