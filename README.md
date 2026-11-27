@@ -86,8 +86,17 @@ the workflow and the checks a PR has to pass.
 - **Documentation** (`docs/`, and the text and images of the site's pages) is
   licensed under [Creative Commons Attribution 4.0](LICENSE-docs) (CC BY 4.0).
 - **Code** (everything else: components, config, scripts, workflows) is
-  licensed under the [MIT License](LICENSE).
+  source-available under the [Business Source License 1.1](LICENSE) (`BUSL-1.1`).
+
+For the code:
+
+- You may read, modify, self-host and use it in production, including inside your company.
+- You may not offer it to third parties as a hosted or embedded commercial product that competes with Smartloop's paid offerings.
+- Each version converts to the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) four years after it is published.
+
+For a commercial license or questions, contact [hello@smartloop.ai](mailto:hello@smartloop.ai).
+
+Versions released before November 27, 2026 remain available under the MIT License to anyone who received them under it.
 
 Neither license grants rights to Smartloop's names, logos or other
 trademarks.
-
